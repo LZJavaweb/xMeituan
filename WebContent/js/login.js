@@ -36,7 +36,7 @@ function toLogin() {
 	*/
 	/*******************************************/
 	var options={
-		url:"../userLogin/check.do",
+		url:"../userLogin/check.ul",
 		type:"post",
 		dataType:"json",
 		success: showResponse,
@@ -55,7 +55,7 @@ function toLogin() {
 function showResponse(data) {
 	for (i in data) {
 		if("true" === data[i].checked) {
-			window.location.href = "../index.html";
+			window.location.href = "../html/index.html";
 		}
 		else {
 			$("#pswError").html("密码错误").css("color","#3385ff");
@@ -112,7 +112,7 @@ function regTelCheck() {
 	}
 	var data = {"userPhone" : phone};
 	$.ajax({
-		url: "../userLogin/phone.do",
+		url: "../userLogin/phone.ul",
 		type: "post",
 		data: data,
 		dataType: "json",
@@ -154,7 +154,7 @@ function miCheckbox() { //没同意米团协议不能注册
 }
 function toReg() {
 	var options={
-		url:"../userLogin/reg.do",
+		url:"../userLogin/reg.ul",
 		type:"post",
 		dataType:"json",
 		success: showRegResponse,
@@ -172,10 +172,11 @@ function toReg() {
 function showRegResponse(data) {
 	for (i in data) {
 		if("true" === data[i].checked) {
-			window.location.href = "../index.html";
+			window.location.href = "../html/index.html";
 		}
 		else {
-			window.location.href = "../login.html";
+			//window.location.href = "../html/login.html";
+			location.reload();
 		}
 	}
 }
