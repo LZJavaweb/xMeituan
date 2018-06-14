@@ -13,7 +13,6 @@ import com.meituan.dao.BusiDAO;
 import com.meituan.dao.impl.BusiDAOImpl;
 import com.meituan.domain.Busi;
 
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -93,7 +92,7 @@ public class busiLogin extends HttpServlet
 		long count1 = bd.getCountForShopName(busiShopName);
 		JSONArray jsonList = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
-		if (count == 0 && count1 ==0)
+		if (count == 0 && count1 == 0)
 		{
 			// 未注册过的店铺
 			Busi busi = new Busi(busiName, busiPhone, busiPass, busiAddr, busiShopName);
@@ -130,6 +129,7 @@ public class busiLogin extends HttpServlet
 		jsonList.add(jsonObj);
 		out.println(jsonList);
 	}
+
 	private void shopName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		PrintWriter out = response.getWriter();
@@ -137,16 +137,17 @@ public class busiLogin extends HttpServlet
 		String busiShopName = request.getParameter("busiShopName");
 		System.out.println(request.getServletPath() + ":" + busiShopName);
 		// 查询数据库是否存在手机号
-		long count = bd.getCountForPhone(busiShopName);
+		long count = bd.getCountForShopName(busiShopName);
 		JSONArray jsonList = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
+		System.out.println("店铺数量"+count);
 		if (count == 0)
 		{
-			// 未注册过的手机号
+			// 未注册过的店铺名
 			jsonObj.put("checked", "true");
 		} else
 		{
-			// 注册过的手机号
+			// 注册过的店铺名
 			jsonObj.put("checked", "false");
 		}
 		jsonList.add(jsonObj);
