@@ -30,10 +30,12 @@ public class TestDAOImpl
 		Busi busi = new Busi("武大郎", "1234567898", "wudalang", "镇关西", "武大郎烧饼(镇关西店)");
 		System.out.println(busi);
 		BusiDAO bd = new BusiDAOImpl();
-		bd.sava(busi);
+		//bd.sava(busi);
 		long count = bd.getCountForBusi(busi.getBusiPhone(), busi.getBusiPass());
 		long count1 = bd.getCountForPhone(busi.getBusiPhone());
+		long count2 = bd.getCountForShopName(busi.getBusiShopName()+" ");
 		System.out.println(count);
 		System.out.println(count1);
+		System.out.println(count2);
 	}
 }

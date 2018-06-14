@@ -27,4 +27,11 @@ public class BusiDAOImpl extends DAO<Busi> implements BusiDAO
 		String sql = "INSERT INTO business(busiName,busiPass,busiAddr,busiPhone,busiShopName) VALUES (?,?,?,?,?)";
 		update(sql, busi.getBusiName(),busi.getBusiPass(),busi.getBusiAddr(),busi.getBusiPhone(),busi.getBusiShopName());
 	}
+
+	@Override
+	public long getCountForShopName(String busiShopName)
+	{
+		String sql = "SELECT COUNT(busiId) FROM business WHERE busiShopName = ?";
+		return getForValue(sql, busiShopName);
+	}
 }
