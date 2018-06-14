@@ -36,7 +36,7 @@ function toLogin() {
 	*/
 	/*******************************************/
 	var options={
-		url:"../LoginCheck",
+		url:"../userLogin/check.do",
 		type:"post",
 		dataType:"json",
 		success: showResponse,
@@ -110,9 +110,9 @@ function regTelCheck() {
 		x.innerHTML = "";
 		//x.setAttribute("style","color:#ff0;");
 	}
-	var data = {"userTel" : phone};
+	var data = {"userPhone" : phone};
 	$.ajax({
-		url: "../RegTelCheck",
+		url: "../userLogin/phone.do",
 		type: "post",
 		data: data,
 		dataType: "json",
@@ -154,7 +154,7 @@ function miCheckbox() { //没同意米团协议不能注册
 }
 function toReg() {
 	var options={
-		url:"../UserReg",
+		url:"../userLogin/reg.do",
 		type:"post",
 		dataType:"json",
 		success: showRegResponse,
