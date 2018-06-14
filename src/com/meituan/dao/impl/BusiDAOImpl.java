@@ -4,7 +4,7 @@ import com.meituan.dao.BusiDAO;
 import com.meituan.dao.DAO;
 import com.meituan.domain.Busi;
 
-public class BuaiDAOImpl extends DAO<Busi> implements BusiDAO
+public class BusiDAOImpl extends DAO<Busi> implements BusiDAO
 {
 
 	@Override
