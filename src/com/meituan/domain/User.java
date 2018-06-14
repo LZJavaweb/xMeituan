@@ -3,21 +3,21 @@ package com.meituan.domain;
 public class User
 {
 	private int userId;
-	private String userTel;
+	private String userPhone;
 	private String userPass;
 	private String userName;
+	public User(String userPhone, String userPass, String userName)
+	{
+		super();
+		this.userPhone = userPhone;
+		this.userPass = userPass;
+		this.userName = userName;
+	}
 	@Override
 	public String toString()
 	{
-		return "User [userId=" + userId + ", userTel=" + userTel + ", userPass=" + userPass + ", userName=" + userName
-				+ "]";
-	}
-	public User(String userTel, String userPass, String userName)
-	{
-		super();
-		this.userTel = userTel;
-		this.userPass = userPass;
-		this.userName = userName;
+		return "User [userId=" + userId + ", userPhone=" + userPhone + ", userPass=" + userPass + ", userName="
+				+ userName + "]";
 	}
 	public int getUserId()
 	{
@@ -27,13 +27,13 @@ public class User
 	{
 		this.userId = userId;
 	}
-	public String getUserTel()
+	public String getUserPhone()
 	{
-		return userTel;
+		return userPhone;
 	}
-	public void setUserTel(String userTel)
+	public void setUserPhone(String userPhone)
 	{
-		this.userTel = userTel;
+		this.userPhone = userPhone;
 	}
 	public String getUserPass()
 	{
@@ -51,4 +51,5 @@ public class User
 	{
 		this.userName = userName;
 	}
+	
 }

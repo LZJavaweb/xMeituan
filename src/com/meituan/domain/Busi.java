@@ -12,22 +12,21 @@ public class Busi
 	private String busiNotice;
 	private int busiFlag;
 	private int busiBan;
+	public Busi(int busiId, String busiName, String busiPhone, String busiPass, String busiAddr, String busiShopName)
+	{
+		super();
+		this.busiName = busiName;
+		this.busiPhone = busiPhone;
+		this.busiPass = busiPass;
+		this.busiAddr = busiAddr;
+		this.busiShopName = busiShopName;
+	}
 	@Override
 	public String toString()
 	{
 		return "Busi [busiId=" + busiId + ", busiName=" + busiName + ", busiPhone=" + busiPhone + ", busiPass="
 				+ busiPass + ", busiAddr=" + busiAddr + ", busiShopName=" + busiShopName + ", busiLogo=" + busiLogo
 				+ ", busiNotice=" + busiNotice + ", busiFlag=" + busiFlag + ", busiBan=" + busiBan + "]";
-	}
-	public Busi(int busiId, String busiName, String busiPhone, String busiPass, String busiAddr, String busiShopName)
-	{
-		super();
-		this.busiId = busiId;
-		this.busiName = busiName;
-		this.busiPhone = busiPhone;
-		this.busiPass = busiPass;
-		this.busiAddr = busiAddr;
-		this.busiShopName = busiShopName;
 	}
 	public int getBusiId()
 	{
@@ -109,6 +108,5 @@ public class Busi
 	{
 		this.busiBan = busiBan;
 	}
-
 	
 }
