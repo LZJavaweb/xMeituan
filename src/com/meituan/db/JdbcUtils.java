@@ -8,12 +8,12 @@ import javax.sql.DataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
- * JDBC ²Ù×÷µÄ¹¤¾ßÀà
+ * JDBC ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class JdbcUtils {
 
 	/**
-	 * ÊÍ·Å Connection Á¬½Ó
+	 * ï¿½Í·ï¿½ Connection ï¿½ï¿½ï¿½ï¿½
 	 * @param connection
 	 */
 	public static void releaseConnection(Connection connection){
@@ -29,12 +29,12 @@ public class JdbcUtils {
 	private static DataSource dataSource = null;
 	
 	static{
-		//Êý¾ÝÔ´Ö»ÄÜ±»´´½¨Ò»´Î. 
+		//ï¿½ï¿½ï¿½ï¿½Ô´Ö»ï¿½Ü±ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½. 
 		dataSource = new ComboPooledDataSource("mituan");
 	}
 	
 	/**
-	 * ·µ»ØÊý¾ÝÔ´µÄÒ»¸ö Connection ¶ÔÏó
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ò»ï¿½ï¿½ Connection ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 * @throws SQLException  
 	 */

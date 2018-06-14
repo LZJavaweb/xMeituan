@@ -13,10 +13,10 @@ import com.meituan.utils.ReflectionUtils;
 
 
 /**
- * ·â×°ÁË»ù±¾µÄ CRUD µÄ·½·¨, ÒÔ¹©×ÓÀà¼Ì³ĞÊ¹ÓÃ
- * µ±Ç° DAO Ö±½ÓÔÚ·½·¨ÖĞ»ñÈ¡Êı¾İ¿âÁ¬½Ó. 
- * Õû¸ö DAO ²ÉÈ¡ DBUtils ½â¾ö·½°¸. 
- * @param <T>: µ±Ç° DAO ´¦ÀíµÄÊµÌåÀàµÄÀàĞÍÊÇÊ²Ã´
+ * å°è£…äº†åŸºæœ¬çš„ CRUD çš„æ–¹æ³•, ä»¥ä¾›å­ç±»ç»§æ‰¿ä½¿ç”¨
+ * å½“å‰ DAO ç›´æ¥åœ¨æ–¹æ³•ä¸­è·å–æ•°æ®åº“è¿æ¥. 
+ * æ•´ä¸ª DAO é‡‡å– DBUtils è§£å†³æ–¹æ¡ˆ. 
+ * @param <T>: å½“å‰ DAO å¤„ç†çš„å®ä½“ç±»çš„ç±»å‹æ˜¯ä»€ä¹ˆ
  */
 public class DAO<T> {
 
@@ -30,7 +30,7 @@ public class DAO<T> {
 	}
 	
 	/**
-	 * ·µ»ØÄ³Ò»¸ö×Ö¶ÎµÄÖµ£ºÀıÈç·µ»ØÄ³Ò»Ìõ¼ÇÂ¼µÄ customerName, »ò·µ»ØÊı¾İ±íÖĞÓĞ¶àÉÙÌõ¼ÇÂ¼µÈ. 
+	 * è¿”å›æŸä¸€ä¸ªå­—æ®µçš„å€¼ï¼šä¾‹å¦‚è¿”å›æŸä¸€æ¡è®°å½•çš„ customerName, æˆ–è¿”å›æ•°æ®è¡¨ä¸­æœ‰å¤šå°‘æ¡è®°å½•ç­‰. 
 	 * @param sql
 	 * @param args
 	 * @return
@@ -50,7 +50,7 @@ public class DAO<T> {
 	}
 	
 	/**
-	 * ·µ»Ø T Ëù¶ÔÓ¦µÄ List 
+	 * è¿”å› T æ‰€å¯¹åº”çš„ List 
 	 * @param sql
 	 * @param args
 	 * @return
@@ -72,7 +72,7 @@ public class DAO<T> {
 	}
 	
 	/**
-	 * ·µ»Ø¶ÔÓ¦µÄ T µÄÒ»¸öÊµÀıÀàµÄ¶ÔÏó. 
+	 * è¿”å›å¯¹åº”çš„ T çš„ä¸€ä¸ªå®ä¾‹ç±»çš„å¯¹è±¡. 
 	 * @param sql
 	 * @param args
 	 * @return
@@ -94,9 +94,9 @@ public class DAO<T> {
 	}
 	
 	/**
-	 * ¸Ã·½·¨·â×°ÁË INSERT¡¢DELETE¡¢UPDATE ²Ù×÷.
-	 * @param sql: SQL Óï¾ä
-	 * @param args: Ìî³ä SQL Óï¾äµÄÕ¼Î»·û.
+	 * è¯¥æ–¹æ³•å°è£…äº† INSERTã€DELETEã€UPDATE æ“ä½œ.
+	 * @param sql: SQL è¯­å¥
+	 * @param args: å¡«å…… SQL è¯­å¥çš„å ä½ç¬¦.
 	 */
 	public void update(String sql, Object ... args){
 		Connection connection = null;
