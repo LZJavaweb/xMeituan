@@ -12,7 +12,7 @@ public class Busi
 	private String busiNotice;
 	private int busiFlag;
 	private int busiBan;
-	public Busi(int busiId, String busiName, String busiPhone, String busiPass, String busiAddr, String busiShopName)
+	public Busi(String busiName, String busiPhone, String busiPass, String busiAddr, String busiShopName)
 	{
 		super();
 		this.busiName = busiName;

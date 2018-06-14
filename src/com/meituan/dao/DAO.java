@@ -35,7 +35,6 @@ public class DAO<T> {
 	 * @param args
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public <E> E getForValue(String sql, Object ... args){
 		Connection connection = null;
 		

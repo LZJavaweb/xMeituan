@@ -8,16 +8,16 @@ public class UserDAOImpl extends DAO<User> implements UserDAO
 {
 
 	@Override
-	public int getCountForUser(String userPhone, String userPass)
+	public long getCountForUser(String userPhone, String userPass)
 	{
-		String sql = "SELECT COUNT(userId) FROM USER WHERE USER userPhone = ? AND userPass = ?";
-		return getForValue(sql, userPhone,userPass);
+		String sql = "SELECT COUNT(userId) FROM USER WHERE userPhone = ? AND userPass = ?";
+		return getForValue(sql, userPhone, userPass);
 	}
 
 	@Override
-	public int getCountForPhone(String userPhone)
+	public long getCountForPhone(String userPhone)
 	{
-		String sql = "SELECT COUNT(userId) FROM USER WHERE USER userPhone = ?";
+		String sql = "SELECT COUNT(userId) FROM USER WHERE userPhone = ?";
 		return getForValue(sql, userPhone);
 	}
 

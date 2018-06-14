@@ -8,14 +8,14 @@ public class BuaiDAOImpl extends DAO<Busi> implements BusiDAO
 {
 
 	@Override
-	public int getCountForBusi(String busiPhone, String busiPass)
+	public long getCountForBusi(String busiPhone, String busiPass)
 	{
 		String sql = "SELECT COUNT(busiId) FROM business WHERE busiPhone = ? AND busiPass = ?";
 		return getForValue(sql, busiPhone,busiPass);
 	}
 
 	@Override
-	public int getCountForPhone(String busiPhone)
+	public long getCountForPhone(String busiPhone)
 	{
 		String sql = "SELECT COUNT(busiId) FROM business WHERE busiPhone = ?";
 		return getForValue(sql, busiPhone);
