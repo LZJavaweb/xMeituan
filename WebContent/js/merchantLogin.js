@@ -36,7 +36,7 @@ function toLogin() {
 	*/
 	/*******************************************/
 	var options={
-			url:"../MLoginCheck",
+			url:"../busiLogin/check.do",
 			type:"post",
 			dataType:null,
 			success: showResponse,
@@ -110,9 +110,9 @@ function regTelCheck() {
 		x.innerHTML = "";
 		//x.setAttribute("style","color:#ff0;");
 	}
-	var data = {"userTel" : phone};
+	var data = {"busiPhone" : phone};
 	$.ajax({
-		url: "../MRegTelCheck",
+		url: "../busiLogin/phone.do",
 		type: "post",
 		data: data,
 		dataType: "json",
@@ -154,7 +154,7 @@ function miCheckbox() {
 }
 function toReg() {
 	var options={
-		url:"../MReg",
+		url:"../busiLogin/check.do",
 		type:"post",
 		dataType:"json",
 		success: showRegResponse,
