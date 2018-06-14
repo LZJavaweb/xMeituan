@@ -11,4 +11,6 @@ public interface BusiDAO
 	public long getCountForPhone(String busiPhone);
 	//保存注册信息
 	public void sava(Busi busi);
+	//查询店铺名
+	public long getCountForShopName(String busiShopName);
 }
