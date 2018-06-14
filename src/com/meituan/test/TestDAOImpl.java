@@ -17,12 +17,13 @@ public class TestDAOImpl
 		User user = new User("14718158227", "zhoujunliang", "ÖÜ¾üÁ¼");
 		System.out.println(user);
 		UserDAO ud = new UserDAOImpl();
-//		ud.sava(user);
+		ud.sava(user);
 		long count = ud.getCountForUser(user.getUserPhone(), user.getUserPass());
 		System.out.println(count);
 		long count1 = ud.getCountForPhone(user.getUserPhone());
 		System.out.println(count1);
 	}
+
 	@Test
 	public void testbusi()
 	{
@@ -34,6 +35,5 @@ public class TestDAOImpl
 		long count1 = bd.getCountForPhone(busi.getBusiPhone());
 		System.out.println(count);
 		System.out.println(count1);
-		
 	}
 }
