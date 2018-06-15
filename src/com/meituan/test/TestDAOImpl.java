@@ -1,12 +1,17 @@
 package com.meituan.test;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import com.meituan.dao.BusiDAO;
+import com.meituan.dao.FoodDAO;
 import com.meituan.dao.UserDAO;
 import com.meituan.dao.impl.BusiDAOImpl;
+import com.meituan.dao.impl.FoodDAOImpl;
 import com.meituan.dao.impl.UserDAOImpl;
 import com.meituan.domain.Busi;
+import com.meituan.domain.Food;
 import com.meituan.domain.User;
 
 public class TestDAOImpl
@@ -14,7 +19,7 @@ public class TestDAOImpl
 	@Test
 	public void testuser()
 	{
-		User user = new User("14718158227", "zhoujunliang", "ÖÜ¾üÁ¼");
+		User user = new User("14718158227", "zhoujunliang", "è‰¯å†›å‘¨");
 		System.out.println(user);
 		UserDAO ud = new UserDAOImpl();
 		ud.sava(user);
@@ -27,7 +32,7 @@ public class TestDAOImpl
 	@Test
 	public void testbusi()
 	{
-		Busi busi = new Busi("Îä´óÀÉ", "1234567898", "wudalang", "Õò¹ØÎ÷", "Îä´óÀÉÉÕ±ı(Õò¹ØÎ÷µê)");
+		Busi busi = new Busi("ä¹Œå…°", "1234567898", "wudalang", "æ­¦å¤§", "çƒ§é¥¼åº—(ä»²æºåº—)");
 		System.out.println(busi);
 		BusiDAO bd = new BusiDAOImpl();
 		//bd.sava(busi);
@@ -37,5 +42,15 @@ public class TestDAOImpl
 		System.out.println(count);
 		System.out.println(count1);
 		System.out.println(count2);
+	}
+	@Test
+	public void testfood()
+	{
+		Food food = new Food(2, "çƒ§é¥¼", "haocidishaobing", 23.4, 97, "/WEB-INF/file/shobing2.png");
+		System.out.println(food);
+		FoodDAO fd = new FoodDAOImpl();
+		fd.save(food);
+		List list = fd.getAll(food.getBusiId());
+		System.out.println(list);
 	}
 }
