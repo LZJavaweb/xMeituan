@@ -50,9 +50,13 @@ CREATE TABLE `business` (
   `busiFlag` int(2) DEFAULT NULL COMMENT '是否开业',
   `busiBan` int(2) DEFAULT NULL COMMENT '商家是否被禁止',
   PRIMARY KEY (`busiId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `business` */
+
+insert  into `business`(`busiId`,`busiName`,`busiPhone`,`busiPass`,`busiAddr`,`busiShopName`,`busiLogo`,`busiNotice`,`busiFlag`,`busiBan`) values 
+(1,'武大郎','1234567898','wudalang','镇关西','武大郎烧饼(镇关西店)',NULL,NULL,NULL,NULL),
+(2,'武当','1234567890','wudalang','广东省广州市','武大郎烧饼(广州店)',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `user` */
 
@@ -60,13 +64,17 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `userId` int(20) NOT NULL AUTO_INCREMENT COMMENT '用户Id',
-  `userTele` varchar(11) NOT NULL COMMENT '用户注册电话',
+  `userPhone` varchar(11) NOT NULL COMMENT '用户注册电话',
   `userPass` varchar(20) NOT NULL COMMENT '用户密码',
   `userName` varchar(20) NOT NULL COMMENT '用户名',
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
+
+insert  into `user`(`userId`,`userPhone`,`userPass`,`userName`) values 
+(1,'14718158227','zhoujunliang','周军良'),
+(5,'14718158220','zhoujunliang','zhou');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
