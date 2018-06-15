@@ -36,7 +36,7 @@ function toLogin() {
 	*/
 	/*******************************************/
 	var options={
-			url:"../busiLogin/check.ul",
+			url:"../check.bl",
 			type:"post",
 			dataType:null,
 			success: showResponse,
@@ -112,7 +112,7 @@ function regTelCheck() {
 	}
 	var data = {"busiPhone" : phone};
 	$.ajax({
-		url: "../busiLogin/phone.ul",
+		url: "../phone.bl",
 		type: "post",
 		data: data,
 		dataType: "json",
@@ -154,7 +154,7 @@ function miCheckbox() {
 }
 function toReg() {
 	var options={
-		url:"../busiLogin/reg.ul",
+		url:"../reg.bl",
 		type:"post",
 		dataType:"json",
 		success: showRegResponse,
