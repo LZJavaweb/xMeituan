@@ -29,24 +29,24 @@ public class busiLogin extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// 1. »ñÈ¡ ServletPath: /check.ul»ò reg.ul µÈ¡£ ulÊÇbusiLoginµÄÊ××ÖÄ¸ËõĞ´
+		// 1. è·å– ServletPath: /check.ulæˆ– reg.ul ç­‰ã€‚ ulæ˜¯busiLoginçš„é¦–å­—æ¯ç¼©å†™
 		String servletPath = request.getServletPath();
 		System.out.println(servletPath);
-		// 2. È¥³ı / ºÍ .ul, µÃµ½ÀàËÆÓÚ check »ò reg ÕâÑùµÄ×Ö·û´®
+		// 2. å»é™¤ / å’Œ .ul, å¾—åˆ°ç±»ä¼¼äº check æˆ– reg è¿™æ ·çš„å­—ç¬¦ä¸²
 		String methodName = servletPath.substring(1);
 		methodName = methodName.substring(0, methodName.length() - 3);
 
 		try
 		{
-			// 3. ÀûÓÃ·´Éä»ñÈ¡ methodName ¶ÔÓ¦µÄ·½·¨
+			// 3. åˆ©ç”¨åå°„è·å– methodName å¯¹åº”çš„æ–¹æ³•
 			Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class,
 					HttpServletResponse.class);
-			// 4. ÀûÓÃ·´Éäµ÷ÓÃ¶ÔÓ¦µÄ·½·¨
+			// 4. åˆ©ç”¨åå°„è°ƒç”¨å¯¹åº”çš„æ–¹æ³•
 			method.invoke(this, request, response);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-			// ¿ÉÒÔÓĞÒ»Ğ©ÏìÓ¦.
+			// å¯ä»¥æœ‰ä¸€äº›å“åº”.
 			response.sendRedirect("error.jsp");
 		}
 	}
@@ -76,7 +76,7 @@ public class busiLogin extends HttpServlet
 	{
 		PrintWriter out = response.getWriter();
 		String path = request.getServletPath();
-		// »ñÈ¡´«µİ¹ıÀ´µÄ²ÎÊı
+		// è·å–ä¼ é€’è¿‡æ¥çš„å‚æ•°
 		String busiPhone = request.getParameter("busiPhone");
 		String busiPass = request.getParameter("busiPass");
 		String busiName = request.getParameter("busiName");
@@ -87,20 +87,20 @@ public class busiLogin extends HttpServlet
 		System.out.println(path + ":" + busiName);
 		System.out.println(path + ":" + busiShopName);
 		System.out.println(path + ":" + busiAddr);
-		// ²éÑ¯Êı¾İ¿âÊÇ·ñ´æÔÚÊÖ»úºÅ
+		// æŸ¥è¯¢æ•°æ®åº“æ˜¯å¦å­˜åœ¨æ‰‹æœºå·
 		long count = bd.getCountForPhone(busiPhone);
 		long count1 = bd.getCountForShopName(busiShopName);
 		JSONArray jsonList = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
 		if (count == 0 && count1 == 0)
 		{
-			// Î´×¢²á¹ıµÄµêÆÌ
+			// æœªæ³¨å†Œè¿‡çš„åº—é“º
 			Busi busi = new Busi(busiName, busiPhone, busiPass, busiAddr, busiShopName);
 			bd.sava(busi);
 			jsonObj.put("checked", "true");
 		} else
 		{
-			// ×¢²á¹ıµÄµêÆÌ
+			// æ³¨å†Œè¿‡çš„åº—é“º
 			jsonObj.put("checked", "false");
 		}
 		jsonList.add(jsonObj);
@@ -110,20 +110,20 @@ public class busiLogin extends HttpServlet
 	private void phone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		PrintWriter out = response.getWriter();
-		// »ñÈ¡´«µİ¹ıÀ´µÄ²ÎÊı
+		// è·å–ä¼ é€’è¿‡æ¥çš„å‚æ•°
 		String busiPhone = request.getParameter("busiPhone");
 		System.out.println(request.getServletPath() + ":" + busiPhone);
-		// ²éÑ¯Êı¾İ¿âÊÇ·ñ´æÔÚÊÖ»úºÅ
+		// æŸ¥è¯¢æ•°æ®åº“æ˜¯å¦å­˜åœ¨æ‰‹æœºå·
 		long count = bd.getCountForPhone(busiPhone);
 		JSONArray jsonList = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
 		if (count == 0)
 		{
-			// Î´×¢²á¹ıµÄÊÖ»úºÅ
+			// æœªæ³¨å†Œè¿‡çš„æ‰‹æœºå·
 			jsonObj.put("checked", "true");
 		} else
 		{
-			// ×¢²á¹ıµÄÊÖ»úºÅ
+			// æ³¨å†Œè¿‡çš„æ‰‹æœºå·
 			jsonObj.put("checked", "false");
 		}
 		jsonList.add(jsonObj);
@@ -133,21 +133,21 @@ public class busiLogin extends HttpServlet
 	private void shopName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		PrintWriter out = response.getWriter();
-		// »ñÈ¡´«µİ¹ıÀ´µÄ²ÎÊı
+		// è·å–ä¼ é€’è¿‡æ¥çš„å‚æ•°
 		String busiShopName = request.getParameter("busiShopName");
 		System.out.println(request.getServletPath() + ":" + busiShopName);
-		// ²éÑ¯Êı¾İ¿âÊÇ·ñ´æÔÚÊÖ»úºÅ
+		// æŸ¥è¯¢æ•°æ®åº“æ˜¯å¦å­˜åœ¨æ‰‹æœºå·
 		long count = bd.getCountForShopName(busiShopName);
 		JSONArray jsonList = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
-		System.out.println("µêÆÌÊıÁ¿"+count);
+		System.out.println("åº—é“ºæ•°é‡"+count);
 		if (count == 0)
 		{
-			// Î´×¢²á¹ıµÄµêÆÌÃû
+			// æœªæ³¨å†Œè¿‡çš„åº—é“ºå
 			jsonObj.put("checked", "true");
 		} else
 		{
-			// ×¢²á¹ıµÄµêÆÌÃû
+			// æ³¨å†Œè¿‡çš„åº—é“ºå
 			jsonObj.put("checked", "false");
 		}
 		jsonList.add(jsonObj);

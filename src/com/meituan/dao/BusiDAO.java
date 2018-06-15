@@ -2,15 +2,15 @@ package com.meituan.dao;
 
 import com.meituan.domain.Busi;
 
-//ÉÌ¼ÒĞÅÏ¢²éÑ¯DAO
+//å•†å®¶ä¿¡æ¯æŸ¥è¯¢DAO
 public interface BusiDAO
 {
-	//²éÑ¯ÕËºÅÃÜÂë
+	//æŸ¥è¯¢è´¦å·å¯†ç 
 	public long getCountForBusi(String busiPhone,String busiPass);
-	//²éÑ¯µç»°ºÅÂë
+	//æŸ¥è¯¢ç”µè¯å·ç 
 	public long getCountForPhone(String busiPhone);
-	//±£´æ×¢²áĞÅÏ¢
+	//ä¿å­˜æ³¨å†Œä¿¡æ¯
 	public void sava(Busi busi);
-	//²éÑ¯µêÆÌÃû
+	//æŸ¥è¯¢åº—é“ºå
 	public long getCountForShopName(String busiShopName);
 }

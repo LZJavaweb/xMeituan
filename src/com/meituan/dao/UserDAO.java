@@ -2,13 +2,13 @@ package com.meituan.dao;
 
 import com.meituan.domain.User;
 
-//顾客信息查询DAO
+//椤惧淇℃伅鏌ヨDAO
 public interface UserDAO
 {
-	//查询账号密码
+	//鏌ヨ璐﹀彿瀵嗙爜
 	public long getCountForUser(String userPhone,String userPass);
-	//查询电话号码
+	//鏌ヨ鐢佃瘽鍙风爜
 	public long getCountForPhone(String userPhone);
-	//保存注册信息
+	//淇濆瓨娉ㄥ唽淇℃伅
 	public void sava(User user);
 }
