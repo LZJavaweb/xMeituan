@@ -39,7 +39,7 @@ function toLogin() {
 		url:"../check.ul",
 		type:"post",
 		dataType:"json",
-		success: showResponse,
+		success: showResponse
 	};
 	//$('#loginForm').ajaxForm(options); 
 	$('#loginForm').submit(function() { 
@@ -180,3 +180,4 @@ function showRegResponse(data) {
 		}
 	}
 }
+
