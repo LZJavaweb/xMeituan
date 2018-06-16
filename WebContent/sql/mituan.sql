@@ -58,6 +58,28 @@ insert  into `business`(`busiId`,`busiName`,`busiPhone`,`busiPass`,`busiAddr`,`b
 (1,'武大郎','1234567898','wudalang','镇关西','武大郎烧饼(镇关西店)',NULL,NULL,NULL,NULL),
 (2,'武当','1234567890','wudalang','广东省广州市','武大郎烧饼(广州店)',NULL,NULL,NULL,NULL);
 
+/*Table structure for table `food` */
+
+DROP TABLE IF EXISTS `food`;
+
+CREATE TABLE `food` (
+  `foodId` int(20) NOT NULL AUTO_INCREMENT COMMENT '食品Id',
+  `busiId` int(20) NOT NULL COMMENT '商家Id',
+  `foodName` varchar(20) NOT NULL,
+  `foodDesc` varchar(100) NOT NULL COMMENT '食品描述',
+  `foodPrice` double NOT NULL COMMENT '食品价格',
+  `foodStock` int(11) NOT NULL COMMENT '食品库存',
+  `foodPic` varchar(200) NOT NULL COMMENT '食品图片',
+  `foodType` varchar(20) DEFAULT NULL COMMENT '食品类型',
+  `foodSale` int(2) DEFAULT NULL COMMENT '是否上架',
+  PRIMARY KEY (`foodId`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+/*Data for the table `food` */
+
+insert  into `food`(`foodId`,`busiId`,`foodName`,`foodDesc`,`foodPrice`,`foodStock`,`foodPic`,`foodType`,`foodSale`) values 
+(8,1,'红烧猪肉','红色的烧过的猪肉',18,99,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152913807536247931.png',NULL,NULL);
+
 /*Table structure for table `user` */
 
 DROP TABLE IF EXISTS `user`;
