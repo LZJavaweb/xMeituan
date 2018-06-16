@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class userLookEvaluate extends HttpServlet
+public class userEvaluation extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
