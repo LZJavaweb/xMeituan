@@ -19,7 +19,7 @@ import com.meituan.domain.Busi;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class busiLogin extends HttpServlet
+public class BusiLogin extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 

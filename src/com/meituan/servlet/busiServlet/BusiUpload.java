@@ -34,7 +34,7 @@ import com.meituan.utils.FileUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class busiPageForUpload extends HttpServlet
+public class BusiUpload extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	private static final String FILE_PATH = "D:\\xMeituan\\WebContent\\resources\\BusiPic";

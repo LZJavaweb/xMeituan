@@ -36,7 +36,7 @@ function toLogin() {
 	*/
 	/*******************************************/
 	var options={
-			url:"../check.bl",
+			url:"../busiLogin/check.do",
 			type:"post",
 			dataType:null,
 			success: showResponse,
@@ -55,7 +55,7 @@ function toLogin() {
 function showResponse() {
 	for (i in data) {
 		if("true" === data[i].checked) {
-			window.location.href = "../html/MIndex.html";
+			window.location.href = "../MIndex.html";
 		}
 		else {
 			$("#pswError").html("密码错误").css("color","#3385ff");
@@ -112,7 +112,7 @@ function regTelCheck() {
 	}
 	var data = {"busiPhone" : phone};
 	$.ajax({
-		url: "../phone.bl",
+		url: "../busiLogin/phone.do",
 		type: "post",
 		data: data,
 		dataType: "json",
@@ -154,7 +154,7 @@ function miCheckbox() {
 }
 function toReg() {
 	var options={
-		url:"../reg.bl",
+		url:"../busiLogin/check.do",
 		type:"post",
 		dataType:"json",
 		success: showRegResponse,
@@ -172,11 +172,10 @@ function toReg() {
 function showRegResponse(data) {
 	for (i in data) {
 		if("true" === data[i].checked) {
-			window.location.href = "../html/MIndex.html";
+			window.location.href = "../MIndex.html";
 		}
 		else {
-			//window.location.href = "../html/MLogin.html";
-			location.reload();
+			window.location.href = "../MLogin.html";
 		}
 	}
 }
