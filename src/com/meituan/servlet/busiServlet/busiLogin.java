@@ -9,6 +9,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.meituan.dao.BusiDAO;
 import com.meituan.dao.impl.BusiDAOImpl;
@@ -54,33 +56,19 @@ public class busiLogin extends HttpServlet
 
 	private void check(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		PrintWriter out = response.getWriter();
 		String busiPhone = request.getParameter("busiPhone");
 		String busiPass = request.getParameter("busiPass");
 		System.out.println(request.getServletPath() + ":" + busiPhone);
 		System.out.println(request.getServletPath() + ":" + busiPass);
 		long count = bd.getCountForBusi(busiPhone, busiPass);
-		JSONArray jsonList = new JSONArray();
-		JSONObject jsonObj = new JSONObject();
 		if (count == 1)
 		{
-			jsonObj.put("checked", "true");
-			setCookie(request, response);
+			HttpSession session = request.getSession();
+			session.setAttribute("busiPhone", busiPhone);
+			response.sendRedirect("html/MPage.html");
 		} else
 		{
-			jsonObj.put("checked", "false");
-		}
-		jsonList.add(jsonObj);
-		out.println(jsonList);
-	}
-
-	private void setCookie(HttpServletRequest request, HttpServletResponse response)
-	{
-		String phone = request.getParameter("busiPhone");
-		if (phone != null && !phone.trim().equals(""))
-		{
-			Cookie cookie = new Cookie("busiPhone", phone);
-			response.addCookie(cookie);
+			response.sendRedirect("html/Mlogin.html");
 		}
 	}
 
