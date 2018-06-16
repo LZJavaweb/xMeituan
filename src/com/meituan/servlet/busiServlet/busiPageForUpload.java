@@ -37,7 +37,7 @@ import net.sf.json.JSONObject;
 public class busiPageForUpload extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private static final String FILE_PATH = "d:\\xMeituanPicture\\busiPic";
+	private static final String FILE_PATH = "D:\\xMeituan\\WebContent\\resources\\BusiPic";
 	private static final String TEMP_DIR = "d:\\tempDirectory";
 	private int busiId ;
 	private String busiPhone = null;
@@ -212,7 +212,7 @@ public class busiPageForUpload extends HttpServlet
 	{
 		String extName = fileName.substring(fileName.lastIndexOf("."));
 		Random random = new Random();
-		String filePath = FILE_PATH + "\\"+ System.currentTimeMillis()+ random.nextInt(100000) + extName;
+		String filePath = FILE_PATH +"\\"+ System.currentTimeMillis()+ random.nextInt(100000) + extName;
 		return filePath;
 	}
 	
