@@ -8,6 +8,6 @@ public interface FoodDAO
 {
 	//保存商品信息
 	public void save(Food food);
-	//获取所有商品信息
+	//获取对应店家的所有商品信息
 	public List<Food> getAll(int busiId);
 }

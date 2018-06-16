@@ -5,6 +5,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.meituan.dao.UserDAO;
 import com.meituan.dao.impl.UserDAOImpl;
 import com.meituan.domain.User;
@@ -60,23 +62,20 @@ public class userLogin extends HttpServlet
 
 	private void check(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		PrintWriter out = response.getWriter();
 		String userPhone = request.getParameter("userPhone");
 		String userPass = request.getParameter("userPass");
 		System.out.println(request.getServletPath() + ":" + userPhone);
 		System.out.println(request.getServletPath() + ":" + userPass);
 		long count = ud.getCountForUser(userPhone, userPass);
-		JSONArray jsonList = new JSONArray();
-		JSONObject jsonObj = new JSONObject();
 		if (count == 1)
 		{
-			jsonObj.put("checked", "true");
+			HttpSession session = request.getSession();
+			session.setAttribute("userPhone", userPhone);
+			response.sendRedirect("html/userPage.html");
 		} else
 		{
-			jsonObj.put("checked", "false");
+			response.sendRedirect("html/login.html");
 		}
-		jsonList.add(jsonObj);
-		out.println(jsonList);
 	}
 
 	private void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

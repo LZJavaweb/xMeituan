@@ -5,9 +5,12 @@ import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.meituan.dao.BusiDAO;
 import com.meituan.dao.impl.BusiDAOImpl;
@@ -53,23 +56,21 @@ public class busiLogin extends HttpServlet
 
 	private void check(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		PrintWriter out = response.getWriter();
 		String busiPhone = request.getParameter("busiPhone");
 		String busiPass = request.getParameter("busiPass");
 		System.out.println(request.getServletPath() + ":" + busiPhone);
 		System.out.println(request.getServletPath() + ":" + busiPass);
 		long count = bd.getCountForBusi(busiPhone, busiPass);
-		JSONArray jsonList = new JSONArray();
-		JSONObject jsonObj = new JSONObject();
 		if (count == 1)
 		{
-			jsonObj.put("checked", "true");
+			HttpSession session = request.getSession();
+			session.setAttribute("busiPhone", busiPhone);
+			//response.sendRedirect("html/MPage.html");
+			request.getRequestDispatcher("/test/busitest/testUpload.jsp").forward(request, response);
 		} else
 		{
-			jsonObj.put("checked", "false");
+			response.sendRedirect("html/Mlogin.html");
 		}
-		jsonList.add(jsonObj);
-		out.println(jsonList);
 	}
 
 	private void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -140,7 +141,7 @@ public class busiLogin extends HttpServlet
 		long count = bd.getCountForShopName(busiShopName);
 		JSONArray jsonList = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
-		System.out.println("店铺数量"+count);
+		System.out.println("店铺数量" + count);
 		if (count == 0)
 		{
 			// 未注册过的店铺名

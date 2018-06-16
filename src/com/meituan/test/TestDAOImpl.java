@@ -42,6 +42,7 @@ public class TestDAOImpl
 		System.out.println(count);
 		System.out.println(count1);
 		System.out.println(count2);
+		System.out.println("id:"+bd.getId(busi.getBusiPhone()));
 	}
 	@Test
 	public void testfood()
@@ -50,7 +51,7 @@ public class TestDAOImpl
 		System.out.println(food);
 		FoodDAO fd = new FoodDAOImpl();
 		fd.save(food);
-		List list = fd.getAll(food.getBusiId());
+		List<Food> list = fd.getAll(food.getBusiId());
 		System.out.println(list);
 	}
 }

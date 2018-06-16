@@ -13,4 +13,6 @@ public interface BusiDAO
 	public void sava(Busi busi);
 	//查询店铺名
 	public long getCountForShopName(String busiShopName);
+	//查ID
+	public int getId(String busiPhone);
 }
