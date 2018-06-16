@@ -36,10 +36,10 @@ function toLogin() {
 	*/
 	/*******************************************/
 	var options={
-		url:"../check.ul",
+		url:"../userLogin/check.do",
 		type:"post",
 		dataType:"json",
-		success: showResponse
+		success: showResponse,
 	};
 	//$('#loginForm').ajaxForm(options); 
 	$('#loginForm').submit(function() { 
@@ -55,7 +55,7 @@ function toLogin() {
 function showResponse(data) {
 	for (i in data) {
 		if("true" === data[i].checked) {
-			window.location.href = "../html/index.html";
+			window.location.href = "../index.html";
 		}
 		else {
 			$("#pswError").html("密码错误").css("color","#3385ff");
@@ -112,7 +112,7 @@ function regTelCheck() {
 	}
 	var data = {"userPhone" : phone};
 	$.ajax({
-		url: "../phone.ul",
+		url: "../userLogin/phone.do",
 		type: "post",
 		data: data,
 		dataType: "json",
@@ -154,7 +154,7 @@ function miCheckbox() { //没同意米团协议不能注册
 }
 function toReg() {
 	var options={
-		url:"../reg.ul",
+		url:"../userLogin/reg.do",
 		type:"post",
 		dataType:"json",
 		success: showRegResponse,
@@ -172,12 +172,10 @@ function toReg() {
 function showRegResponse(data) {
 	for (i in data) {
 		if("true" === data[i].checked) {
-			window.location.href = "../html/index.html";
+			window.location.href = "../index.html";
 		}
 		else {
-			//window.location.href = "../html/login.html";
-			location.reload();
+			window.location.href = "../login.html";
 		}
 	}
 }
-

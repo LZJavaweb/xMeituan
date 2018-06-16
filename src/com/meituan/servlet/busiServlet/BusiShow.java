@@ -2,7 +2,6 @@ package com.meituan.servlet.busiServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ import com.meituan.domain.Food;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class busiPageShow extends HttpServlet
+public class BusiShow extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -54,7 +53,7 @@ public class busiPageShow extends HttpServlet
 			jsonObj.put("foodStock", food.getFoodStock());
 			jsonArray.add(jsonObj);
 		}
-		System.out.println(jsonArray);
+		System.out.println(jsonArray); 
 		out.println(jsonArray);
 	}
 
