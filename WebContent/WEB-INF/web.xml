@@ -25,6 +25,22 @@
     <servlet-name>BusiLogin</servlet-name>
     <url-pattern>*.bl</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>busiPageForUpload</servlet-name>
+    <servlet-class>com.meituan.servlet.busiServlet.busiPageForUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>busiPageForUpload</servlet-name>
+    <url-pattern>/busiPageForUpload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>busiPageShow</servlet-name>
+  	<servlet-class>com.meituan.servlet.busiServlet.busiPageShow</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>busiPageShow</servlet-name>
+  	<url-pattern>/busiPageShow</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>com.meituan.filter.encodingFilter</filter-class>
