@@ -65,7 +65,8 @@ public class busiLogin extends HttpServlet
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("busiPhone", busiPhone);
-			response.sendRedirect("html/MPage.html");
+			//response.sendRedirect("html/MPage.html");
+			request.getRequestDispatcher("/test/busitest/testUpload.jsp").forward(request, response);
 		} else
 		{
 			response.sendRedirect("html/Mlogin.html");

@@ -23,7 +23,9 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.meituan.dao.BusiDAO;
 import com.meituan.dao.FoodDAO;
+import com.meituan.dao.impl.BusiDAOImpl;
 import com.meituan.dao.impl.FoodDAOImpl;
 import com.meituan.domain.Food;
 import com.meituan.utils.FileUploadAppProperties;
@@ -35,11 +37,12 @@ import net.sf.json.JSONObject;
 public class busiPageForUpload extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private static final String FILE_PATH = "/WEB-INF/files/";
+	private static final String FILE_PATH = "d:\\xMeituanPicture\\busiPic";
 	private static final String TEMP_DIR = "d:\\tempDirectory";
-	private String busiId = null;
+	private int busiId ;
+	private String busiPhone = null;
 	private FoodDAO fd = new FoodDAOImpl();
-	
+	private BusiDAO bd = new BusiDAOImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		doPost(request, response);
@@ -47,11 +50,12 @@ public class busiPageForUpload extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		request.setCharacterEncoding("UTF-8");
 		// 获取 ServletFileUpload 对象.
+		System.out.println("hellow");
 		ServletFileUpload upload = getServletFileUpload();
 		//获取商家busiId
-		busiId = (String) request.getSession().getAttribute("busiId");
+		busiPhone = (String) request.getSession().getAttribute("busiPhone");
+		busiId = bd.getId(busiPhone);
 		JSONArray jsonArray = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
 		PrintWriter out = response.getWriter();
@@ -103,7 +107,8 @@ public class busiPageForUpload extends HttpServlet
 	{
 		String fileMaxSize = FileUploadAppProperties.getInstance().getProperty("file.max.size");
 		String totalFileMaxSize = FileUploadAppProperties.getInstance().getProperty("total.file.max.size");
-
+		System.out.println(fileMaxSize);
+		System.out.println(totalFileMaxSize);
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 
 		factory.setSizeThreshold(1024 * 500);
@@ -114,7 +119,7 @@ public class busiPageForUpload extends HttpServlet
 
 		upload.setSizeMax(Integer.parseInt(totalFileMaxSize));
 		upload.setFileSizeMax(Integer.parseInt(fileMaxSize));
-
+		
 		return upload;
 	}
 	
@@ -168,20 +173,24 @@ public class busiPageForUpload extends HttpServlet
 				//组装foodName*,foodPrice*等
 				String name = "foodName" + num;
 				String desc = "foodDesc" + num;
-				String price = "foodDesc" + num;
-				String stock = "foodDesc" + num;
+				String price = "foodPrice" + num;
+				String stock = "foodStock" + num;
 				//获取foodName*,foodPrice*等对应的值
 				String foodName = descs.get(name);
 				String foodDesc = descs.get(desc);
 				String foodPrice = descs.get(price);
 				String foodStock = descs.get(stock);
-
+				System.out.println(busiId);
+				System.out.println(foodName);
+				System.out.println(foodDesc);
+				System.out.println(foodPrice);
+				System.out.println(foodStock);
 				// 对应文件名
 				String fileName = item.getName();
 				//得到生成的存放在磁盘中的路径
 				String foodPic = getFilePath(fileName);
 				//建立对象
-				food = new Food(Integer.parseInt(busiId), foodName, foodDesc, Double.parseDouble(foodPrice), Integer.parseInt(foodStock), foodPic);
+				food = new Food(busiId, foodName, foodDesc, Double.parseDouble(foodPrice), Integer.parseInt(foodStock), foodPic);
 				//加入到List中
 				beans.add(food);
 				//具体写入，需要用到uploadFiles,所以把路径给他，然后判断是否符合条件，符合再写入。
@@ -203,9 +212,7 @@ public class busiPageForUpload extends HttpServlet
 	{
 		String extName = fileName.substring(fileName.lastIndexOf("."));
 		Random random = new Random();
-
-		String filePath = getServletContext().getRealPath(FILE_PATH) + "\\" + System.currentTimeMillis()
-				+ random.nextInt(100000) + extName;
+		String filePath = FILE_PATH + "\\"+ System.currentTimeMillis()+ random.nextInt(100000) + extName;
 		return filePath;
 	}
 	
