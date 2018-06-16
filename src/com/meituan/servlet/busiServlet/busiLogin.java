@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,12 +65,23 @@ public class busiLogin extends HttpServlet
 		if (count == 1)
 		{
 			jsonObj.put("checked", "true");
+			setCookie(request, response);
 		} else
 		{
 			jsonObj.put("checked", "false");
 		}
 		jsonList.add(jsonObj);
 		out.println(jsonList);
+	}
+
+	private void setCookie(HttpServletRequest request, HttpServletResponse response)
+	{
+		String phone = request.getParameter("busiPhone");
+		if (phone != null && !phone.trim().equals(""))
+		{
+			Cookie cookie = new Cookie("busiPhone", phone);
+			response.addCookie(cookie);
+		}
 	}
 
 	private void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -140,7 +152,7 @@ public class busiLogin extends HttpServlet
 		long count = bd.getCountForShopName(busiShopName);
 		JSONArray jsonList = new JSONArray();
 		JSONObject jsonObj = new JSONObject();
-		System.out.println("店铺数量"+count);
+		System.out.println("店铺数量" + count);
 		if (count == 0)
 		{
 			// 未注册过的店铺名
