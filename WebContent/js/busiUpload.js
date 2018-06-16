@@ -29,4 +29,5 @@ function toUpload(){
 }
 function showResponse(){
     //div局部刷新
+    location.reload();
 }

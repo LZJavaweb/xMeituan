@@ -5,9 +5,9 @@
         <title>米团商家版</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/bootstrap-4.1.1.min.css">
-        <script src="../js/jquery-2.2.4.js"></script>
-        <script src="../js/jquery.form.js"></script>
+        <link rel="stylesheet" href="../../css/bootstrap-4.1.1.min.css">
+        <script src="../../js/jquery-2.2.4.js"></script>
+        <script src="../../js/jquery.form.js"></script>
         <script>
             window.onload = toLoad();
         </script>
@@ -41,8 +41,8 @@
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
-        <script src="../js/popper-1.14.3.min.js"></script>
-        <script src="../js/bootstrap-4.1.1.min.js"></script>
-        <script src="../js/MIndex.js"></script>
+        <script src="../../js/popper-1.14.3.min.js"></script>
+        <script src="../../js/bootstrap-4.1.1.min.js"></script>
+        <script src="../../js/busiOrder.js"></script>
     </body>
 </html>

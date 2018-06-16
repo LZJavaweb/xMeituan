@@ -4,9 +4,9 @@
         <title>米团商家版-美食上架</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/bootstrap-4.1.1.min.css">
-        <script src="../js/jquery-2.2.4.js"></script>
-        <script src="../js/jquery.form.js"></script>
+        <link rel="stylesheet" href="../../css/bootstrap-4.1.1.min.css">
+        <script src="../../js/jquery-2.2.4.js"></script>
+        <script src="../../js/jquery.form.js"></script>
         <style>#launch{height:720px;}</style>
     </head>
     <body> 
@@ -30,8 +30,8 @@
                 </form>
             </div>
         </div>
-        <script src="../js/popper-1.14.3.min.js"></script>
-        <script src="../js/bootstrap-4.1.1.min.js"></script>
-        <script src="./MLaunch.js"></script>
+        <script src="../../js/popper-1.14.3.min.js"></script>
+        <script src="../../js/bootstrap-4.1.1.min.js"></script>
+        <script src="../../js/busiUpload.js"></script>
     </body>
 </html>
