@@ -180,3 +180,4 @@ function showRegResponse(data) {
 		}
 	}
 }
+
