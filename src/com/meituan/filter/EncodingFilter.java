@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 
-public class encodingFilter implements Filter
+public class EncodingFilter implements Filter
 {
 	public void init(FilterConfig fConfig) throws ServletException
 	{

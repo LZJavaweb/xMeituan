@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class userOrder extends HttpServlet
+public class UserOrder extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
