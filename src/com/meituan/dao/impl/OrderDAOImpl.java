@@ -13,58 +13,65 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	@Override
 	public List<Order> getListByBusi(int busiId, int page)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		int pageSize = 10;
+		int start = (page-1)*pageSize-1;
+		String sql = "SELECT * FROM dingdan WHERE busiId = ? LIMIT ?,?";
+		return getForList(sql, busiId,start,pageSize);
 	}
 
 	@Override
 	public long getTotalPageByBusi(int busiId)
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE busiId = ?";
+		return getForValue(sql, busiId);
 	}
 
 	@Override
 	public List<Order> getListByUser(int userId, int page)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		int pageSize = 10;
+		int start = (page-1)*pageSize-1;
+		String sql = "SELECT * FROM dingdan WHERE userId = ? LIMIT ?,?";
+		return getForList(sql, userId,start,pageSize);
 	}
 
 	@Override
 	public long getTotalPageByUser(int userId)
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE userId = ?";
+		return getForValue(sql, userId);
 	}
 
 	@Override
 	public void save(Order order)
 	{
-		// TODO Auto-generated method stub
-		
+		String sql = "INSERT INTO dingdan(userId,busiId,addrId,orderMoney,orderState,orderBegin) VALUES(?,?,?,?,?,?)";
+		update(sql, order.getUserId(),order.getBusiId(),order.getAddrId(),order.getOrderMoney(),order.getOrderState(),order.getOrderBegin());
 	}
 
 	@Override
-	public void saveReceiveTime(Timestamp receiveTime)
+	public void saveReceiveTime(int orderId, Timestamp receiveTime)
 	{
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE dingdan SET orderReceive=? WHERE orderId = ?";
+		update(sql,receiveTime,orderId);
+	}
+
+
+	@Override
+	public void saveCancelTime(int orderId, Timestamp cancelTime)
+	{
+		String sql = "UPDATE dingdan SET orderCancel=? WHERE orderId = ?";
+		update(sql,cancelTime,orderId);
 	}
 
 	@Override
-	public void saveEndTime(Timestamp endTime)
+	public void saveFinishTime(int orderId, Timestamp finishTime)
 	{
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE dingdan SET orderFinish = ? WHERE orderId = ?";
+		update(sql, finishTime,orderId);
 	}
 
-	@Override
-	public void saveCancelTime(Timestamp cancelTime)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 }
