@@ -18,9 +18,9 @@ public interface OrderDAO
 	//保存订单
 	public void save(Order order);
 	//保存接单时间
-	public void saveReceiveTime(Timestamp receiveTime);
+	public void saveReceiveTime(int orderId,Timestamp receiveTime);
 	//保存完成订单时间
-	public void saveEndTime(Timestamp endTime);
+	public void saveFinishTime(int orderId,Timestamp finishTime);
 	//保存自动取消时间
-	public void saveCancelTime(Timestamp cancelTime);
+	public void saveCancelTime(int orderId,Timestamp cancelTime);
 }

@@ -12,15 +12,15 @@ public class ItemDAOImpl extends DAO<Item> implements ItemDAO
 	@Override
 	public List<Item> getAll(int orderId)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM item WHERE orderId = ?";
+		return getForList(sql, orderId);
 	}
 
 	@Override
 	public void save(Item item)
 	{
-		// TODO Auto-generated method stub
-
+		String sql = "INSERT INTO item(orderId,foodId,foodNum) VALUES(1,2,3)";
+		update(sql, item.getOrderId(),item.getFoodId(),item.getFoodNum());
 	}
 
 }
