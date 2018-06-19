@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
  * @author zhou
  *
  */
-public class userLogin extends HttpServlet
+public class UserLogin extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 

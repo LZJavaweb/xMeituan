@@ -16,13 +16,13 @@ import com.meituan.utils.FileUploadAppProperties;
  *
  */
 @WebListener
-public class busiPageForUploadListener implements ServletContextListener
+public class BusiUploadListener implements ServletContextListener
 {
 
 	/**
 	 * Default constructor.
 	 */
-	public busiPageForUploadListener()
+	public BusiUploadListener()
 	{
 	}
 
