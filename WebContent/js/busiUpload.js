@@ -19,7 +19,7 @@ function checkInput(){
 }
 function toUpload(){
     var options={
-		url:"../merchant/?",
+		url:"../busiPageForUpload",
 		type:"post",
 		dataType:"text",
 		success: showResponse
