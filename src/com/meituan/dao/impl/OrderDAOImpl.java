@@ -14,7 +14,7 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	public List<Order> getListByBusi(int busiId, int page)
 	{
 		int pageSize = 10;
-		int start = (page-1)*pageSize-1;
+		int start = (page-1)*pageSize;
 		String sql = "SELECT * FROM dingdan WHERE busiId = ? LIMIT ?,?";
 		return getForList(sql, busiId,start,pageSize);
 	}
@@ -30,7 +30,7 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	public List<Order> getListByUser(int userId, int page)
 	{
 		int pageSize = 10;
-		int start = (page-1)*pageSize-1;
+		int start = (page-1)*pageSize;
 		String sql = "SELECT * FROM dingdan WHERE userId = ? LIMIT ?,?";
 		return getForList(sql, userId,start,pageSize);
 	}
@@ -45,8 +45,8 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	@Override
 	public void save(Order order)
 	{
-		String sql = "INSERT INTO dingdan(userId,busiId,addrId,orderMoney,orderState,orderBegin) VALUES(?,?,?,?,?,?)";
-		update(sql, order.getUserId(),order.getBusiId(),order.getAddrId(),order.getOrderMoney(),order.getOrderState(),order.getOrderBegin());
+		String sql = "INSERT INTO dingdan(userId,busiId,addrId,orderMoney,orderState,orderBegin,orderRemark) VALUES(?,?,?,?,?,?,?)";
+		update(sql, order.getUserId(),order.getBusiId(),order.getAddrId(),order.getOrderMoney(),order.getOrderState(),order.getOrderBegin(),order.getOrderRemark());
 	}
 
 	@Override
