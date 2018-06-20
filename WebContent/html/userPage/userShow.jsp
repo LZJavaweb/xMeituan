@@ -33,7 +33,7 @@ Author URI: http://www.deathghost.cn
  </section>
  <div class="Logo_search">
   <div class="Logo">
-   <img src="/xMeituan/resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
+   <img src="../../resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
    <i></i>
    <span>广州市 [ <a href="#">海珠区</a> ]</span>
   </div>
@@ -143,10 +143,16 @@ Author URI: http://www.deathghost.cn
  <ul>
  
 <%
-	List<Busi> busi=(List<Busi>)request.getAttribute("?");
+	List<Busi> busi=(List<Busi>)request.getAttribute("busiList");
 	if (null!=busi) {
-		Integer curPage=(Integer)request.getAttribute("?");
-		Integer totalPages=(Integer)request.getAttribute("?");
+		Integer curPage=(Integer)request.getAttribute("pageNo");
+		Long totalPages=(Long)request.getAttribute("totalPage");
+        Long lastPage=Long.parseLong("1");
+        if(totalPages%busi.size()==0){
+            lastPage=totalPages/busi.size();
+        }else{
+            lastPage=(Long)((totalPages/busi.size())+1);
+        }
 %>
  <%
  	for(Busi e : busi) {
@@ -154,10 +160,11 @@ Author URI: http://www.deathghost.cn
  		String shopName=e.getBusiShopName();
  		String phone=e.getBusiPhone();
  		String logo=e.getBusiLogo();
+        Integer busiId=e.getBusiId();
  %>
  
   <li>
-   <a href="shop.html" target="_blank" title="<%=shopName %>"><img src="<%=logo %>"></a>
+   <a href="/xMeituan/userMenu?busiId=<%=busiId%>" target="_blank" title="<%=shopName %>"><img src="<%=logo %>"></a>
    <hgroup>
    <h3><%=shopName %></h3>
    <h4></h4>
@@ -179,17 +186,24 @@ Author URI: http://www.deathghost.cn
   
  <%
  		}
-	}
  %>
   
  </ul>
  <div class="TurnPage">
-  <a href="#">
+  <a href="/xMeituan/userShow">
   <span class="Prev"><i></i>首页</span>
   </a>
-  <a href="#"><span class="PNumber">1</span></a>
-  <a href="#"><span class="PNumber">2</span></a>
-  <a href="#">
+  <%
+  for (int i=1;i!=busi.size()+1;++i){
+  %>
+  <a href="/xMeituan/userShow?pageNo=<%=i%>"><span class="PNumber"><%=i%></span></a>
+  <%
+    }
+  %>
+  <a href="/xMeituan/userShow?pageNo=<%=lastPage%>">
+  <%
+  }
+  %>
   <span class="Next">最后一页<i></i></span>
   </a>
  </div>
