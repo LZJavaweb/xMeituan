@@ -29,6 +29,14 @@
 		<url-pattern>/userShow</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>UserMenu</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserMenu</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserMenu</servlet-name>
+		<url-pattern>/userMenu</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiLogin</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
 	</servlet>

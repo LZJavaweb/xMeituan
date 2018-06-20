@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/xMeituan/busiPageForUpload" method="post"
+	<form action="/xMeituan/busiUpload" method="post"
 		enctype="multipart/form-data">
 		<table>
 			<tr>
