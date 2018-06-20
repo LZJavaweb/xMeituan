@@ -10,7 +10,7 @@ public class Evaluation
 	public String toString()
 	{
 		return "Evaluation [evalId=" + evalId + ", orderId=" + orderId + ", evalContent=" + evalContent + ", evalStar="
-				+ evalStar + "]";
+				+ evalStar + "]\n";
 	}
 	public Evaluation()
 	{

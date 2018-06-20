@@ -13,7 +13,7 @@ public class EvaluationDAOImpl extends DAO<Evaluation> implements EvaluationDAO
 	public List<Evaluation> getListByBusi(int busiId, int page)
 	{
 		int pageSize = 10;
-		int start = (page-1)*pageSize-1;
+		int start = (page-1)*pageSize;
 		String sql = "SELECT  evaluation.* FROM evaluation,dingdan WHERE evaluation.`orderId` = dingdan.`orderId` AND dingdan.`busiId` = ? LIMIT ?,?";
 		return getForList(sql, busiId,start,pageSize);
 	}

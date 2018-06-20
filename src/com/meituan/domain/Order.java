@@ -21,13 +21,15 @@ public class Order
 		return "Order [orderId=" + orderId + ", userId=" + userId + ", busiId=" + busiId + ", addrId=" + addrId
 				+ ", orderMoney=" + orderMoney + ", orderState=" + orderState + ", orderBegin=" + orderBegin
 				+ ", orderReceive=" + orderReceive + ", orderFinish=" + orderFinish + ", orderCancel=" + orderCancel
-				+ ", orderRemark=" + orderRemark + "]";
+				+ ", orderRemark=" + orderRemark + "]\n";
 	}
 	public Order()
 	{
 		super();
 	}
-	public Order(int userId, int busiId, int addrId, double orderMoney, String orderState, Timestamp orderBegin)
+
+	public Order(int userId, int busiId, int addrId, double orderMoney, String orderState, Timestamp orderBegin,
+			String orderRemark)
 	{
 		super();
 		this.userId = userId;
@@ -36,6 +38,7 @@ public class Order
 		this.orderMoney = orderMoney;
 		this.orderState = orderState;
 		this.orderBegin = orderBegin;
+		this.orderRemark = orderRemark;
 	}
 	public int getOrderId()
 	{

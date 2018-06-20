@@ -9,8 +9,8 @@
         <style>
             #loginPart{ background:#f7bb43; }
         </style>
-        <script src="../js/jquery-2.2.4.js"></script>
-        <script src="../js/jquery.form.js"></script>
+        <script src="../../js/jquery-2.2.4.js"></script>
+        <script src="../../js/jquery.form.js"></script>
     </head>
     <body>
         <div class="container-fluid" id="loginPart">
@@ -26,8 +26,8 @@
                             <input onblur="pswCheck()" name="busiPass" type="password" class="form-control" id="password" maxLength="16" placeholder="请输入密码">
                             <div class="loginError" id="pswError">a</div>
                         </div>
-                        <div id="#loginBtn" class="col-2 ml-3">
-                            <input type="submit" id="loginBtn" class="btn btn-defalut" value="登录">
+                        <div class="col-2 ml-3">
+                            <input type="submit" onclick="toLogin()" id="loginBtn" class="btn btn-defalut" value="登录">
                         </div>
                     </form>
                 </div>
@@ -36,7 +36,7 @@
         <div class="container" id="regPart">
             <div class="row">
                 <div class="col-4 mt-3">
-                    <figure class="figure"><img id="facai" class="img-responsive" alt="王大发财" src="../resources/pagePics/30436a3959553039.jpg"></figure>
+                    <figure class="figure"><img id="facai" class="img-responsive" alt="王大发财" src="../../resources/pagePics/30436a3959553039.jpg"></figure>
                 </div>
                 <div class="col-4 offset-4 mt-5">
                     <div class="row"><h2>注册</h2></div>
@@ -53,7 +53,7 @@
                                 -->
                                 <input name="busiName" type="text" placeholder="姓名" class="form-control">
                             </div>
-                            <div>
+                            <div class="form-group">
                                 <input name="busiShopName" type="text" placeholder="店铺名" class="form-control">
                             </div>
                             <div class="form-group">
