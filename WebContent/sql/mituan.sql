@@ -95,8 +95,9 @@ CREATE TABLE `user` (
 /*Data for the table `user` */
 
 insert  into `user`(`userId`,`userPhone`,`userPass`,`userName`) values 
-(1,'14718158227','zhoujunliang','周军良'),
-(5,'14718158220','zhoujunliang','zhou');
+(1,'14718158227','zhoujunliang1','周军良'),
+(5,'14718158220','zhoujunliang','zhou'),
+(3,'13119119284','lin','metaloe123');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

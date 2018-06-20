@@ -70,7 +70,7 @@ function GetCount() {
 			$("#table2").remove();
 			});
 		});
-<!---商品加减算总数---->
+//<!---商品加减算总数---->
 	$(function () {
 		var t = $("#text_box2");
 		$("#add2").click(function () {
@@ -128,6 +128,7 @@ function GetCount() {
 //add to cart shoppage
 var data = {"total":0,"rows":[]};
 		var totalCost = 0;
+		var xIndex = 0;
 		
 		$(function(){
 			$('#cartcontent').datagrid({
@@ -153,25 +154,33 @@ var data = {"total":0,"rows":[]};
 				},
 				onDrop:function(e,source){
 					var name = $(source).find('p:eq(0)').html();
-					var price = $(source).find('p:eq(1)').html();
-					addProduct(name, parseFloat(price.split('￥')[1]));
+					var price = $(source).find('p:eq(2)').html();
+					var xID = $(source).find('p:eq(3)').html();
+					xIndex = xIndex + 1;
+					addProduct(name, parseFloat(price.split('￥')[1]), xID, xIndex);
 				}
 			});
 		});
 		
-		function addProduct(name,price){
+		function addProduct(name,price,xID,xIndex){
 			function add(){
+				/*
 				for(var i=0; i<data.total; i++){
 					var row = data.rows[i];
 					if (row.name == name){
 						row.quantity += 1;
 						return;
 					}
-				}
+				}*/
+				var quantity=1;
+				//var xname="<input disabled value="+"\""+name+"\""+">";
+				var xquantity="<input type=\"number\" value=\""+quantity+"\" name=\"num"+xIndex+"\">";
+				var xxID="<input readonly=\"readonly\" value=\""+xID+"\" name=\"foodId"+xIndex+"\">";
 				data.total += 1;
 				data.rows.push({
+					xID:xxID,
 					name:name,
-					quantity:1,
+					quantity:xquantity,
 					price:price
 				});
 			}

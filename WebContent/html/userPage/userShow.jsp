@@ -33,7 +33,7 @@ Author URI: http://www.deathghost.cn
  </section>
  <div class="Logo_search">
   <div class="Logo">
-   <img src="../../resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
+   <img src="/xMeituan/resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
    <i></i>
    <span>广州市 [ <a href="#">海珠区</a> ]</span>
   </div>
