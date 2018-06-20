@@ -24,8 +24,8 @@ function updateInfoNext(){
     $("#busiAddr").attr("disabled");
     $("#busiShopName").attr("disabled");
 }
-function toSwitch(){
-    var tmp = $("#switch").attr("value");
+function xToSwitch(){
+    var tmp = $("#xSwitch").attr("value");
     var data=""
     if(tmp==="继续营业"){
         data={"switch":"true"};
@@ -42,7 +42,7 @@ function toSwitch(){
     $("#switch").ajaxSubmit(options);
 }
 function toSwitchNext(){
-    var tmp = $("#switch").attr("value");
+    var tmp = $("#xSwitch").attr("value");
     if(tmp==="继续营业"){
         $("#switch").attr("value","暂停营业").attr("class","btn btn-danger");
     }else{
