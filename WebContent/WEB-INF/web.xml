@@ -21,6 +21,14 @@
 		<url-pattern>*.ul</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>UserShow</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserShow</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserShow</servlet-name>
+		<url-pattern>/userShow</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiLogin</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
 	</servlet>

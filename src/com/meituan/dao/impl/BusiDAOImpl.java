@@ -1,5 +1,7 @@
 package com.meituan.dao.impl;
 
+import java.util.List;
+
 import com.meituan.dao.BusiDAO;
 import com.meituan.dao.DAO;
 import com.meituan.domain.Busi;
@@ -40,5 +42,21 @@ public class BusiDAOImpl extends DAO<Busi> implements BusiDAO
 	{
 		String sql = "SELECT busiId FROM business WHERE busiPhone= ?";
 		return getForValue(sql, busiPhone);
+	}
+
+	@Override
+	public List<Busi> getAll(int pageNo)
+	{
+		int pageSize = 10;
+		int pageStart = (pageNo-1)*pageSize;
+		String sql = "select * from business limit ?,?";
+		return getForList(sql, pageStart,pageSize);
+	}
+
+	@Override
+	public long getTotalBusi()
+	{
+		String sql = "select count(*) from business";
+		return getForValue(sql);
 	}
 }
