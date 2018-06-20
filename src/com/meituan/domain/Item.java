@@ -20,7 +20,7 @@ public class Item
 	@Override
 	public String toString()
 	{
-		return "Item [itemId=" + itemId + ", orderId=" + orderId + ", foodId=" + foodId + ", foodNum=" + foodNum + "]";
+		return "Item [itemId=" + itemId + ", orderId=" + orderId + ", foodId=" + foodId + ", foodNum=" + foodNum + "]\n";
 	}
 	public int getItemId()
 	{

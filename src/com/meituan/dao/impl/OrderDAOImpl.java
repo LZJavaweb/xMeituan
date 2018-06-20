@@ -71,7 +71,4 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 		update(sql, finishTime,orderId);
 	}
 
-
-
-
 }

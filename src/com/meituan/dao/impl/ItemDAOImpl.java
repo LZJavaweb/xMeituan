@@ -19,7 +19,7 @@ public class ItemDAOImpl extends DAO<Item> implements ItemDAO
 	@Override
 	public void save(Item item)
 	{
-		String sql = "INSERT INTO item(orderId,foodId,foodNum) VALUES(1,2,3)";
+		String sql = "INSERT INTO item(orderId,foodId,foodNum) VALUES(?,?,?)";
 		update(sql, item.getOrderId(),item.getFoodId(),item.getFoodNum());
 	}
 
