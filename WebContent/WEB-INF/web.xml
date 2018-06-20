@@ -16,11 +16,6 @@
 		<servlet-name>UserLogin</servlet-name>
 		<servlet-class>com.meituan.servlet.userServlet.UserLogin</servlet-class>
 	</servlet>
-	
-	
-	
-	
-	
 	<servlet-mapping>
 		<servlet-name>UserLogin</servlet-name>
 		<url-pattern>*.ul</url-pattern>
