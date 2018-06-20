@@ -1,70 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>xMeituan</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  
-  
-  <servlet>
-    <servlet-name>UserLogin</servlet-name>
-    <servlet-class>com.meituan.servlet.userServlet.UserLogin</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserLogin</servlet-name>
-    <url-pattern>*.ul</url-pattern>
-  </servlet-mapping>
-  
-  
-  <servlet>
-    <servlet-name>BusiLogin</servlet-name>
-    <servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BusiLogin</servlet-name>
-    <url-pattern>*.bl</url-pattern>
-  </servlet-mapping>
-  
-  
-  <servlet>
-    <servlet-name>BusiUpload</servlet-name>
-    <servlet-class>com.meituan.servlet.busiServlet.BusiUpload</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BusiUpload</servlet-name>
-    <url-pattern>/busiUpload</url-pattern>
-  </servlet-mapping>
-  
-  
-  <servlet>
-    <servlet-name>BusiShow</servlet-name>
-    <servlet-class>com.meituan.servlet.busiServlet.BusiShow</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BusiShow</servlet-name>
-    <url-pattern>/busiShow</url-pattern>
-  </servlet-mapping>
-  
-  
-  <filter>
-    <filter-name>EncodingFilter</filter-name>
-    <filter-class>com.meituan.filter.encodingFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>EncodingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <filter>
-  	<filter-name>TransactionFilter</filter-name>
-  	<filter-class>com.meituan.filter.TransactionFilter</filter-class>
-  </filter>
-  <filter-mapping>
-  	<filter-name>TransactionFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>xMeituan</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>UserLogin</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserLogin</servlet-class>
+	</servlet>
+	
+	
+	
+	
+	
+	<servlet-mapping>
+		<servlet-name>UserLogin</servlet-name>
+		<url-pattern>*.ul</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BusiLogin</servlet-name>
+		<servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusiLogin</servlet-name>
+		<url-pattern>*.bl</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BusiUpload</servlet-name>
+		<servlet-class>com.meituan.servlet.busiServlet.BusiUpload</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusiUpload</servlet-name>
+		<url-pattern>/busiUpload</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BusiShow</servlet-name>
+		<servlet-class>com.meituan.servlet.busiServlet.BusiShow</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusiShow</servlet-name>
+		<url-pattern>/busiShow</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.meituan.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>TransactionFilter</filter-name>
+		<filter-class>com.meituan.filter.TransactionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>TransactionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
