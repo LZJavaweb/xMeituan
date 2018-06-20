@@ -18,7 +18,7 @@
             <div class="row align-items-center">
                 <div id="logo" class="col-2 m-4"><h2>米团外卖</h2></div>
                 <div id="login" class="col-4 offset-5">
-                    <form id="loginForm" class="form-inline" role="form">
+                    <form id="loginForm" class="form-inline" role="form" action="/xMeituan/check.ul" method="post">
                         <div id="telDiv" class="col-5 form-group m-1">
                             <input onblur="telCheck()" name="userPhone" type="text" class="form-control" id="name" maxLength="11" placeholder="请输入手机号">
                             <div class="loginError" id="telError">a</div>
@@ -28,7 +28,7 @@
                             <div class="loginError" id="pswError">a</div>
                         </div>
                         <div class="col-2 ml-3">
-                            <input type="submit" onclick="toLogin()" id="loginBtn" class="btn btn-defalut" value="登录">
+                            <input type="submit" id="loginBtn" class="btn btn-defalut" value="登录">
                         </div>
                     </form>
                 </div>

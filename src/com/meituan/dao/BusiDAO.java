@@ -1,5 +1,7 @@
 package com.meituan.dao;
 
+import java.util.List;
+
 import com.meituan.domain.Busi;
 
 //商家信息查询DAO
@@ -15,4 +17,8 @@ public interface BusiDAO
 	public long getCountForShopName(String busiShopName);
 	//查ID
 	public int getId(String busiPhone);
+	//查询所有店家
+	public List<Busi> getAll(int pageNo);
+	//查询总页数
+	public long getTotalBusi();
 }

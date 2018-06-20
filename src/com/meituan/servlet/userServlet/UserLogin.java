@@ -71,10 +71,10 @@ public class UserLogin extends HttpServlet
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("userPhone", userPhone);
-			response.sendRedirect("html/userPage.html");
+			response.sendRedirect("/xMeituan/userShow");
 		} else
 		{
-			response.sendRedirect("html/login.html");
+			response.sendRedirect("html/userPage/userLogin.html");
 		}
 	}
 

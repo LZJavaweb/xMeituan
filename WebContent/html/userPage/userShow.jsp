@@ -9,24 +9,16 @@
 <meta name="keywords" content="DeathGhost,DeathGhost.cn,web前端设,移动WebApp开发" />
 <meta name="description" content="DeathGhost.cn::H5 WEB前端设计开发!" />
 <meta name="author" content="DeathGhost"/>
-<link href="../../css/template/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/template/public.js"></script>
-<script type="text/javascript" src="../../js/template/jquery.js"></script>
-<script type="text/javascript" src="../../js/template/jqpublic.js"></script>
+<link href="/xMeituan/css/template/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/xMeituan/js/template/public.js"></script>
+<script type="text/javascript" src="/xMeituan/js/template/jquery.js"></script>
+<script type="text/javascript" src="/xMeituan/js/template/jqpublic.js"></script>
 <!--
 Author: DeathGhost
 Author URI: http://www.deathghost.cn
 -->
 </head>
 <body>
-
-<%
-/*
-	List<Busi> busi=(List<Busi>)request.getAttribute("?");
-	Integer curPage=(Integer)request.getAttribute("?");
-	Integer totalPages=(Integer)request.getAttribute("?");
-    */
-%>
 
 <header>
  <section class="Topmenubg">
@@ -41,7 +33,7 @@ Author URI: http://www.deathghost.cn
  </section>
  <div class="Logo_search">
   <div class="Logo">
-   <img src="../../resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
+   <img src="/xMeituan/resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
    <i></i>
    <span>广州市 [ <a href="#">海珠区</a> ]</span>
   </div>
@@ -150,16 +142,22 @@ Author URI: http://www.deathghost.cn
 <section class="Fsl">
  <ul>
  
+<%
+	List<Busi> busi=(List<Busi>)request.getAttribute("?");
+	if (null!=busi) {
+		Integer curPage=(Integer)request.getAttribute("?");
+		Integer totalPages=(Integer)request.getAttribute("?");
+%>
  <%
  	for(Busi e : busi) {
- 		String addr=busi.getBusiAddr();
- 		String shopName=busi.getBusiShopName();
- 		String phone=busi.getBusiPhone();
- 		String logo=busi.getBusiLogo();
+ 		String addr=e.getBusiAddr();
+ 		String shopName=e.getBusiShopName();
+ 		String phone=e.getBusiPhone();
+ 		String logo=e.getBusiLogo();
  %>
  
   <li>
-   <a href="shop.html" target="_blank" title="<%=shopName >"><img src="<%=logo %>"></a>
+   <a href="shop.html" target="_blank" title="<%=shopName %>"><img src="<%=logo %>"></a>
    <hgroup>
    <h3><%=shopName %></h3>
    <h4></h4>
@@ -180,7 +178,8 @@ Author URI: http://www.deathghost.cn
   </li>
   
  <%
- 	}
+ 		}
+	}
  %>
   
  </ul>
