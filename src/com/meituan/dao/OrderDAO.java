@@ -23,4 +23,6 @@ public interface OrderDAO
 	public void saveFinishTime(int orderId,Timestamp finishTime);
 	//保存自动取消时间
 	public void saveCancelTime(int orderId,Timestamp cancelTime);
+	//保存并返回orderId
+	public int saveReturn(Order order);
 }

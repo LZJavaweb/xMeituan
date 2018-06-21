@@ -10,6 +10,13 @@ public class Item
 	{
 		super();
 	}
+	public Item(int foodId, int foodNum)
+	{
+		super();
+		this.foodId = foodId;
+		this.foodNum = foodNum;
+	}
+
 	public Item(int orderId, int foodId, int foodNum)
 	{
 		super();
