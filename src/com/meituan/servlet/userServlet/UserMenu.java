@@ -27,6 +27,7 @@ public class UserMenu extends HttpServlet
 		System.out.println("busiId:"+busiId);
 		List<Food> foodList = userMenuService.getAll(busiId);
 		System.out.println("foodList:"+foodList);
+		request.setAttribute("busiId", busiId);
 		request.setAttribute("foodList", foodList);
 		request.getRequestDispatcher("/html/userPage/userMenu.jsp").forward(request, response);
 	}

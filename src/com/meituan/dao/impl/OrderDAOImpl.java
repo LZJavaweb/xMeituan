@@ -15,7 +15,7 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	{
 		int pageSize = 10;
 		int start = (page-1)*pageSize;
-		String sql = "SELECT * FROM dingdan WHERE busiId = ? LIMIT ?,?";
+		String sql = "SELECT * FROM dingdan WHERE busiId = ? ORDER BY orderId DESC LIMIT ?,?";
 		return getForList(sql, busiId,start,pageSize);
 	}
 
@@ -31,7 +31,7 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	{
 		int pageSize = 10;
 		int start = (page-1)*pageSize;
-		String sql = "SELECT * FROM dingdan WHERE userId = ? LIMIT ?,?";
+		String sql = "SELECT * FROM dingdan WHERE userId = ? ORDER BY orderId DESC LIMIT ?,?";
 		return getForList(sql, userId,start,pageSize);
 	}
 
@@ -45,8 +45,11 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	@Override
 	public void save(Order order)
 	{
-		String sql = "INSERT INTO dingdan(userId,busiId,addrId,orderMoney,orderState,orderBegin,orderRemark) VALUES(?,?,?,?,?,?,?)";
-		update(sql, order.getUserId(),order.getBusiId(),order.getAddrId(),order.getOrderMoney(),order.getOrderState(),order.getOrderBegin(),order.getOrderRemark());
+		String sql = "INSERT INTO dingdan(userId,busiId,addrId,orderMoney,"
+				+ "orderState,orderBegin,orderRemark) VALUES(?,?,?,?,?,?,?)";
+		update(sql, order.getUserId(),order.getBusiId(),order.getAddrId(),
+				order.getOrderMoney(),order.getOrderState(),order.getOrderBegin(),
+				order.getOrderRemark());
 	}
 
 	@Override
@@ -69,6 +72,18 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	{
 		String sql = "UPDATE dingdan SET orderFinish = ? WHERE orderId = ?";
 		update(sql, finishTime,orderId);
+	}
+
+	@Override
+	public int saveReturn(Order order)
+	{
+		String sql = "INSERT INTO dingdan(userId,busiId,addrId,orderMoney,"
+				+ "orderState,orderBegin,orderRemark) VALUES(?,?,?,?,?,?,?)";
+		long id = insert(sql,order.getUserId(),order.getBusiId(),order.getAddrId(),
+				order.getOrderMoney(),order.getOrderState(),order.getOrderBegin(),
+				order.getOrderRemark());
+		int orderId = new Long(id).intValue();
+		return orderId;
 	}
 
 }
