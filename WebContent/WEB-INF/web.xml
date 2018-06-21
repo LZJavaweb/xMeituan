@@ -69,6 +69,14 @@
 		<url-pattern>*.bl</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>BusiOrder</servlet-name>
+		<servlet-class>com.meituan.servlet.busiServlet.BusiOrder</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusiOrder</servlet-name>
+		<url-pattern>/busiOrder</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiUpload</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiUpload</servlet-class>
 	</servlet>

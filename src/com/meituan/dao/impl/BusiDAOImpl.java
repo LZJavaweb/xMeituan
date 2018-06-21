@@ -59,4 +59,11 @@ public class BusiDAOImpl extends DAO<Busi> implements BusiDAO
 		String sql = "select count(*) from business";
 		return getForValue(sql);
 	}
+
+	@Override
+	public int getBusiId(String busiPhone)
+	{
+		String sql="SELECT busiId FROM business WHERE busiPhone = ?";
+		return getForValue(sql, busiPhone);
+	}
 }

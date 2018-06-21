@@ -21,4 +21,6 @@ public interface BusiDAO
 	public List<Busi> getAll(int pageNo);
 	//查询总页数
 	public long getTotalBusi();
+	//查询商家ID
+	public int getBusiId(String busiPhone);
 }

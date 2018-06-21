@@ -25,4 +25,8 @@ public interface OrderDAO
 	public void saveCancelTime(int orderId,Timestamp cancelTime);
 	//保存并返回orderId
 	public int saveReturn(Order order);
+	//获取未完成，未接单的订单
+	public List<Order> getOrder(int busiId);
+	//获取已完成的订单
+	public List<Order> getOldOrder(int busiId ,int pageSize,int pageNo);
 }
