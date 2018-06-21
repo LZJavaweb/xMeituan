@@ -28,6 +28,13 @@ public class UserDAOImpl extends DAO<User> implements UserDAO
 		update(sql,user.getUserPhone(),user.getUserPass(),user.getUserName());
 	}
 
+	@Override
+	public int getUserId(String userPhone)
+	{
+		String sql = "select userId from user where userPhone = ?";
+		return getForValue(sql, userPhone);
+	}
 
+	
 
 }

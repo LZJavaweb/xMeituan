@@ -24,16 +24,23 @@ public class UserCheckOut extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		@SuppressWarnings("unchecked")
-		List<Cart> cartList = (List<Cart>) request.getAttribute("cartList");
-		String busiIdStr =  (String) request.getAttribute("busiId");
-		String userIdStr =  (String) session.getAttribute("userId");
+		List<Cart> cartList = (List<Cart>) session.getAttribute("cartList");
+		int userId =  (int) session.getAttribute("userId");
+		//System.out.println("userCheckOut:userId:"+userId);
+		int busiId = (int) session.getAttribute("busiId");
+		//System.out.println("userCheckOut:busiIdStr:"+busiIdStr);
+		//System.out.println("userCheckOut:busiId:"+busiId);
 		String addrIdStr =  request.getParameter("addrId");
-		String orderRemark = request.getParameter("orderRemark");
-		int busiId = Integer.parseInt(busiIdStr);
-		int userId = Integer.parseInt(userIdStr);
 		int addrId = Integer.parseInt(addrIdStr);
-		userCheckOutService.save(cartList, userId, addrId, busiId, orderRemark);
-		response.sendRedirect("/userOrder");
+		//System.out.println("userCheckOut:addrId:"+addrId);
+		String orderRemark = request.getParameter("orderRemark");
+		try
+		{
+			userCheckOutService.save(cartList, userId, addrId, busiId, orderRemark);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		response.sendRedirect("/xMeituan/userOrder");
 	}
 }

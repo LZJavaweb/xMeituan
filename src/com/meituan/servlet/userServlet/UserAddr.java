@@ -25,12 +25,13 @@ public class UserAddr extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		String userIdStr = (String) session.getAttribute("userId");
+		int userId= (int) session.getAttribute("userId");
 		String busiIdStr = request.getParameter("busiId");
-		int busiId = Integer.parseInt("busiId");
-		int userId = Integer.parseInt(userIdStr);
+		System.out.println("userAddr:busiIdStr:"+busiIdStr);
+		int busiId = Integer.parseInt(busiIdStr);
 		String rowStr = request.getParameter("row");
 		int row = Integer.parseInt(rowStr);
+		System.out.println("userAddr:userId:"+userId+",busiId:"+busiId+",row:"+row);
 		List<Cart> cartList = new ArrayList<Cart>();
 		String foodIdStr;
 		String foodNumStr;
@@ -41,13 +42,14 @@ public class UserAddr extends HttpServlet
 			foodIdStr = request.getParameter("foodId"+i);
 			foodNumStr = request.getParameter("num"+i);
 			foodPriceStr = request.getParameter("price"+i);
-			cart = new Cart(Integer.parseInt(foodIdStr), Integer.parseInt(foodNumStr), Integer.parseInt(foodPriceStr));
+			System.out.println("userAddr:foodId:"+foodIdStr+",foodNum:"+foodNumStr+",foodPrice:"+foodPriceStr);
+			cart = new Cart(Integer.parseInt(foodIdStr), Integer.parseInt(foodNumStr), Double.parseDouble(foodPriceStr));
 			cartList.add(cart);
 		}
 		List<Addr> addrList = userAddrService.getAddr(userId);
 		request.setAttribute("addrList", addrList);
-		request.setAttribute("busiId", busiId);
-		request.setAttribute("cartList", cartList);
-		request.getRequestDispatcher("/html/userPage/userCheckout.jsp");
+		session.setAttribute("busiId", busiId);
+		session.setAttribute("cartList", cartList);
+		request.getRequestDispatcher("/html/userPage/userCheckOut.jsp").forward(request, response);
 	}
 }

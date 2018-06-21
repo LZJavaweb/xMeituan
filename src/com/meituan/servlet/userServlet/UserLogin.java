@@ -30,7 +30,6 @@ public class UserLogin extends HttpServlet
 	private static final long serialVersionUID = 1L;
 
 	private UserDAO ud = new UserDAOImpl();
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		doPost(request, response);
@@ -69,7 +68,9 @@ public class UserLogin extends HttpServlet
 		long count = ud.getCountForUser(userPhone, userPass);
 		if (count == 1)
 		{
+			int userId = ud.getUserId(userPhone);
 			HttpSession session = request.getSession();
+			session.setAttribute("userId", userId);
 			session.setAttribute("userPhone", userPhone);
 			response.sendRedirect("/xMeituan/userShow");
 		} else

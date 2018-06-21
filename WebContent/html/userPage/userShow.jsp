@@ -194,7 +194,7 @@ Author URI: http://www.deathghost.cn
   <span class="Prev"><i></i>首页</span>
   </a>
   <%
-  for (int i=1;i!=busi.size()+1;++i){
+  for (int i=1;i!=totalPages+1;++i){
   %>
   <a href="/xMeituan/userShow?pageNo=<%=i%>"><span class="PNumber"><%=i%></span></a>
   <%

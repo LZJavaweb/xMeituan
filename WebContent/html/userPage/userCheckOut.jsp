@@ -56,7 +56,7 @@
 
     <div class="container d-flex justify-content-center" id="info">
 		<div class="col-10 col align-self-center">
-			<form action="\xMeituan\userAddr" method="post" role="form" id="infoForm">
+			<form action="/xMeituan/userCheckOut" method="post" role="form" id="infoForm">
                 <div class="form-group">
                     <label for="sel1">地址:</label>
                     <select name="addrId" class="form-control" id="sel1">
@@ -66,7 +66,7 @@
         Integer addrId=e.getAddrId();
         String addrReal=e.getAddrReal();
 %>
-                        <option><p hidden><%=addrId%></p><%=addrReal%></option>
+                        <option value="<%=addrId%>"><%=addrReal%></option>
 <%
     }
 %>

@@ -53,6 +53,14 @@
 		<url-pattern>/userCheckOut</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>UserOrder</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserOrder</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserOrder</servlet-name>
+		<url-pattern>/userOrder</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiLogin</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
 	</servlet>
