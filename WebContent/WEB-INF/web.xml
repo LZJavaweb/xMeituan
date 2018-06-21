@@ -37,6 +37,22 @@
 		<url-pattern>/userMenu</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>UserAddr</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserAddr</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserAddr</servlet-name>
+		<url-pattern>/userAddr</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UserCheckOut</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserCheckOut</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserCheckOut</servlet-name>
+		<url-pattern>/userCheckOut</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiLogin</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
 	</servlet>

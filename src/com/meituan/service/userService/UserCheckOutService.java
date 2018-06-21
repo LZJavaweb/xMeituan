@@ -1,6 +1,7 @@
 package com.meituan.service.userService;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class UserCheckOutService
 		int foodId;
 		int foodNum;
 		int foodPrice;
-		List<Item> itemList = null;
+		List<Item> itemList = new ArrayList<Item>();
 		Item item = null;
 		Order order = null;
 		if(cartList!=null)
