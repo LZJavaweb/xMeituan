@@ -1,6 +1,7 @@
 package com.meituan.servlet.userServlet;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,21 @@ public class UserAddr extends HttpServlet
 	}
 	private UserAddrService userAddrService = new UserAddrService();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		String methodName = request.getParameter("method");
+		try
+		{
+			Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class,
+					HttpServletResponse.class);
+			method.setAccessible(true);
+			method.invoke(this, request, response);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public void seleteAddr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
 		int userId= (int) session.getAttribute("userId");
@@ -51,5 +67,51 @@ public class UserAddr extends HttpServlet
 		session.setAttribute("busiId", busiId);
 		session.setAttribute("cartList", cartList);
 		request.getRequestDispatcher("/html/userPage/userCheckOut.jsp").forward(request, response);
+	}
+	public void getAddr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		HttpSession session = request.getSession();
+		int userId= (int) session.getAttribute("userId");
+		List<Addr> addrList = userAddrService.getAddr(userId);
+		request.setAttribute("addrList", addrList);
+		request.getRequestDispatcher("/html/userPage/userAddr.jsp").forward(request, response);
+	}
+	public void editAddr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		int userId = (int) request.getSession().getAttribute("userId");
+		String addrIdStr = request.getParameter("addrId");
+		int addrId = Integer.parseInt(addrIdStr);
+		String addrName = request.getParameter("addrName");
+		String addrPhone = request.getParameter("addrPhone");
+		String addrProv = request.getParameter("addrProv");
+		String addrCity = request.getParameter("addrCity");
+		String addrReal = request.getParameter("addrReal");
+		int addrFlag = 0;
+		Addr addr = new Addr(userId, addrName, addrPhone, addrProv, addrCity, addrReal, addrFlag);
+		addr.setAddrId(addrId);
+		userAddrService.editAddr(addr);
+		System.out.println(addr);
+		response.sendRedirect("/xMeituan/userAddr?method=getAddr");
+	}
+	public void deleteAddr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		String addrIdStr = request.getParameter("addrId");
+		int addrId = Integer.parseInt(addrIdStr);
+		userAddrService.deleteAddr(addrId);
+		response.sendRedirect("/xMeituan/userAddr?method=getAddr");
+	}
+	public void addAddr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		int userId = (int) request.getSession().getAttribute("userId");
+		String addrName = request.getParameter("addrName");
+		String addrPhone = request.getParameter("addrPhone");
+		String addrProv = request.getParameter("addrProv");
+		String addrCity = request.getParameter("addrCity");
+		String addrReal = request.getParameter("addrReal");
+		int addrFlag = 0;
+		Addr addr = new Addr(userId, addrName, addrPhone, addrProv, addrCity, addrReal, addrFlag);
+		userAddrService.addAddr(addr);
+		System.out.println(addr);
+		response.sendRedirect("/xMeituan/userAddr?method=getAddr");
 	}
 }

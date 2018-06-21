@@ -1,4 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.meituan.domain.Food" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,7 +23,7 @@
 	<div id="TitleArea_Head"></div>
 	<div id="TitleArea_Title">
 		<div id="TitleArea_Title_Content">
-			<img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 添加新菜品	
+			<img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 更新新菜品
 		</div>
     </div>
 	<div id="TitleArea_End"></div>
@@ -30,7 +32,7 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form action="/xMeituan/busiPageForUpload" method="post" enctype="multipart/form-data">
+	<form action="#" method="post" enctype="multipart/form-data">
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
         	<img width="4" height="7" border="0" src="style/images/item_point.gif"> 菜品信息&nbsp;
@@ -39,25 +41,44 @@
         <div class="ItemBlockBorder">
             <div class="ItemBlock">
 				<div class="ItemBlock2">
+
 					<table cellpadding="0" cellspacing="0" class="mainForm">
+<%
+					List<Food> foodList=(List<Food>)request.getAttribute("?");
+					for(Food e : foodList){
+						String foodName=e.getFoodName();
+						Double foodPrice=e.getFoodPrice();
+						String foodDesc=e.getFoodDesc();
+						String foodPic=e.getFoodPic();
+						Integer foodId=e.getFoodId();
+%>
 						<tr>
 							<td width="80px">菜名</td>
-							<td><input type="text" name="SPname" class="InputStyle" value=""/> *</td>
+							<td><input type="text" name="SPname" class="InputStyle" value="<%=foodName %>"/> *</td>
 						</tr>
 						<tr>
 							<td>价格</td>
-							<td><input type="text" name="SPprice" class="InputStyle" value=""/> *</td>
-						</tr>						
+							<td><input type="text" name="SPprice" class="InputStyle" value="<%=foodPrice %>"/> *</td>
+						</tr>
+						
 						<tr>
 							<td>简介</td>
-							<td><textarea name="SPdesc" class="TextareaStyle"></textarea></td>
+							<td><textarea name="SPdesc" class="TextareaStyle"><%=foodDesc %></textarea></td>
 						</tr>
 						<tr>
 							<td width="80px">菜品图片</td>
 							<td>
-								<input type="file" name="SPpic"/> *
+									<img style='max-width:68px;width:68px;width:expression(width>68?"68px":width "px");max-width: 68px;' 
+									src="<%=foodPic %>">
+									<input type="hidden" name="image" value="<%=foodPic %>">
+									<input type="hidden" name="SPid" value="<%=foodId %>">
+								
+								<input type="file" name="SPpic"/> 
 							</td>
 						</tr>
+<%
+					}
+%>
 					</table>
 				</div>
             </div>
@@ -66,7 +87,7 @@
 		
 		<!-- 表单操作 -->
 		<div id="InputDetailBar">
-			<input type="submit" value="添加" class="FunctionButtonInput">
+			<input type="submit" value="修改" class="FunctionButtonInput">
             <a href="javascript:history.go(-1);" class="FunctionButton">返回</a>
         </div>
 	</form>

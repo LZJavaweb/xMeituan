@@ -60,16 +60,13 @@ Author URI: http://www.deathghost.cn
 <!--Start content-->
 <section class="Psection MT20">
 <nav class="U-nav Font14 FontW">
-  <ul>
-   <li><i></i><a href="user_center.html">用户中心首页</a></li>
-   <li><i></i><a href="user_orderlist.html">我的订单</a></li>
-   <li><i></i><a href="user_address.html">收货地址</a></li>
-   <li><i></i><a href="user_message.html">我的留言</a></li>
-   <li><i></i><a href="user_coupon.html">我的优惠券</a></li>
-   <li><i></i><a href="user_favorites.html">我的收藏</a></li>
-   <li><i></i><a href="user_account.html">账户管理</a></li>
-   <li><i></i><a href="#">安全退出</a></li>
-  </ul>
+    <ul>
+        <li><i></i><a href="/xMeituan/userShow">首页</a></li>
+        <li><i></i><a href="/xMeituan/userOrder?method=getOrder">我的订单</a></li>
+        <li><i></i><a href="/xMeituan/userAddr?method=getAddr">收货地址</a></li>
+        <li><i></i><a href="">账户管理</a></li>
+        <li><i></i><a href="">安全退出</a></li>
+    </ul>
  </nav>
  <article class="U-article Overflow">
   <!--user order list-->
@@ -92,16 +89,7 @@ Author URI: http://www.deathghost.cn
 		Double orderMoney=e.getOrderMoney();
 		String orderRemark=e.getOrderRemark();
 		String orderState=e.getOrderState();
-		Timestamp orderStateTime=null;
-		if(e.getOrderCancel()!=null){
-			orderStateTime=e.getOrderCancel();
-		}else if(e.getOrderFinish()!=null){
-			orderStateTime=e.getOrderFinish();
-		}else if(e.getOrderReceive()!=null){
-			orderStateTime=e.getOrderReceive();
-		}else{
-			orderStateTime=e.getOrderBegin();
-		}
+		Timestamp orderStateTime=e.getOrderBegin();
 		String timeStr=null;
 		if(orderStateTime!=null){
 			Long tmpFinTime=orderStateTime.getTime();
@@ -109,6 +97,18 @@ Author URI: http://www.deathghost.cn
 			SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 			timeStr=sdf.format(date);
 		}
+    	String xOperation=null;
+    	String operation=null;
+		if(orderState.equals("已接单")){
+			xOperation="/xMeituan/userConfirm?orderId="+orderId;
+			operation="确认送达";
+		}else if(orderState.equals("已评价")||orderState.equals("未接单")){
+			xOperation="";
+			operation="";
+		}else{
+      		xOperation="/xMeituan/html/userPage/userEvaluation.jsp?orderId="+orderId;
+      		operation="评价";
+    	}
 %>
      <tr>
       <td class="FontW"><%=orderId %></td>
@@ -116,7 +116,7 @@ Author URI: http://www.deathghost.cn
       <td><%=orderMoney %></td>
       <td><%=orderRemark %></td>
       <td><%=orderState %></td>
-      <td><a href="#">取消订单</a> | <a href="#">付款</a></td>
+      <td><a href="<%=xOperation%>"><%=operation%></a></td>
      </tr>
 <%
 	}

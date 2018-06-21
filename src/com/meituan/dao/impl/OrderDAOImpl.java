@@ -19,12 +19,12 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 		return getForList(sql, busiId,start,pageSize);
 	}
 
-	@Override
-	public long getTotalPageByBusi(int busiId)
-	{
-		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE busiId = ?";
-		return getForValue(sql, busiId);
-	}
+//	@Override
+//	public long getTotalPageByBusi(int busiId)
+//	{
+//		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE busiId = ?";
+//		return getForValue(sql, busiId);
+//	}
 
 	@Override
 	public List<Order> getListByUser(int userId, int page)
@@ -55,23 +55,23 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	@Override
 	public void saveReceiveTime(int orderId, Timestamp receiveTime)
 	{
-		String sql = "UPDATE dingdan SET orderReceive=? WHERE orderId = ?";
-		update(sql,receiveTime,orderId);
+		String sql = "UPDATE dingdan SET orderReceive=?,orderState=? WHERE orderId = ?";
+		update(sql,receiveTime,"已接单",orderId);
 	}
 
 
 	@Override
 	public void saveCancelTime(int orderId, Timestamp cancelTime)
 	{
-		String sql = "UPDATE dingdan SET orderCancel=? WHERE orderId = ?";
-		update(sql,cancelTime,orderId);
+		String sql = "UPDATE dingdan SET orderCancel=?,orderState= ? WHERE orderId = ?";
+		update(sql,cancelTime,"已取消",orderId);
 	}
 
 	@Override
 	public void saveFinishTime(int orderId, Timestamp finishTime)
 	{
-		String sql = "UPDATE dingdan SET orderFinish = ? WHERE orderId = ?";
-		update(sql, finishTime,orderId);
+		String sql = "UPDATE dingdan SET orderFinish= ?,orderState = ? WHERE orderId = ?";
+		update(sql, finishTime,"已完成",orderId);
 	}
 
 	@Override
@@ -84,6 +84,35 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 				order.getOrderRemark());
 		int orderId = new Long(id).intValue();
 		return orderId;
+	}
+
+	@Override
+	public List<Order> getOrder(int busiId)
+	{
+		String sql = "SELECT * FROM dingdan WHERE busiId = ? AND (OrderState = ? OR OrderState = ?) ORDER BY orderId DESC ";
+		return getForList(sql, busiId,"已接单","未接单");
+	}
+
+	@Override
+	public List<Order> getOldOrder(int busiId, int pageSize, int pageNo)
+	{
+		int start = (pageNo-1)*pageSize;
+		String sql = "SELECT * FROM dingdan WHERE busiId = ? AND (OrderState = ? OR OrderState = ?) ORDER BY orderId DESC LIMIT ?,?";
+		return getForList(sql, busiId,"已完成","已评价",start,pageSize);
+	}
+
+	@Override
+	public void setState(int orderId, String State)
+	{
+		String sql= "UPDATE dingdan	SET orderState = ? WHERE orderId= ?";
+		update(sql, State,orderId);
+	}
+
+	@Override
+	public long getTotalItemByState(int busiId, String state1, String state2)
+	{
+		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE busiId = ? AND (orderState = ? OR orderState = ?)";
+		return getForValue(sql, busiId,state1,state2);
 	}
 
 }

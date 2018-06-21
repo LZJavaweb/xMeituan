@@ -1,15 +1,15 @@
 package com.meituan.servlet.userServlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.meituan.domain.Evaluation;
-import com.meituan.service.userService.UserEvaluationService;
+import com.meituan.service.userService.UserConfirmService;
 
-public class UserEvaluation extends HttpServlet
+public class UserConfirm extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -17,17 +17,12 @@ public class UserEvaluation extends HttpServlet
 	{
 		doPost(request, response);
 	}
-	private UserEvaluationService userEvaluationService = new UserEvaluationService();
+	private UserConfirmService userConfirmService = new UserConfirmService();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		String evaluation = request.getParameter("evaluation");
 		String orderIdStr = request.getParameter("orderId");
-		String gradeStr = request.getParameter("grade");
 		int orderId = Integer.parseInt(orderIdStr);
-		int grade = Integer.parseInt(gradeStr);
-		Evaluation eval = new Evaluation(orderId, evaluation, grade);
-		System.out.println("userEval:eval:"+eval);
-		userEvaluationService.save(eval);
+		userConfirmService.saveFinish(orderId);
 		response.sendRedirect("/xMeituan/userOrder");
 	}
 }

@@ -9,7 +9,7 @@ public class Addr
 	private String addrProv;
 	private String addrCity;
 	private String addrReal;
-	private String addrFlag;
+	private int addrFlag;
 	@Override
 	public String toString()
 	{
@@ -22,7 +22,7 @@ public class Addr
 		super();
 	}
 	public Addr(int userId, String addrName, String addrPhone, String addrProv, String addrCity, String addrReal,
-			String addrFlag)
+			int addrFlag)
 	{
 		super();
 		this.userId = userId;
@@ -33,7 +33,6 @@ public class Addr
 		this.addrReal = addrReal;
 		this.addrFlag = addrFlag;
 	}
-
 	public int getAddrId()
 	{
 		return addrId;
@@ -90,13 +89,14 @@ public class Addr
 	{
 		this.addrReal = addrReal;
 	}
-	public String getAddrFlag()
+	public int getAddrFlag()
 	{
 		return addrFlag;
 	}
-	public void setAddrFlag(String addrFlag)
+	public void setAddrFlag(int addrFlag)
 	{
 		this.addrFlag = addrFlag;
 	}
+	
 	
 }
