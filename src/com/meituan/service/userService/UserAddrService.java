@@ -13,4 +13,16 @@ public class UserAddrService
 	{
 		return ad.getAll(userId);
 	}
+	public void editAddr(Addr addr)
+	{
+		ad.changeAddr(addr);
+	}
+	public void deleteAddr(int addrId)
+	{
+		ad.deleteAddr(addrId);
+	}
+	public void addAddr(Addr addr)
+	{
+		ad.save(addr);
+	}
 }

@@ -12,4 +12,6 @@ public interface AddrDAO
 	public List<Addr> getAll(int userId);
 	//更改地址信息
 	public void changeAddr(Addr addr);
+	//删除地址
+	public void deleteAddr(int addrId);
 }

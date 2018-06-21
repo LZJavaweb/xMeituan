@@ -42,20 +42,24 @@
 					<table cellpadding="0" cellspacing="0" class="mainForm">
 						<tr>
 							<td width="80px">菜名</td>
-							<td><input type="text" name="SPname" class="InputStyle" value=""/> *</td>
+							<td><input type="text" name="foodName1" class="InputStyle" value=""/> *</td>
 						</tr>
 						<tr>
 							<td>价格</td>
-							<td><input type="text" name="SPprice" class="InputStyle" value=""/> *</td>
+							<td><input type="text" name="foodPrice1" class="InputStyle" value=""/> *</td>
 						</tr>						
 						<tr>
 							<td>简介</td>
-							<td><textarea name="SPdesc" class="TextareaStyle"></textarea></td>
+							<td><textarea name="foodDesc1" class="TextareaStyle"></textarea></td>
+						</tr>
+						<tr>
+							<td>库存</td>
+							<td><input type="number" name="foodStock1" class="InputStyle" min="0" value=""></td>
 						</tr>
 						<tr>
 							<td width="80px">菜品图片</td>
 							<td>
-								<input type="file" name="SPpic"/> *
+								<input type="file" name="foodPic1"/> *
 							</td>
 						</tr>
 					</table>

@@ -65,7 +65,7 @@ public class BusiOrder extends HttpServlet
 			e.printStackTrace();
 		}
 		int pageSize = 10;
-		long totalItem = busiOrderService.getTotalItem(busiId);
+		long totalItem = busiOrderService.getTotalItem(busiId, "已评价", "已完成");
 		long totalPage;
 		if(totalItem%pageSize==0)
 		{
@@ -75,6 +75,7 @@ public class BusiOrder extends HttpServlet
 		{
 			totalPage = totalItem/pageSize+1;
 		}
+		System.out.println("busiOrder:totalpage:"+totalPage+"totalItem:"+totalItem);
 		List<Order> orderList = busiOrderService.getOldOrder(busiId, pageSize, pageNo);
 		request.setAttribute("pageNo", pageNo);
 		request.setAttribute("totalPage", totalPage);

@@ -19,9 +19,9 @@ public class BusiOrderService
 	{
 		return od.getOldOrder(busiId, pageSize, pageNo);
 	}
-	public long getTotalItem(int busiId)
+	public long getTotalItem(int busiId,String state1,String state2)
 	{
-		return od.getTotalPageByBusi(busiId);
+		return od.getTotalItemByState(busiId, state1, state2);
 	}
 	public void saveReceive(int orderId)
 	{

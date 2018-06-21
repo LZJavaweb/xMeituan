@@ -2,6 +2,7 @@ package com.meituan.servlet.busiServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import com.meituan.dao.FoodDAO;
 import com.meituan.dao.impl.BusiDAOImpl;
 import com.meituan.dao.impl.FoodDAOImpl;
 import com.meituan.domain.Food;
+import com.meituan.service.busiService.BusiShowService;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -23,38 +25,43 @@ public class BusiShow extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	private BusiDAO bd = new BusiDAOImpl();
-	private FoodDAO fd = new FoodDAOImpl();
-	private int busiId;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		doPost(request, response);
 	}
-
+	private BusiShowService busiShowService = new BusiShowService();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-		String busiPhone = (String) session.getAttribute("busiPhone");
-		busiId=bd.getId(busiPhone);
-		List<Food> list = fd.getAll(busiId);
-		JSONArray jsonArray = new JSONArray();
-		JSONObject jsonObj = null;
-		for(Food food : list)
+		String methodName = request.getParameter("method");
+		try
 		{
-			System.out.println(food);
-			jsonObj = new JSONObject();
-			jsonObj.put("foodId", food.getFoodId());
-			jsonObj.put("foodDesc", food.getFoodDesc());
-			jsonObj.put("foodName", food.getFoodName());
-			jsonObj.put("foodPic", food.getFoodPic());
-			jsonObj.put("foodPrice", food.getFoodPrice());
-			jsonObj.put("foodStock", food.getFoodStock());
-			jsonArray.add(jsonObj);
+			Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class,
+					HttpServletResponse.class);
+			method.setAccessible(true);
+			method.invoke(this, request, response);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		System.out.println(jsonArray); 
-		out.println(jsonArray);
 	}
-
+	//获取食品信息
+	public void getFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		HttpSession session = request.getSession();
+		int busiId = (int) session.getAttribute("busiId");
+		List<Food> foodList = busiShowService.getAll(busiId);
+		request.setAttribute("foodList", foodList);
+		request.getRequestDispatcher("/html/busiPage/detail/busiShow.jsp").forward(request, response);
+	}
+	//编辑食品信息
+	public void editFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		
+	}
+	//删除食品信息
+	public void deleteFood(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		
+	}
 }

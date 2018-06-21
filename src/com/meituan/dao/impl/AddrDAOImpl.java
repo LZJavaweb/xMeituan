@@ -13,7 +13,7 @@ public class AddrDAOImpl extends DAO<Addr> implements AddrDAO
 	public void save(Addr addr)
 	{
 		String sql="INSERT INTO address(userId,addrName,addrPhone,addrProv,addrCity,addrReal,addrFlag) VALUES(?,?,?,?,?,?,?)";
-		update(sql, addr.getUserId(),addr.getAddrPhone(),addr.getAddrProv(),addr.getAddrCity(),addr.getAddrReal(),addr.getAddrFlag());
+		update(sql, addr.getUserId(),addr.getAddrName(),addr.getAddrPhone(),addr.getAddrProv(),addr.getAddrCity(),addr.getAddrReal(),addr.getAddrFlag());
 	}
 
 	@Override
@@ -28,6 +28,13 @@ public class AddrDAOImpl extends DAO<Addr> implements AddrDAO
 	{
 		String sql = "UPDATE address SET addrName = ?,addrPhone = ?,addrProv= ?,addrCity= ?,addrReal= ?,addrFlag= ? WHERE addrId = ?";
 		update(sql, addr.getAddrName(),addr.getAddrPhone(),addr.getAddrProv(),addr.getAddrCity(),addr.getAddrReal(),addr.getAddrFlag(),addr.getAddrId());
+	}
+
+	@Override
+	public void deleteAddr(int addrId)
+	{
+		String sql = "DELETE FROM address WHERE addrId = ?";
+		update(sql, addrId);
 	}
 
 }

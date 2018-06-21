@@ -23,16 +23,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.meituan.dao.BusiDAO;
 import com.meituan.dao.FoodDAO;
-import com.meituan.dao.impl.BusiDAOImpl;
 import com.meituan.dao.impl.FoodDAOImpl;
 import com.meituan.domain.Food;
 import com.meituan.utils.FileUploadAppProperties;
 import com.meituan.utils.FileUtils;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 public class BusiUpload extends HttpServlet
 {
@@ -40,9 +36,7 @@ public class BusiUpload extends HttpServlet
 	private static final String FILE_PATH = "D:\\xMeituan\\WebContent\\resources\\BusiPic";
 	private static final String TEMP_DIR = "d:\\tempDirectory";
 	private int busiId ;
-	private String busiPhone = null;
 	private FoodDAO fd = new FoodDAOImpl();
-	private BusiDAO bd = new BusiDAOImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		doPost(request, response);
@@ -51,14 +45,9 @@ public class BusiUpload extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		// 获取 ServletFileUpload 对象.
-		System.out.println("hellow");
 		ServletFileUpload upload = getServletFileUpload();
 		//获取商家busiId
-		busiPhone = (String) request.getSession().getAttribute("busiPhone");
-		busiId = bd.getId(busiPhone);
-		JSONArray jsonArray = new JSONArray();
-		JSONObject jsonObj = new JSONObject();
-		PrintWriter out = response.getWriter();
+		busiId = (int) request.getSession().getAttribute("busiId");
 		try
 		{
 			// 把需要上传的 FileItem 都放入到该 Map 中
@@ -85,18 +74,12 @@ public class BusiUpload extends HttpServlet
 			// 6. 删除临时文件夹的临时文件
 			FileUtils.delAllFile(TEMP_DIR);
 			
-			jsonObj.put("checked", "true");
-			
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-			request.setAttribute("message", e.getMessage());
-			jsonObj.put("checked", "false");
-		} finally
-		{
-			jsonArray.add(jsonObj);
-			out.println(jsonArray);
+			response.sendRedirect("/xMeituan/html/error/error.jsp");
 		}
+		response.sendRedirect("/xMeituan/busiShow?method=getFood");
 	}
 	/**
 	 * 构建 ServletFileUpload 对象 从配置文件中读取了部分属性, 用户设置约束. 该方法代码来源于文档.
@@ -275,7 +258,6 @@ public class BusiUpload extends HttpServlet
 		{
 			out.write(buffer, 0, len);
 		}
-
 		inputStream.close();
 		out.close();
 

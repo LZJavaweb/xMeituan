@@ -10,7 +10,7 @@ public interface OrderDAO
 	//查询订单
 	public List<Order> getListByBusi(int busiId,int page);
 	//查询商家评价的总页数
-	public long getTotalPageByBusi(int busiId);
+//	public long getTotalPageByBusi(int busiId);
 	//user查询订单
 	public List<Order> getListByUser(int userId,int page);
 	//查询用户评价的总页数
@@ -29,4 +29,8 @@ public interface OrderDAO
 	public List<Order> getOrder(int busiId);
 	//获取已完成的订单
 	public List<Order> getOldOrder(int busiId ,int pageSize,int pageNo);
+	//设置订单状态
+	public void setState(int orderId,String State);
+	//用订单状态获取订单数
+	public long getTotalItemByState(int busiId,String state1,String state2);
 }

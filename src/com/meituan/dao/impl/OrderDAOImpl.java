@@ -19,12 +19,12 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 		return getForList(sql, busiId,start,pageSize);
 	}
 
-	@Override
-	public long getTotalPageByBusi(int busiId)
-	{
-		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE busiId = ?";
-		return getForValue(sql, busiId);
-	}
+//	@Override
+//	public long getTotalPageByBusi(int busiId)
+//	{
+//		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE busiId = ?";
+//		return getForValue(sql, busiId);
+//	}
 
 	@Override
 	public List<Order> getListByUser(int userId, int page)
@@ -97,8 +97,22 @@ public class OrderDAOImpl extends DAO<Order> implements OrderDAO
 	public List<Order> getOldOrder(int busiId, int pageSize, int pageNo)
 	{
 		int start = (pageNo-1)*pageSize;
-		String sql = "SELECT * FROM dingdan WHERE busiId = ? AND OrderState = ? ORDER BY orderId DESC LIMIT ?,?";
-		return getForList(sql, busiId,"已完成",start,pageSize);
+		String sql = "SELECT * FROM dingdan WHERE busiId = ? AND (OrderState = ? OR OrderState = ?) ORDER BY orderId DESC LIMIT ?,?";
+		return getForList(sql, busiId,"已完成","已评价",start,pageSize);
+	}
+
+	@Override
+	public void setState(int orderId, String State)
+	{
+		String sql= "UPDATE dingdan	SET orderState = ? WHERE orderId= ?";
+		update(sql, State,orderId);
+	}
+
+	@Override
+	public long getTotalItemByState(int busiId, String state1, String state2)
+	{
+		String sql = "SELECT COUNT(orderId) FROM dingdan WHERE busiId = ? AND (orderState = ? OR orderState = ?)";
+		return getForValue(sql, busiId,state1,state2);
 	}
 
 }

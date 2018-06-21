@@ -143,7 +143,7 @@ Author URI: http://www.deathghost.cn
  <aside>
   <div class="cart" id="Topcart">
 	<span class="Ctitle Block FontW Font14"><a href="cart.html" target="_blank">我的购物车</a></span>
-  <form action="/xMeituan/userAddr" method="post">
+  <form action="/xMeituan/userAddr?method=selectAddr" method="post">
 	<table id="cartcontent" fitColumns="true">
 	<thead>
 	<tr>

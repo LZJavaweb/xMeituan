@@ -61,6 +61,22 @@
 		<url-pattern>/userOrder</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>UserConfirm</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserConfirm</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserConfirm</servlet-name>
+		<url-pattern>/userConfirm</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UserEvaluation</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserEvaluation</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserEvaluation</servlet-name>
+		<url-pattern>/userEvaluation</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiLogin</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
 	</servlet>
