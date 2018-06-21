@@ -106,11 +106,9 @@ public class TestDAOImpl
 		System.out.println(order);
 		List<Order> busiOrderList = od.getListByBusi(busiId, 1);
 		List<Order> userOrderList = od.getListByUser(userId, 1);
-		long count = od.getTotalPageByBusi(busiId);
 		long count1 = od.getTotalPageByUser(userId);
 		System.out.println("busiOrderList:"+busiOrderList);
 		System.out.println("userOrderList:"+userOrderList);
-		System.out.println("count:"+count);
 		System.out.println("count1:"+count1);
 		od.saveReceiveTime(4, new Timestamp(date.getTime()));
 		od.saveFinishTime(4, new Timestamp(date.getTime()));
