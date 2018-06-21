@@ -38,7 +38,7 @@ public class UserAddr extends HttpServlet
 			throw new RuntimeException(e);
 		}
 	}
-	public void seleteAddr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	public void selectAddr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
 		int userId= (int) session.getAttribute("userId");

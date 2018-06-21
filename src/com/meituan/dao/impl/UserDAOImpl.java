@@ -35,6 +35,12 @@ public class UserDAOImpl extends DAO<User> implements UserDAO
 		return getForValue(sql, userPhone);
 	}
 
+	@Override
+	public String getUserName(String userName)
+	{
+		String sql = "select username from user where userPhone = ?";
+		return getForValue(sql, userName);
+	}
 	
 
 }
