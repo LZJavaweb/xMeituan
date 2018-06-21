@@ -83,7 +83,7 @@ Author URI: http://www.deathghost.cn
       <td>2014-09-22 19:21:38</td>
       <td>DeathGhost</td>
       <td>￥328.00</td>
-      <td>未付款,未发货</td>
+      <td>未发货</td>
       <td><a href="#">取消订单</a> | <a href="#">付款</a></td>
      </tr>
     </table>
