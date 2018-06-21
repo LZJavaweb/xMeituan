@@ -1,19 +1,21 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
-<%@ page import="java.sql.Timestamp" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.meituan.domain.Order" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<!-- 包含公共的JSP代码片段 -->	
+	<!-- 包含公共的JSP代码片段 -->
+	
 <title>无线点餐平台</title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="style/js/jquery.js"></script>
 <script type="text/javascript" src="style/js/page_common.js"></script>
 <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
+	<script type="text/javascript">
+		setInterval(function(){
+			window.location.href = "orderList.html";
+		},1000 * 5);
+	</script>
 </head>
 <body>
 	<!-- 页面标题 -->
@@ -35,38 +37,25 @@
 			<thead>
 				<tr align="center" valign="middle" id="TableTitle">
 					<td>订单编号</td>
-					<td>顾客名</td>
-					<td>下单日期</td>
-					<td>总金额</td>
+					<td>下单时间</td>
+					<td>订单总金额</td>
+					<td>订单备注</td>
+					<td>订单状态</td>
+					<td>操作</td>
 				</tr>
 			</thead>
 			<!--显示数据列表 -->
 			<tbody id="TableData">
-			
-<%
-	List<Order> orderList=(List<Order>)request.getAttribute("?");
-	for (Order e : orderList){
-		Integer orderId=e.getOrderId();
-		Integer userId=e.getUserId();
-		Timestamp orderFinish=e.getOrderFinish();
-		Double orderMoney=e.getOrderMoney();
-		Long tmpFinTime=orderFinish.getTime();
-		Date date=new Date(tmpFinTime);
-		SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		String timeStr=sdf.format(date);
-%>
-			
-			 		<tr height="60">
-				 		<td><%=orderId %></td>
-				 		<td><%=userId %></td>
-				 		<td><%=timeStr %></td>
-				 		<td><%=orderMoney %></td>	 						 		
-			 		</tr>
-			 	
-<%
-	}
-%>
-			 	
+				<tr height="60">
+					<td>15375222</td>
+					<td>纽约</td>
+					<td>2014-12-08 23:29:18.0</td>
+					<td>204.0</td>
+					<td>未结账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>			 
+						<a href="#" class="FunctionButton">接单</a>	
+					</td>
+				</tr>
 			</tbody>
 		</table>
 		<!-- 其他功能超链接 -->

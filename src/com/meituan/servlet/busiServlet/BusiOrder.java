@@ -46,6 +46,7 @@ public class BusiOrder extends HttpServlet
 		int busiId = (int) session.getAttribute("busiId");
 		List<Order> orderList = busiOrderService.getOrder(busiId);
 		request.setAttribute("orderList", orderList);
+		System.out.println("busiOrder:orderList:"+orderList);
 		request.getRequestDispatcher("/html/busiPage/detail/busiOrder.jsp").forward(request, response);
 	}
 	//获取历史订单

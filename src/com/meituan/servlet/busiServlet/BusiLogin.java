@@ -67,8 +67,7 @@ public class BusiLogin extends HttpServlet
 			session.setAttribute("busiPhone", busiPhone);
 			int busiId = bd.getBusiId(busiPhone);
 			session.setAttribute("busiId", busiId);
-			//response.sendRedirect("html/MPage.html");
-			request.getRequestDispatcher("/html/busiPage/busiIndex.html").forward(request, response);
+			response.sendRedirect("/xMeituan/html/busiPage/busiIndex.html");
 		} else
 		{
 			response.sendRedirect("/xMeituan/html/busiPage/busiLogin.html");
