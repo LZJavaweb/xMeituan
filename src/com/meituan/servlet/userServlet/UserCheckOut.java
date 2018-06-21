@@ -34,6 +34,6 @@ public class UserCheckOut extends HttpServlet
 		int userId = Integer.parseInt(userIdStr);
 		int addrId = Integer.parseInt(addrIdStr);
 		userCheckOutService.save(cartList, userId, addrId, busiId, orderRemark);
-		request.getRequestDispatcher("/html/userPage/userSuccess.jsp");
+		response.sendRedirect("/userOrder");
 	}
 }

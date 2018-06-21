@@ -7,8 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.meituan.domain.Cart;
+import com.meituan.domain.Order;
 import com.meituan.service.userService.UserOrderService;
 
 public class UserOrder extends HttpServlet
@@ -22,6 +23,34 @@ public class UserOrder extends HttpServlet
 	public UserOrderService userOrderService = new UserOrderService();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		
+		HttpSession session = request.getSession();
+		String userIdStr = (String) session.getAttribute("userId");
+		int userId = Integer.parseInt(userIdStr);
+		String pageNoStr = request.getParameter("pageNo");
+		int pageNo = 1;
+		try
+		{
+			if(pageNoStr != null)
+				pageNo = Integer.parseInt(pageNoStr);
+		} catch (NumberFormatException e)
+		{
+			e.printStackTrace();
+		}
+		List<Order> orderList = userOrderService.getOrder(userId, pageNo);
+		long totalOrder = userOrderService.getTotalOrder(userId);
+		long totalPage;
+		int pageSize = 10;
+		if(totalOrder%pageSize==0)
+		{
+			totalPage = totalOrder/pageSize;
+		}
+		else 
+		{
+			totalPage = totalOrder/pageSize+1;
+		}
+		request.setAttribute("pageNO", pageNo);
+		request.setAttribute("totalPage", totalPage);
+		request.setAttribute("orderList", orderList);
+		request.getRequestDispatcher("/html/userPage/userOrder.jsp").forward(request, response);
 	}
 }
