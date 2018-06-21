@@ -12,6 +12,7 @@ import com.meituan.dao.impl.OrderDAOImpl;
 import com.meituan.domain.Cart;
 import com.meituan.domain.Item;
 import com.meituan.domain.Order;
+import com.meituan.exception.DBException;
 
 public class UserCheckOutService
 {
@@ -28,13 +29,12 @@ public class UserCheckOutService
 	{
 		return od.saveReturn(order);
 	}
-	@SuppressWarnings("null")
-	public void save(List<Cart> cartList,int userId,int addrId, int busiId,String orderRemark)
+	public void save(List<Cart> cartList,int userId,int addrId, int busiId,String orderRemark) throws Exception
 	{
-		int totalPrice = 0;
+		double totalPrice = 0;
 		int foodId;
 		int foodNum;
-		int foodPrice;
+		double foodPrice;
 		List<Item> itemList = new ArrayList<Item>();
 		Item item = null;
 		Order order = null;
@@ -56,12 +56,18 @@ public class UserCheckOutService
 		}
 		Date date = new Date();
 		Timestamp orderBegin = new Timestamp(date.getTime());
+		if(totalPrice<=0)
+		{
+			throw new DBException("totalPrice<=0");
+		}
 		order = new Order(userId, busiId, addrId, totalPrice, "未接单", orderBegin, orderRemark);
 		int orderId = saveOrder(order);
 		for(Item it:itemList)
 		{
 			it.setOrderId(orderId);
 		}
+		System.out.println("userCheckOutService:order:"+order);
+		System.out.println("userCheckOutService:itemList:"+itemList);
 		saveItem(itemList);
 	}
 }

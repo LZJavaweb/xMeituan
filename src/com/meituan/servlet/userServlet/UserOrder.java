@@ -24,8 +24,7 @@ public class UserOrder extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		String userIdStr = (String) session.getAttribute("userId");
-		int userId = Integer.parseInt(userIdStr);
+		int userId = (int) session.getAttribute("userId");
 		String pageNoStr = request.getParameter("pageNo");
 		int pageNo = 1;
 		try
@@ -48,7 +47,7 @@ public class UserOrder extends HttpServlet
 		{
 			totalPage = totalOrder/pageSize+1;
 		}
-		request.setAttribute("pageNO", pageNo);
+		request.setAttribute("pageNo", pageNo);
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("orderList", orderList);
 		request.getRequestDispatcher("/html/userPage/userOrder.jsp").forward(request, response);

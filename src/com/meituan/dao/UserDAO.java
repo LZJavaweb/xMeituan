@@ -11,4 +11,6 @@ public interface UserDAO
 	public long getCountForPhone(String userPhone);
 	//保存注册信息
 	public void sava(User user);
+	//查询userId
+	public int getUserId(String userPhone);
 }

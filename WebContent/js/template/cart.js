@@ -176,7 +176,7 @@ var data = {"total":0,"rows":[]};
 				//var xname="<input disabled value="+"\""+name+"\""+">";
 				var xquantity="<input type=\"number\" value=\""+quantity+"\" name=\"num"+xIndex+"\">";
 				var xxID="<input readonly=\"readonly\" value=\""+xID+"\" name=\"foodId"+xIndex+"\">";
-				var xprice="<input readonly=\"readonly\" value=\""+price+"\" name=\"foodPrice"+xIndex+"\">";
+				var xprice="<input readonly=\"readonly\" value=\""+price+"\" name=\"price"+xIndex+"\">";
 				data.total += 1;
 				data.rows.push({
 					xID:xxID,

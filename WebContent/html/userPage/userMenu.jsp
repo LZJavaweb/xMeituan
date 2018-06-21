@@ -143,7 +143,7 @@ Author URI: http://www.deathghost.cn
  <aside>
   <div class="cart" id="Topcart">
 	<span class="Ctitle Block FontW Font14"><a href="cart.html" target="_blank">我的购物车</a></span>
-  <form action="cart.html" method="post">
+  <form action="/xMeituan/userAddr" method="post">
 	<table id="cartcontent" fitColumns="true">
 	<thead>
 	<tr>
@@ -154,7 +154,7 @@ Author URI: http://www.deathghost.cn
 	</tr>
 	</thead>
 	</table>
-  <input name="busiId" value="<%=busiId%> type="hidden">
+  <input name="busiId" value="<%=busiId%>" type="hidden">
   <input name="row" id="xRow" type="hidden"/>
 	<p class="Ptc"><span class="Cbutton"><a><input type="submit" value="下单"></a></span><span class="total">共计金额: ￥0</span></p>
   </form>

@@ -4,13 +4,13 @@ public class Cart
 {
 	private int foodId;
 	private int foodNum;
-	private int foodPrice;
+	private double foodPrice;
 	@Override
 	public String toString()
 	{
 		return "Cart [foodId=" + foodId + ", foodNum=" + foodNum + ", foodPrice=" + foodPrice + "]";
 	}
-	public Cart(int foodId, int foodNum, int foodPrice)
+	public Cart(int foodId, int foodNum, double foodPrice)
 	{
 		super();
 		this.foodId = foodId;
@@ -33,12 +33,14 @@ public class Cart
 	{
 		this.foodNum = foodNum;
 	}
-	public int getFoodPrice()
+	public double getFoodPrice()
 	{
 		return foodPrice;
 	}
-	public void setFoodPrice(int foodPrice)
+	public void setFoodPrice(double foodPrice)
 	{
 		this.foodPrice = foodPrice;
 	}
+	
+
 }
