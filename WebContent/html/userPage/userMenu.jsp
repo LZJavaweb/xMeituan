@@ -164,6 +164,8 @@ Author URI: http://www.deathghost.cn
 </section>
 <!--End content-->
 
-
+<footer>
+  <div class="copyright">© 2018 Metaloe</div>
+</footer>
 </body>
 </html>
