@@ -107,6 +107,7 @@ Author URI: http://www.deathghost.cn
     <ul class="products">
 
 <%
+  Integer busiId=(Integer)request.getAttribute("busiId");
   List<Food> foodList=(List<Food>)request.getAttribute("foodList");
     for(Food e : foodList) {
       Integer foodId=e.getFoodId();
@@ -153,7 +154,7 @@ Author URI: http://www.deathghost.cn
 	</tr>
 	</thead>
 	</table>
-  <input name="busiId" value="<%busiId%>">
+  <input name="busiId" value="<%=busiId%>">
   <input name="row" id="xRow" type="hidden">
 	<p class="Ptc"><span class="Cbutton"><a><input type="submit" value="下单"></a></span><span class="total">共计金额: ￥0</span></p>
   </form>
@@ -162,9 +163,9 @@ Author URI: http://www.deathghost.cn
  
 </section>
 <!--End content-->
-<footer>
-    <div class="copyright">© 2018 Metaloe</div>
-</footer>
 
+<footer>
+  <div class="copyright">© 2018 Metaloe</div>
+</footer>
 </body>
 </html>
