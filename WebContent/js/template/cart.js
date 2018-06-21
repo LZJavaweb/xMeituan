@@ -176,14 +176,16 @@ var data = {"total":0,"rows":[]};
 				//var xname="<input disabled value="+"\""+name+"\""+">";
 				var xquantity="<input type=\"number\" value=\""+quantity+"\" name=\"num"+xIndex+"\">";
 				var xxID="<input readonly=\"readonly\" value=\""+xID+"\" name=\"foodId"+xIndex+"\">";
+				var xprice="<input readonly=\"readonly\" value=\""+price+"\" name=\"foodPrice"+xIndex+"\">";
 				data.total += 1;
 				data.rows.push({
 					xID:xxID,
 					name:name,
 					quantity:xquantity,
-					price:price
+					price:xprice
 				});
 			}
+			$("#xRow").attr("value",xIndex);
 			add();
 			totalCost += price;
 			$('#cartcontent').datagrid('loadData', data);
