@@ -112,14 +112,14 @@ function regTelCheck() {
 	}
 	var data = {"userPhone" : phone};
 	$.ajax({
-		url: "../userLogin/phone.do",
+		url: "/xMeituan/phone.ul",
 		type: "post",
 		data: data,
 		dataType: "json",
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		success: function(data) {
 			for (i in data) {
-				if("true" === data[i].checked) {
+				if("false" === data[i].checked) {
 					$("#regTelErr").html("该手机号已被注册").css("color","red");
 				} else {
 					$("#regTelErr").html("");

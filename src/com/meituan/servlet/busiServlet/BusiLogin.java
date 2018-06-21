@@ -99,11 +99,17 @@ public class BusiLogin extends HttpServlet
 			// 未注册过的店铺
 			Busi busi = new Busi(busiName, busiPhone, busiPass, busiAddr, busiShopName);
 			bd.sava(busi);
-			jsonObj.put("checked", "true");
+			HttpSession session = request.getSession();
+			session.setAttribute("busiPhone", busiPhone);
+			int busiId = bd.getBusiId(busiPhone);
+			session.setAttribute("busiId", busiId);
+			//jsonObj.put("checked", "true");
+			response.sendRedirect("/xMeituan/html/busiPage/busiIndex.html");
 		} else
 		{
 			// 注册过的店铺
-			jsonObj.put("checked", "false");
+			//jsonObj.put("checked", "false");
+			response.sendRedirect("/xMeituan/html/busiPage/busiLogin.html");
 		}
 		jsonList.add(jsonObj);
 		out.println(jsonList);

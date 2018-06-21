@@ -6,9 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <title>用户中心</title>
-<meta name="keywords" content="DeathGhost,DeathGhost.cn,web前端设,移动WebApp开发" />
-<meta name="description" content="DeathGhost.cn::H5 WEB前端设计开发!" />
-<meta name="author" content="DeathGhost"/>
+<meta name="author" content="Metaloe"/>
 <link href="/xMeituan/css/template/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/xMeituan/js/template/public.js"></script>
 <script type="text/javascript" src="/xMeituan/js/template/jquery.js"></script>
@@ -23,7 +21,19 @@ Author URI: http://www.deathghost.cn
     <section class="Topmenubg">
      <div class="Topnav">
       <div class="LeftNav">
-       <a href="userLogin.html">注册/登录</a><a href="/xMeituan/html/busiPage/busiLogin.html">商家版</a>
+<%
+  String tmp=(String)session.getAttribute("userPhone");
+  String state=null;
+  String operation=null;
+  if(tmp!=null&&tmp!=""){
+    operation="/xMeituan/userOrder?method=getOrder";
+    state=tmp;
+  }else{
+    operation="userLogin.html";
+    state="注册/登录";
+  }
+%>
+       <a href="<%=operation %>"><%=state %></a><a href="/xMeituan/html/busiPage/busiLogin.html">商家版</a>
       </div>
       <div class="RightNav">
        <a href="/xMeituan/userOrder?method=getOrder">用户中心</a> <a href="/xMeituan/userOrder?method=getOrder" target="_blank" title="我的订单">我的订单</a>
@@ -58,11 +68,11 @@ Author URI: http://www.deathghost.cn
 <section class="Psection MT20">
 <nav class="U-nav Font14 FontW">
   <ul>
-   <li><i></i><a href="/xMeituan/userShow">用户中心首页</a></li>
+   <li><i></i><a href="/xMeituan/userShow">首页</a></li>
    <li><i></i><a href="/xMeituan/userOrder?method=getOrder">我的订单</a></li>
    <li><i></i><a href="/xMeituan/userAddr?method=getAddr">收货地址</a></li>
-   <li><i></i><a href="/xMeituan/">账户管理</a></li>
-   <li><i></i><a href="/xMeituan/">安全退出</a></li>
+   <li><i></i><a href="">账户管理</a></li>
+   <li><i></i><a href="">安全退出</a></li>
   </ul>
  </nav>
  <article class="U-article Overflow">

@@ -26,16 +26,28 @@ Author URI: http://www.deathghost.cn
     <section class="Topmenubg">
      <div class="Topnav">
       <div class="LeftNav">
-       <a href="userLogin.html">注册/登录</a><a href="/xMeituan/html/busiPage/busiLogin.html">商家版</a>
+<%
+  String tmp=(String)session.getAttribute("userPhone");
+  String state=null;
+  String operation=null;
+  if(tmp!=null&&tmp!=""){
+    operation="/xMeituan/userOrder?method=getOrder";
+    state=tmp;
+  }else{
+    operation="userLogin.html";
+    state="注册/登录";
+  }
+%>
+       <a href="<%=operation %>"><%=state %></a><a href="/xMeituan/html/busiPage/busiLogin.html">商家版</a>
       </div>
       <div class="RightNav">
-       <a href="userOrder.html">用户中心</a> <a href="userOrder.html" target="_blank" title="我的订单">我的订单</a> <a href="userCart.html">购物车（0）</a>
+       <a href="/xMeituan/userOrder?method=getOrder">用户中心</a> <a href="/xMeituan/userOrder?method=getOrder" target="_blank" title="我的订单">我的订单</a>
       </div>
      </div>
     </section>
     <div class="Logo_search">
      <div class="Logo">
-      <img src="/xMeituan/resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
+      <img src="/xMeituan/resources/pagePics/logoxx.png" title="Metaloe" alt="米团">
       <i></i>
       <span>广州市 [ <a href="#">海珠区</a> ]</span>
      </div>
@@ -53,7 +65,7 @@ Author URI: http://www.deathghost.cn
     </div>
     <nav class="menu_bg">
      <ul class="menu">
-      <li><a href="list.html">订餐</a></li>
+      <li><a href="/xMeituan/userShow">订餐</a></li>
      </ul>
     </nav>
    </header>
@@ -98,16 +110,16 @@ Author URI: http://www.deathghost.cn
 			timeStr=sdf.format(date);
 		}
     	String xOperation=null;
-    	String operation=null;
+    	String yOperation=null;
 		if(orderState.equals("已接单")){
 			xOperation="/xMeituan/userConfirm?orderId="+orderId;
-			operation="确认送达";
+			yOperation="确认送达";
 		}else if(orderState.equals("已评价")||orderState.equals("未接单")){
 			xOperation="";
-			operation="";
+			yOperation="";
 		}else{
       		xOperation="/xMeituan/html/userPage/userEvaluation.jsp?orderId="+orderId;
-      		operation="评价";
+      		yOperation="评价";
     	}
 %>
      <tr>
@@ -116,7 +128,7 @@ Author URI: http://www.deathghost.cn
       <td><%=orderMoney %></td>
       <td><%=orderRemark %></td>
       <td><%=orderState %></td>
-      <td><a href="<%=xOperation%>"><%=operation%></a></td>
+      <td><a href="<%=xOperation%>"><%=yOperation%></a></td>
      </tr>
 <%
 	}

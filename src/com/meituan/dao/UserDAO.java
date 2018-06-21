@@ -13,4 +13,6 @@ public interface UserDAO
 	public void sava(User user);
 	//查询userId
 	public int getUserId(String userPhone);
+	//查询userName
+	public String getUserName(String userName);
 }

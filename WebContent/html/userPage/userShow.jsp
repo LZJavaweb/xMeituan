@@ -21,40 +21,52 @@ Author URI: http://www.deathghost.cn
 <body>
 
 <header>
- <section class="Topmenubg">
-  <div class="Topnav">
-   <div class="LeftNav">
-    <a href="userLogin.html">注册/登录</a><a href="../busiPage/busiLogin.html">商家版</a>
-   </div>
-   <div class="RightNav">
-    <a href="userOrder.html">用户中心</a> <a href="userOrder.html" target="_blank" title="我的订单">我的订单</a> <a href="userCart.html">购物车（0）</a>
-   </div>
-  </div>
- </section>
- <div class="Logo_search">
-  <div class="Logo">
-   <img src="/xMeituan/resources/pagePics/logoxx.png" title="DeathGhost" alt="模板">
-   <i></i>
-   <span>广州市 [ <a href="#">海珠区</a> ]</span>
-  </div>
-  <div class="Search"> 
-   <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
-   <div class="Search_nav" id="selectsearch">
-    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
-   </div>
-   <div class="Search_area"> 
-   <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称" class="searchbox" />
-   <input type="submit" class="searchbutton" value="搜 索" />
-   </div>
-   </form>
-  </div>
- </div>
- <nav class="menu_bg">
-  <ul class="menu">
-   <li><a href="list.html">订餐</a></li>
-  </ul>
- </nav>
-</header>
+    <section class="Topmenubg">
+     <div class="Topnav">
+      <div class="LeftNav">
+<%
+  String tmp=(String)session.getAttribute("userPhone");
+  String state=null;
+  String operation=null;
+  if(tmp!=null&&tmp!=""){
+    operation="/xMeituan/userOrder?method=getOrder";
+    state=tmp;
+  }else{
+    operation="userLogin.html";
+    state="注册/登录";
+  }
+%>
+       <a href="<%=operation %>"><%=state %></a><a href="/xMeituan/html/busiPage/busiLogin.html">商家版</a>
+      </div>
+      <div class="RightNav">
+       <a href="/xMeituan/userOrder?method=getOrder">用户中心</a> <a href="/xMeituan/userOrder?method=getOrder" target="_blank" title="我的订单">我的订单</a>
+      </div>
+     </div>
+    </section>
+    <div class="Logo_search">
+     <div class="Logo">
+      <img src="/xMeituan/resources/pagePics/logoxx.png" title="Metaloe" alt="米团">
+      <i></i>
+      <span>广州市 [ <a href="#">海珠区</a> ]</span>
+     </div>
+     <div class="Search"> 
+      <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
+      <div class="Search_nav" id="selectsearch">
+       <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
+      </div>
+      <div class="Search_area"> 
+      <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称" class="searchbox" />
+      <input type="submit" class="searchbutton" value="搜 索" />
+      </div>
+      </form>
+     </div>
+    </div>
+    <nav class="menu_bg">
+     <ul class="menu">
+      <li><a href="/xMeituan/userShow">订餐</a></li>
+     </ul>
+    </nav>
+   </header>
 <!--Start content-->
 <section class="Psection">
  <section class="fslist_navtree">
@@ -180,7 +192,7 @@ Author URI: http://www.deathghost.cn
     <img src="images/star-off.png">
     <span class="Score-v">4.8</span>
     </span>
-    <span class="DSBUTTON"><a href="shop.html" target="_blank" class="Fontfff">点外卖</a></span>
+    <span class="DSBUTTON"><a href="/xMeituan/userMenu?busiId=<%=busiId%>" target="_blank" class="Fontfff">点外卖</a></span>
    </p>
   </li>
   

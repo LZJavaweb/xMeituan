@@ -112,14 +112,14 @@ function regTelCheck() {
 	}
 	var data = {"busiPhone" : phone};
 	$.ajax({
-		url: "../busiLogin/phone.do",
+		url: "/xMeituan/phone.bl",
 		type: "post",
 		data: data,
 		dataType: "json",
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		success: function(data) {
 			for (i in data) {
-				if("true" === data[i]) {
+				if("false" === data[i].checked) {
 					$("#regTelErr").html("该手机号已被注册").css("color","red");
 				} else {
 					$("#regTelErr").html("");

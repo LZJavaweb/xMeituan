@@ -98,11 +98,20 @@ public class UserLogin extends HttpServlet
 			// 未注册过的用户
 			User user = new User(userPhone, userPass, userName);
 			ud.sava(user);
-			jsonObj.put("checked", "true");
+			//jsonObj.put("checked", "true");
+			int userId = ud.getUserId(userPhone);
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", userId);
+			session.setAttribute("userPhone", userPhone);
+			String xUserName = ud.getUserName(userPhone);
+			//System.out.println("xUserName:"+xUserName);
+			//System.out.println("userName:"+userName);
+			response.sendRedirect("/xMeituan/userShow");
 		} else
 		{
 			// 注册过的用户
-			jsonObj.put("checked", "false");
+			response.sendRedirect("/html/userPage/userLogin.html");
+			//jsonObj.put("checked", "false");
 		}
 		jsonList.add(jsonObj);
 		out.println(jsonList);
