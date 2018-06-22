@@ -29,7 +29,7 @@ Author URI: http://www.deathghost.cn
     operation="/xMeituan/userOrder?method=getOrder";
     state=tmp;
   }else{
-    operation="userLogin.html";
+    operation="/xMeituan/html/userPage/userLogin.html";
     state="注册/登录";
   }
 %>
@@ -72,7 +72,7 @@ Author URI: http://www.deathghost.cn
    <li><i></i><a href="/xMeituan/userOrder?method=getOrder">我的订单</a></li>
    <li><i></i><a href="/xMeituan/userAddr?method=getAddr">收货地址</a></li>
    <li><i></i><a href="">账户管理</a></li>
-   <li><i></i><a href="">安全退出</a></li>
+   <li><i></i><a href="/xMeituan/userLogout">安全退出</a></li>
   </ul>
  </nav>
  <article class="U-article Overflow">
