@@ -11,10 +11,10 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="style/js/jquery.js"></script>
-<script type="text/javascript" src="style/js/page_common.js"></script>
-<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
+<script type="text/javascript" src="/xMeituan/html/busiPage/detail/style/js/jquery.js"></script>
+<script type="text/javascript" src="/xMeituan/html/busiPage/detail/style/js/page_common.js"></script>
+<link href="/xMeituan/html/busiPage/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/xMeituan/html/busiPage/detail/style/css/index_1.css" />
 </head>
 <body>
 
@@ -23,7 +23,7 @@
 	<div id="TitleArea_Head"></div>
 	<div id="TitleArea_Title">
 		<div id="TitleArea_Title_Content">
-			<img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 更新新菜品
+			<img border="0" width="13" height="13" src="/xMeituan/html/busiPage/detail/style/images/title_arrow.gif"/> 更新新菜品
 		</div>
     </div>
 	<div id="TitleArea_End"></div>
@@ -35,7 +35,7 @@
 	<form action="/xMeituan/busiUpdateFood?method=updateFood" method="post">
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
-        	<img width="4" height="7" border="0" src="style/images/item_point.gif"> 菜品信息&nbsp;
+        	<img width="4" height="7" border="0" src="/xMeituan/html/busiPage/detail/style/images/item_point.gif"> 菜品信息&nbsp;
         </div>
 		<!-- 本段表单字段 -->
         <div class="ItemBlockBorder">
@@ -66,19 +66,6 @@
 							<td>简介</td>
 							<td><textarea name="foodDesc" class="TextareaStyle"><%=foodDesc %></textarea></td>
 						</tr>
-<%
-						//<tr>
-							//<td width="80px">菜品图片</td>
-							//<td>
-									//<img style='max-width:68px;width:68px;width:expression(width>68?"68px":width "px");max-width: 68px;' 
-									//src="<%=foodPic %>">
-									//<input type="hidden" name="image" value="<%=foodPic %>">
-									//<input type="hidden" name="foodId" value="<%=foodId %>">
-								
-								//<input type="file" name="foodPic"/> 
-							//</td>
-						//</tr>
-%>
 <%
 					//}
 %>
