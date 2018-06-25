@@ -74,7 +74,7 @@ Author URI: http://www.deathghost.cn
     operation="/xMeituan/userOrder?method=getOrder";
     state=tmp;
   }else{
-    operation="userLogin.html";
+    operation="/xMeituan/html/userPage/userLogin.html";
     state="注册/登录";
   }
 %>
