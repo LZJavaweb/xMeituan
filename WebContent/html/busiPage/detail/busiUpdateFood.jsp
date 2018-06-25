@@ -44,13 +44,14 @@
 
 					<table cellpadding="0" cellspacing="0" class="mainForm">
 <%
-					//List<Food> foodList=(List<Food>)request.getAttribute("food");
-					Food e=(Food)request.getAttribute("food");
-					//for(Food e : foodList){
+					List<Food> foodList=(List<Food>)request.getAttribute("food");
+					//Food e=(Food)request.getAttribute("food");
+					String oldFoodPic=null;
+					for(Food e : foodList){
 						String foodName=e.getFoodName();
 						Double foodPrice=e.getFoodPrice();
 						String foodDesc=e.getFoodDesc();
-						String oldFoodPic=e.getFoodPic();
+						oldFoodPic=e.getFoodPic();
 						Integer foodId=e.getFoodId();
 %>
 						<tr>
@@ -67,7 +68,7 @@
 							<td><textarea name="foodDesc" class="TextareaStyle"><%=foodDesc %></textarea></td>
 						</tr>
 <%
-					//}
+					}
 %>
 					</table>
 				</div>
