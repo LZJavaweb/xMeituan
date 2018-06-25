@@ -34,15 +34,18 @@
 		<div class="col-4 col align-self-center">
 			<form role="form" id="infoForm" action="/xMeituan/busiInfo?method=updateBusi" method="post" target="right">
 <%
-	Busi busi=(Busi)request.getAttribute("busi");
+	List<Busi> busi=(List<Busi>)request.getAttribute("busi");
 	String oldBusiLogo=null;
+	Integer busiFlag=null;
 	if(busi!=null){
-		oldBusiLogo=busi.getBusiLogo();
-		String busiName=busi.getBusiName();
-		String busiPhone=busi.getBusiPhone();
-		String busiAddr=busi.getBusiAddr();
-		String busiShopName=busi.getBusiShopName();
-		String busiNotice=busi.getBusiNotice();
+		for(Busi e : busi){
+			oldBusiLogo=e.getBusiLogo();
+			busiFlag=e.getBusiFlag();
+			String busiName=e.getBusiName();
+			String busiPhone=e.getBusiPhone();
+			String busiAddr=e.getBusiAddr();
+			String busiShopName=e.getBusiShopName();
+			String busiNotice=e.getBusiNotice();
 %>
 				<div class="form-group">
 					<label>姓名：</label>
@@ -68,6 +71,7 @@
 					<input onclick="enableUpdate()" id="enableUp" type="button" class="form-control btn btn-primary" value="修改">
 				</div>
 <%
+		}
 	}
 %>
 			</form>
@@ -99,7 +103,6 @@
 			</form>
 			<form role="form-group" id="service" action="/xMeituan/busiInfo?method=">
 <%
-	Integer busiFlag=(Integer)request.getAttribute("busiFlag");
 	if(busiFlag==1){
 %>
 				<div class="form-group">
