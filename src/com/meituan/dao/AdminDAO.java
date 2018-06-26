@@ -5,4 +5,5 @@ import com.meituan.domain.Admin;
 public interface AdminDAO
 {
 	public long getCount(Admin admin);
+	public int getId(Admin admin);
 }

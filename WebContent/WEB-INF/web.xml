@@ -109,6 +109,14 @@
 		<url-pattern>*.bl</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>BusiLogout</servlet-name>
+		<servlet-class>com.meituan.servlet.busiServlet.Busilogout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusiLogout</servlet-name>
+		<url-pattern>/busiLogout</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiOrder</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiOrder</servlet-class>
 	</servlet>

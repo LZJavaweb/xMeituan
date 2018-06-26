@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.meituan.domain.Admin;
 import com.meituan.service.adminService.AdminLoginService;
@@ -38,18 +39,27 @@ public class AdminLogin extends HttpServlet
 	private AdminLoginService adminLoginService = new AdminLoginService();
 	protected void check(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		HttpSession session = request.getSession();
 		String adminName = request.getParameter("adminName");
 		String adminPass = request.getParameter("adminPass");
 		Admin admin = new Admin(adminName, adminPass);
 		long count = adminLoginService.getCountForAdmin(admin);
 		if(count==1)
 		{
+			int adminId=adminLoginService.getId(admin);
+			session.setAttribute("adminId", adminId);
 			response.sendRedirect("/xMeituan/html/adminPage/adminPage.html");
 		}
 		else
 		{
 			response.sendRedirect("/xMeituan/html/adminPage/adminLogin.html");
 		}
+	}
+	protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		HttpSession session = request.getSession();
+		session.removeAttribute("adminId");
+		response.sendRedirect("/xMeituan/html/adminPage/adminLogin.html");
 	}
 
 }

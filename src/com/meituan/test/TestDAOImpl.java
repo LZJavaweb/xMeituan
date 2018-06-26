@@ -9,12 +9,14 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.meituan.dao.AdminDAO;
 import com.meituan.dao.BusiDAO;
 import com.meituan.dao.EvaluationDAO;
 import com.meituan.dao.FoodDAO;
 import com.meituan.dao.ItemDAO;
 import com.meituan.dao.OrderDAO;
 import com.meituan.dao.UserDAO;
+import com.meituan.dao.impl.AdminDAOImpl;
 import com.meituan.dao.impl.BusiDAOImpl;
 import com.meituan.dao.impl.EvaluationDAOImpl;
 import com.meituan.dao.impl.FoodDAOImpl;
@@ -22,6 +24,7 @@ import com.meituan.dao.impl.ItemDAOImpl;
 import com.meituan.dao.impl.OrderDAOImpl;
 import com.meituan.dao.impl.UserDAOImpl;
 import com.meituan.db.JdbcUtils;
+import com.meituan.domain.Admin;
 import com.meituan.domain.Busi;
 import com.meituan.domain.Evaluation;
 import com.meituan.domain.Food;
@@ -128,6 +131,15 @@ public class TestDAOImpl
 		System.out.println(count1);
 		System.out.println(count2);
 		System.out.println(list);
-		
+	}
+	@Test 
+	public void testAdminDAO() throws SQLException
+	{
+		Connection connection = JdbcUtils.getConnection();
+		ConnectionContext.getInstance().bind(connection);
+		AdminDAO ad = new AdminDAOImpl();
+		Admin admin = new Admin("adminroot", "adminroot11");
+		int adminId = ad.getId(admin);
+		System.out.println("adminId:"+adminId);
 	}
 }
