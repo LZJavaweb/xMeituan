@@ -2,14 +2,19 @@ package com.meituan.utils;
 
 import java.io.File;
 
-public class FileUtils {
+public class FileUtils
+{
 
 	/**
 	 * 删除文件夹
-	 * @param folderPath:  文件夹完整绝对路径
+	 * 
+	 * @param folderPath:
+	 *            文件夹完整绝对路径
 	 */
-	public static void delFolder(String folderPath) {
-		try {
+	public static void delFolder(String folderPath)
+	{
+		try
+		{
 			// 删除完里面所有内容
 			delAllFile(folderPath);
 			String filePath = folderPath;
@@ -17,37 +22,48 @@ public class FileUtils {
 			java.io.File myFilePath = new java.io.File(filePath);
 			// 删除空文件夹
 			myFilePath.delete();
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
 
 	/**
 	 * 删除指定文件夹下所有文件
-	 * @param path: 文件夹完整绝对路径
+	 * 
+	 * @param path:
+	 *            文件夹完整绝对路径
 	 * @return
 	 */
-	public static boolean delAllFile(String path) {
+	public static boolean delAllFile(String path)
+	{
 		boolean flag = false;
 		File file = new File(path);
-		if (!file.exists()) {
+		if (!file.exists())
+		{
 			return flag;
 		}
-		if (!file.isDirectory()) {
+		if (!file.isDirectory())
+		{
 			return flag;
 		}
 		String[] tempList = file.list();
 		File temp = null;
-		for (int i = 0; i < tempList.length; i++) {
-			if (path.endsWith(File.separator)) {
+		for (int i = 0; i < tempList.length; i++)
+		{
+			if (path.endsWith(File.separator))
+			{
 				temp = new File(path + tempList[i]);
-			} else {
+			} else
+			{
 				temp = new File(path + File.separator + tempList[i]);
 			}
-			if (temp.isFile()) {
+			if (temp.isFile())
+			{
 				temp.delete();
 			}
-			if (temp.isDirectory()) {
+			if (temp.isDirectory())
+			{
 				// 先删除文件夹里面的文件
 				delAllFile(path + "/" + tempList[i]);
 				// 再删除空文件夹
@@ -55,7 +71,6 @@ public class FileUtils {
 				flag = true;
 			}
 		}
-		
 		return flag;
 	}
 

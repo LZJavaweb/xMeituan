@@ -17,6 +17,17 @@ public class Busi
 	{
 		super();
 	}
+	
+	public Busi(int busiId, String busiName, String busiPhone, String busiAddr, String busiShopName, String busiNotice)
+	{
+		super();
+		this.busiId = busiId;
+		this.busiName = busiName;
+		this.busiPhone = busiPhone;
+		this.busiAddr = busiAddr;
+		this.busiShopName = busiShopName;
+		this.busiNotice = busiNotice;
+	}
 
 	public Busi(String busiName, String busiPhone, String busiPass, String busiAddr, String busiShopName)
 	{

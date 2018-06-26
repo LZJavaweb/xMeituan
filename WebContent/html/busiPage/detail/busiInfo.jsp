@@ -34,9 +34,9 @@
 		<div class="col-4 col align-self-center">
 			<form role="form" id="infoForm" action="/xMeituan/busiInfo?method=updateBusi" method="post" target="right">
 <%
-	List<Busi> busi=(List<Busi>)request.getAttribute("busi");
+	List<Busi> busi=(List<Busi>)request.getAttribute("busiList");
 	String oldBusiLogo=null;
-	Integer busiFlag=null;
+	int busiFlag=0;
 	if(busi!=null){
 		for(Busi e : busi){
 			oldBusiLogo=e.getBusiLogo();
@@ -101,7 +101,7 @@
 					<input name="busiLogo" id="busiLogo" class="form-control" type="file" accept="image/jpeg,image/png" style="opacity: 0" disabled>
 				</div>
 			</form>
-			<form role="form-group" id="service" action="/xMeituan/busiInfo?method=">
+			<form role="form-group" id="service" action="/xMeituan/busiInfo?method=updateFlag">
 <%
 	if(busiFlag==1){
 %>
