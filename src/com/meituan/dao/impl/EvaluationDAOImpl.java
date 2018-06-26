@@ -14,7 +14,8 @@ public class EvaluationDAOImpl extends DAO<Evaluation> implements EvaluationDAO
 	{
 		int pageSize = 10;
 		int start = (page-1)*pageSize;
-		String sql = "SELECT  evaluation.* FROM evaluation,dingdan WHERE evaluation.`orderId` = dingdan.`orderId` AND dingdan.`busiId` = ? LIMIT ?,?";
+		String sql = "SELECT  evaluation.* FROM evaluation,dingdan WHERE evaluation.`orderId` = dingdan.`orderId` \r\n" + 
+				"AND dingdan.`busiId` = ? ORDER BY evalId DESC LIMIT ?,?";
 		return getForList(sql, busiId,start,pageSize);
 	}
 

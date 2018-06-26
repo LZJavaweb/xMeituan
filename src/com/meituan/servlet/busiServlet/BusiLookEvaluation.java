@@ -1,4 +1,4 @@
-package com.meituan.servlet.userServlet;
+package com.meituan.servlet.busiServlet;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.meituan.domain.Evaluation;
-import com.meituan.service.userService.UserLookEvaluationService;
+import com.meituan.service.busiService.BusiLookEvaluationService;
 
-public class UserLookEvaluation extends HttpServlet
+public class BusiLookEvaluation extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class UserLookEvaluation extends HttpServlet
 			throw new RuntimeException(e);
 		}
 	}
-	private UserLookEvaluationService userLookEvaluationService = new UserLookEvaluationService();
+	private BusiLookEvaluationService busiLookEvaluationService = new BusiLookEvaluationService();
 	protected void getEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String busiIdStr = request.getParameter("busiId");
@@ -54,8 +54,8 @@ public class UserLookEvaluation extends HttpServlet
 			System.out.println("userLookEvaluation:转换出错");
 			e.printStackTrace();
 		}
-		List<Evaluation> evaluationList = userLookEvaluationService.getEvaluation(busiId, pageNo);
-		long totalItem = userLookEvaluationService.getTotalItem(busiId);
+		List<Evaluation> evaluationList = busiLookEvaluationService.getEvaluation(busiId, pageNo);
+		long totalItem = busiLookEvaluationService.getTotalItem(busiId);
 		long totalPage=1;
 		int pageSize = 10;
 		if(totalItem%pageSize==0)
@@ -69,6 +69,6 @@ public class UserLookEvaluation extends HttpServlet
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("pageNo", pageNo);
 		request.setAttribute("evaluationList", evaluationList);
-		request.getRequestDispatcher("/html/userPage/userLookEvaluation.jsp").forward(request, response);
+		request.getRequestDispatcher("/html/busiPage/detail/busiLookEvaluation.jsp").forward(request, response);
 	}
 }

@@ -93,6 +93,14 @@
 		<url-pattern>/userInfo</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>UserLookEvaluation</servlet-name>
+		<servlet-class>com.meituan.servlet.userServlet.UserLookEvaluation</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserLookEvaluation</servlet-name>
+		<url-pattern>/userLookEvaluation</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>BusiLogin</servlet-name>
 		<servlet-class>com.meituan.servlet.busiServlet.BusiLogin</servlet-class>
 	</servlet>
@@ -147,6 +155,14 @@
 	<servlet-mapping>
 		<servlet-name>BusiManage</servlet-name>
 		<url-pattern>/busiManage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BusiLookEvaluation</servlet-name>
+		<servlet-class>com.meituan.servlet.busiServlet.BusiLookEvaluation</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusiLookEvaluation</servlet-name>
+		<url-pattern>/busiLookEvaluation</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>EncodingFilter</filter-name>
