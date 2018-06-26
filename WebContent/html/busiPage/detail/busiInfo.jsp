@@ -101,18 +101,18 @@
 					<input name="busiLogo" id="busiLogo" class="form-control" type="file" accept="image/jpeg,image/png" style="opacity: 0" disabled>
 				</div>
 			</form>
-			<form role="form-group" id="service" action="/xMeituan/busiInfo?method=updateFlag">
+			<form role="form-group" id="service" method="post" action="/xMeituan/busiInfo?method=updateFlag">
 <%
 	if(busiFlag==1){
 %>
 				<div class="form-group">
-					<input id="xSwitch" type="submit" class="btn btn-danger" value="暂停营业">
+					<input name="busiFlag" id="xSwitch" type="submit" class="btn btn-danger" value="暂停营业">
 				</div>
 <%
 	}else if(busiFlag==0){
 %>
 				<div class="form-group">
-					<input id="xSwitch" type="submit" class="btn btn-warning" value="继续营业">
+					<input name="busiFlag" id="xSwitch" type="submit" class="btn btn-warning" value="继续营业">
 				</div>
 <%
 	}else{}
