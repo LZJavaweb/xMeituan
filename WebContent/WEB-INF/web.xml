@@ -116,6 +116,14 @@
 		<servlet-name>BusiShow</servlet-name>
 		<url-pattern>/busiShow</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>BusiInfo</servlet-name>
+		<servlet-class>com.meituan.servlet.busiServlet.BusiInfo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusiInfo</servlet-name>
+		<url-pattern>/busiInfo</url-pattern>
+	</servlet-mapping>
 	<filter>
 		<filter-name>EncodingFilter</filter-name>
 		<filter-class>com.meituan.filter.EncodingFilter</filter-class>

@@ -23,4 +23,14 @@ public interface BusiDAO
 	public long getTotalBusi();
 	//查询商家ID
 	public int getBusiId(String busiPhone);
+	//更新商家Logo
+	public void updateBusiLogo(int busiId,String busiLogo);
+	//获取单个商家信息
+	public List<Busi> getBusi(int busiId);
+	//更改密码
+	public void updatePass(int busiId,String busiPass);
+	//设置营业
+	public void updateFlag(int busiId,int busiFlag);
+	//更新busi
+	public void updateBusi(Busi busi);
 }

@@ -66,4 +66,39 @@ public class BusiDAOImpl extends DAO<Busi> implements BusiDAO
 		String sql="SELECT busiId FROM business WHERE busiPhone = ?";
 		return getForValue(sql, busiPhone);
 	}
+
+	@Override
+	public void updateBusiLogo(int busiId, String busiLogo)
+	{
+		String sql = "UPDATE business SET busiLogo = ? WHERE busiId =?";
+		update(sql, busiLogo ,busiId);
+	}
+
+	@Override
+	public List<Busi> getBusi(int busiId)
+	{
+		String sql = "SELECT * FROM business WHERE busiId =?";
+		return getForList(sql, busiId);
+	}
+
+	@Override
+	public void updatePass(int busiId, String busiPass)
+	{
+		String sql = "UPDATE business SET busiPass = ? WHERE busiId = ?";
+		update(sql, busiPass,busiId);
+	}
+
+	@Override
+	public void updateFlag(int busiId, int busiFlag)
+	{
+		String sql = "UPDATE business SET busiFlag = ? WHERE busiId = ?";
+		update(sql, busiFlag,busiId);
+	}
+
+	@Override
+	public void updateBusi(Busi busi)
+	{
+		String sql = "UPDATE business SET busiName = ? ,busiPhone = ? ,busiAddr = ? ,busiShopName = ? , busiNotice = ? WHERE busiId = ";
+		update(sql, busi.getBusiName(),busi.getBusiPhone(),busi.getBusiAddr(),busi.getBusiShopName(),busi.getBusiNotice(),busi.getBusiId());
+	}
 }
