@@ -11,4 +11,8 @@ public class AdminLoginService
 	{
 		return ad.getCount(admin);
 	}
+	public int getId(Admin admin)
+	{
+		return ad.getId(admin);
+	}
 }

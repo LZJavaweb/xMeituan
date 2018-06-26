@@ -13,4 +13,12 @@ public class AdminDAOImpl extends DAO<Admin> implements AdminDAO
 		String sql="SELECT COUNT(adminId) FROM admin WHERE adminName = ? AND adminPass = ?";
 		return getForValue(sql, admin.getAdminName(),admin.getAdminPass());
 	}
+
+	@Override
+	public int getId(Admin admin)
+	{
+		String sql= "SELECT adminId FROM admin WHERE adminName= ? AND adminPass = ?";
+		return getForValue(sql, admin.getAdminName(),admin.getAdminPass());
+	}
+	
 }
