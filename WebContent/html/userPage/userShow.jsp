@@ -159,12 +159,6 @@ Author URI: http://www.deathghost.cn
 	if (null!=busi) {
 		Integer curPage=(Integer)request.getAttribute("pageNo");
 		Long totalPages=(Long)request.getAttribute("totalPage");
-        Long lastPage=Long.parseLong("1");
-        if(totalPages%busi.size()==0){
-            lastPage=totalPages/busi.size();
-        }else{
-            lastPage=(Long)((totalPages/busi.size())+1);
-        }
 %>
  <%
  	for(Busi e : busi) {
@@ -212,7 +206,7 @@ Author URI: http://www.deathghost.cn
   <%
     }
   %>
-  <a href="/xMeituan/userShow?pageNo=<%=lastPage%>">
+  <a href="/xMeituan/userShow?pageNo=<%=totalPages%>">
   <%
   }
   %>
