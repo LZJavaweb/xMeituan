@@ -150,7 +150,13 @@ public class BusiInfo extends HttpServlet
 		{
 			int busiId = (int) request.getSession().getAttribute("busiId");
 			String busiFlagStr = request.getParameter("busiFlag");
-			int busiFlag = Integer.parseInt(busiFlagStr);
+			int busiFlag = 0;
+			if(busiFlagStr.equals("继续营业")) {
+				busiFlag = 1;
+			}else if(busiFlagStr.equals("暂停营业")) {
+				busiFlag = 0;
+			}else {}
+			//int busiFlag = Integer.parseInt(busiFlagStr);
 			busiInfoService.updateFlag(busiId, busiFlag);
 		} catch (Exception e)
 		{

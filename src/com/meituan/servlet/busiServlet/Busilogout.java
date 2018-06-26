@@ -27,6 +27,6 @@ public class Busilogout extends HttpServlet
 		HttpSession session = request.getSession();
 		session.removeAttribute("busiId");
 		session.removeAttribute("busiPhone");
-		response.sendRedirect("/xMeituan/busiPage/busiLogin.html");
+		response.sendRedirect("/xMeituan/html/busiPage/busiLogin.html");
 	}
 }

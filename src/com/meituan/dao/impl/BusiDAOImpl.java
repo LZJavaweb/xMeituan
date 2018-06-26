@@ -101,7 +101,7 @@ public class BusiDAOImpl extends DAO<Busi> implements BusiDAO
 	public void updateBusi(Busi busi)
 	{
 		String sql = "UPDATE business SET busiName = ? ,busiPhone = ? ,busiAddr = ? ,busiShopName = ? , "
-				+ "busiNotice = ? WHERE busiId = ";
+				+ "busiNotice = ? WHERE busiId = ?";
 		update(sql, busi.getBusiName(), busi.getBusiPhone(), busi.getBusiAddr(), busi.getBusiShopName(),
 				busi.getBusiNotice(), busi.getBusiId());
 	}

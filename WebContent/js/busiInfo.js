@@ -1,6 +1,6 @@
 function enableUpdate(){
     $("#enableUp").attr("id","updateI");
-    $("#updateI").attr("onlick","updateInfo()").attr("value","确认修改");
+    $("#updateI").removeAttr("type").removeAttr("onclick");
     $("#busiName").removeAttr("disabled");
     $("#busiPhone").removeAttr("disabled");
     $("#busiAddr").removeAttr("disabled");
@@ -8,6 +8,7 @@ function enableUpdate(){
     $("#busiNotice").removeAttr("disabled");
     $("#uploadPic").removeAttr("disabled");
     $("#busiLogo").removeAttr("disabled");
+    $("#updateI").attr("value","确认修改").attr("type","button").attr("onclick","updateInfoNext()");
 }
 function updateInfoNext(){
     $("#updateI").attr("id","enableUp");
@@ -19,6 +20,7 @@ function updateInfoNext(){
     $("#busiNotice").attr("disabled");
     $("#uploadPic").attr("disabled");
     $("#busiLogo").attr("disabled");
+    $("#enableUp").attr("type","submit");
 }
 function upPicBtn(){
     $("#busiLogo").click();
