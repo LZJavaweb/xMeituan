@@ -3,6 +3,7 @@ package com.meituan.dao;
 import java.util.List;
 
 import com.meituan.domain.Busi;
+import com.meituan.domain.CheckBusi;
 
 //商家信息查询DAO
 public interface BusiDAO
@@ -33,4 +34,10 @@ public interface BusiDAO
 	public void updateFlag(int busiId,int busiFlag);
 	//更新busi
 	public void updateBusi(Busi busi);
+	//获取商家总数,带查询条件--like **
+	public long getCountForAllBusi(CheckBusi cb);
+	//获取第几页的商家,带查询条件,pageNo,like **
+	public List<Busi> getAllBusi(int pageNo,int pageSize,CheckBusi cb);
+	//更新ban
+	public void updateBusi(int busiId,int busiBan);
 }

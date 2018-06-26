@@ -1,5 +1,7 @@
 package com.meituan.dao;
 
+import java.util.List;
+
 import com.meituan.domain.User;
 
 //顾客信息查询DAO
@@ -15,4 +17,12 @@ public interface UserDAO
 	public int getUserId(String userPhone);
 	//查询userName
 	public String getUserName(String userName);
+	//查询用户
+	public List<User> getUser(int userId);
+	//更新用户名
+	public void updateUser(int userId ,String userName);
+	//更新用户密码
+	public void updatePass(int userId ,String userPass);
+	//查询用户数
+	public long getCount(int userId,String userPass);
 }
