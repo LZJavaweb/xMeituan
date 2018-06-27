@@ -13,4 +13,16 @@ public class BusiShowService
 	{
 		return fd.getAll(busiId);
 	}
+	public void updateFood(Food food)
+	{
+		fd.updateFood(food);
+	}
+	public void deleteFood(int foodId)
+	{
+		fd.deleteFood(foodId);
+	}
+	public List<Food> getFood(int foodId)
+	{
+		return fd.getFood(foodId);
+	}
 }

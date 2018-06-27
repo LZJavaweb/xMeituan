@@ -39,14 +39,11 @@ public class BusiLookEvaluation extends HttpServlet
 	private BusiLookEvaluationService busiLookEvaluationService = new BusiLookEvaluationService();
 	protected void getEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		String busiIdStr = request.getParameter("busiId");
+		int busiId = (int) request.getSession().getAttribute("busiId");
 		String pageNoStr = request.getParameter("pageNo");
 		int pageNo = 1;
-		int busiId = 0;
 		try
 		{
-			if(busiIdStr!=null)
-				busiId = Integer.parseInt(busiIdStr);
 			if(pageNoStr!=null)
 				pageNo = Integer.parseInt(pageNoStr);
 		} catch (NumberFormatException e)
