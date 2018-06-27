@@ -1,3 +1,4 @@
-# xMeituan
-Java Web期末大作业
-src/com/meituan中的LoginCheck只用作测试，具体请查看docs中的文档
+# xMeituan-米团外卖
+Java Web期末大作业，一个外卖订餐平台
+
+运行环境：Tomcat 9.0，MySql 5.7
