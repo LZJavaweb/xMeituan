@@ -8,14 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.meituan.dao.BusiDAO;
-import com.meituan.dao.impl.BusiDAOImpl;
-
 public class Busilogout extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-
-	private BusiDAO bd = new BusiDAOImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{

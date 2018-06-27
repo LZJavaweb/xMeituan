@@ -1,6 +1,9 @@
 package com.meituan.servlet.userServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Method;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +16,6 @@ import com.meituan.domain.User;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import java.io.PrintWriter;
-import java.lang.reflect.Method;
 
 /**
  * ud : UserDAO

@@ -1,7 +1,6 @@
 package com.meituan.servlet.busiServlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -11,15 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.meituan.dao.BusiDAO;
-import com.meituan.dao.FoodDAO;
-import com.meituan.dao.impl.BusiDAOImpl;
-import com.meituan.dao.impl.FoodDAOImpl;
 import com.meituan.domain.Food;
 import com.meituan.service.busiService.BusiShowService;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 public class BusiShow extends HttpServlet
 {
