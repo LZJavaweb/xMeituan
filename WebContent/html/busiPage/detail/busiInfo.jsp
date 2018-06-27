@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group">
 					<label>商家公告：</label>
-					<textarea name="busiNotice" id="busiNotice" class="form-control" value="<%=busiNotice %>" disabled></textarea>
+					<textarea name="busiNotice" id="busiNotice" class="form-control" disabled><%=busiNotice %></textarea>
 				</div>
 				<div class="form-group">
 					<input onclick="enableUpdate()" id="enableUp" type="button" class="form-control btn btn-primary" value="修改">
@@ -77,7 +77,7 @@
 			</form>
 		</div>
 		<div class="col-4 col align-self-center">
-			<form role="form" id="pswForm" action="/xMeituan/busiInfo?method=updatePass" method="post" target="right">
+			<form role="form" id="pswForm" action="/xMeituan/busiInfo?method=updatePass" method="post" target="logout">
 				<div class="form-group">
 					<label>修改密码</label>
 				</div>
