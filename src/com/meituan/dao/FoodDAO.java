@@ -10,4 +10,10 @@ public interface FoodDAO
 	public void save(Food food);
 	//获取对应店家的所有商品信息
 	public List<Food> getAll(int busiId);
+	//更新food
+	public void updateFood(Food food);
+	//删除food
+	public void deleteFood(int foodId);
+	//用foodId获取foodList
+	public List<Food> getFood(int foodId);
 }

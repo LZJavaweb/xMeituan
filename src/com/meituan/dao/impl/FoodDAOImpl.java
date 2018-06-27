@@ -25,4 +25,25 @@ public class FoodDAOImpl extends DAO<Food> implements FoodDAO
 		return getForList(sql, busiId);
 	}
 
+	@Override
+	public void updateFood(Food food)
+	{
+		String sql = "UPDATE food SET foodName= ? ,foodDesc= ? ,foodPrice = ? ,foodStock = ? WHERE foodId = ?";
+		update(sql, food.getFoodName(),food.getFoodDesc(),food.getFoodPrice(),food.getFoodStock(),food.getFoodId());
+	}
+
+	@Override
+	public void deleteFood(int foodId)
+	{
+		String sql = "DELETE FROM food WHERE foodId = ?";
+		update(sql, foodId);
+	}
+
+	@Override
+	public List<Food> getFood(int foodId)
+	{
+		String sql = "SELECT * FROM food WHERE foodId = ?";
+		return getForList(sql, foodId);
+	}
+
 }
