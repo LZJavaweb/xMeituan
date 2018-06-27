@@ -77,7 +77,7 @@
 			</form>
 		</div>
 		<div class="col-4 col align-self-center">
-			<form role="form" id="pswForm" action="/xMeituan/busiInfo?method=updatePass" method="post" target="right">
+			<form role="form" id="pswForm" action="/xMeituan/busiInfo?method=updatePass" method="post" target="logout">
 				<div class="form-group">
 					<label>修改密码</label>
 				</div>
