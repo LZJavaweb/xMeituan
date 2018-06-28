@@ -5,12 +5,10 @@ import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import com.meituan.dao.BusiDAO;
 import com.meituan.dao.impl.BusiDAOImpl;
@@ -58,26 +56,36 @@ public class BusiLogin extends HttpServlet
 	{
 		String busiPhone = request.getParameter("busiPhone");
 		String busiPass = request.getParameter("busiPass");
+		boolean flag = false;
+		if (busiPhone != null && !busiPhone.equals(""))
+		{
+			if (busiPass != null && !busiPass.equals(""))
+			{
+				long count = bd.getCountForBusi(busiPhone, busiPass);
+				if (count == 1)
+				{
+					HttpSession session = request.getSession();
+					session.setAttribute("busiPhone", busiPhone);
+					int busiId = bd.getBusiId(busiPhone);
+					session.setAttribute("busiId", busiId);
+					flag = true;
+					response.sendRedirect("/xMeituan/html/busiPage/busiIndex.html");
+				}
+			}
+		}
 		System.out.println(request.getServletPath() + ":" + busiPhone);
 		System.out.println(request.getServletPath() + ":" + busiPass);
-		long count = bd.getCountForBusi(busiPhone, busiPass);
-		if (count == 1)
-		{
-			HttpSession session = request.getSession();
-			session.setAttribute("busiPhone", busiPhone);
-			int busiId = bd.getBusiId(busiPhone);
-			session.setAttribute("busiId", busiId);
-			response.sendRedirect("/xMeituan/html/busiPage/busiIndex.html");
-		} else
+		if (flag == false)
 		{
 			response.sendRedirect("/xMeituan/html/busiPage/busiLogin.html");
 		}
+
 	}
 
 	private void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		PrintWriter out = response.getWriter();
 		String path = request.getServletPath();
+		boolean flag = false;
 		// 获取传递过来的参数
 		String busiPhone = request.getParameter("busiPhone");
 		String busiPass = request.getParameter("busiPass");
@@ -89,30 +97,48 @@ public class BusiLogin extends HttpServlet
 		System.out.println(path + ":" + busiName);
 		System.out.println(path + ":" + busiShopName);
 		System.out.println(path + ":" + busiAddr);
-		// 查询数据库是否存在手机号
-		long count = bd.getCountForPhone(busiPhone);
-		long count1 = bd.getCountForShopName(busiShopName);
-		JSONArray jsonList = new JSONArray();
-		JSONObject jsonObj = new JSONObject();
-		if (count == 0 && count1 == 0)
+		if (busiPhone != null && !busiPhone.equals(""))
 		{
-			// 未注册过的店铺
-			Busi busi = new Busi(busiName, busiPhone, busiPass, busiAddr, busiShopName);
-			bd.sava(busi);
-			HttpSession session = request.getSession();
-			session.setAttribute("busiPhone", busiPhone);
-			int busiId = bd.getBusiId(busiPhone);
-			session.setAttribute("busiId", busiId);
-			//jsonObj.put("checked", "true");
-			response.sendRedirect("/xMeituan/html/busiPage/busiIndex.html");
+			if (busiPass != null && !busiPass.equals(""))
+			{
+				if (busiName != null && !busiName.equals(""))
+				{
+					if (busiShopName != null && !busiShopName.equals(""))
+					{
+						if (busiAddr != null && !busiAddr.equals(""))
+						{
+							flag = true;
+						}
+					}
+				}
+			}
+		}
+		if (flag)
+		{
+			// 查询数据库是否存在手机号
+			long count = bd.getCountForPhone(busiPhone);
+			long count1 = bd.getCountForShopName(busiShopName);
+			if (count == 0 && count1 == 0)
+			{
+				// 未注册过的店铺
+				Busi busi = new Busi(busiName, busiPhone, busiPass, busiAddr, busiShopName);
+				bd.sava(busi);
+				HttpSession session = request.getSession();
+				session.setAttribute("busiPhone", busiPhone);
+				int busiId = bd.getBusiId(busiPhone);
+				session.setAttribute("busiId", busiId);
+				// jsonObj.put("checked", "true");
+				response.sendRedirect("/xMeituan/html/busiPage/busiIndex.html");
+			} else
+			{
+				System.out.println("busiLogin:reg:手机号码或店铺名被注册过");
+				response.sendRedirect("/xMeituan/html/busiPage/busiLogin.html");
+			}
 		} else
 		{
-			// 注册过的店铺
-			//jsonObj.put("checked", "false");
 			response.sendRedirect("/xMeituan/html/busiPage/busiLogin.html");
 		}
-		jsonList.add(jsonObj);
-		out.println(jsonList);
+
 	}
 
 	private void phone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

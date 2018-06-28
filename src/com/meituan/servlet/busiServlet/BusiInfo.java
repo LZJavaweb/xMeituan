@@ -112,33 +112,53 @@ public class BusiInfo extends HttpServlet
 			throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
+		boolean flag = false;
 		int busiId = (int) session.getAttribute("busiId");
 		String busiName = request.getParameter("busiName");
 		String busiPhone = request.getParameter("busiPhone");
 		String busiAddr = request.getParameter("busiAddr");
 		String busiShopName = request.getParameter("busiShopName");
 		String busiNotice = request.getParameter("busiNotice");
-		System.out.println("busiInfo:updateBusi:"+busiName+busiPhone+busiAddr+busiShopName+busiNotice);
-		long count = busiInfoService.getCountForBusiPhone(busiPhone);
-		long count1 = busiInfoService.getCountForBusiShopName(busiShopName);
-		if(count<=1)
+		if(busiName!=null&&!busiName.equals(""))
 		{
-			if(count1<=1)
+			if(busiPhone!=null&&!busiPhone.equals(""))
 			{
-				//更新并修改session中的busiPhone
-				Busi busi = new Busi(busiId, busiName, busiPhone, busiAddr, busiShopName, busiNotice);
-				busiInfoService.updateBusi(busi);
-				session.setAttribute("busiPhone", busiPhone);
+				if(busiAddr!=null&&!busiAddr.equals(""))
+				{
+					if(busiShopName!=null&&!busiShopName.equals(""))
+					{
+						if(busiNotice!=null&&!busiNotice.equals(""))
+						{
+							flag=true;
+						}
+					}
+				}
+			}
+		}
+		if(flag)
+		{
+			long count = busiInfoService.getCountForBusiPhone(busiPhone);
+			long count1 = busiInfoService.getCountForBusiShopName(busiShopName);
+			if(count<=1)
+			{
+				if(count1<=1)
+				{
+					//更新并修改session中的busiPhone
+					Busi busi = new Busi(busiId, busiName, busiPhone, busiAddr, busiShopName, busiNotice);
+					busiInfoService.updateBusi(busi);
+					session.setAttribute("busiPhone", busiPhone);
+				}
+				else
+				{
+					System.out.println("商店名已被占用");
+				}
 			}
 			else
 			{
-				System.out.println("商店名已被占用");
+				System.out.println("手机号码已被占用");
 			}
 		}
-		else
-		{
-			System.out.println("手机号码已被占用");
-		}
+		System.out.println("busiInfo:updateBusi:"+busiName+busiPhone+busiAddr+busiShopName+busiNotice);
 		response.sendRedirect("/xMeituan/busiInfo?method=getBusi");
 	}
 

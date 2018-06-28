@@ -63,6 +63,7 @@ public class UserLogin extends HttpServlet
 	{
 		String userPhone = request.getParameter("userPhone");
 		String userPass = request.getParameter("userPass");
+		boolean flag = false;
 		if (!userPhone.equals("") && userPhone != null)
 		{
 			if (!userPass.equals("") && userPass != null)
@@ -74,10 +75,11 @@ public class UserLogin extends HttpServlet
 					HttpSession session = request.getSession();
 					session.setAttribute("userId", userId);
 					session.setAttribute("userPhone", userPhone);
+					flag = true;
 					response.sendRedirect("/xMeituan/userShow");
 				} else
 				{
-					response.sendRedirect("html/userPage/userLogin.html");
+					System.out.println("userLogin:check:账号密码错误");
 				}
 			} else
 			{
@@ -88,17 +90,16 @@ public class UserLogin extends HttpServlet
 		{
 			System.out.println("userLogin:check:用户手机号码为空");
 		}
-
 		System.out.println(request.getServletPath() + ":" + userPhone);
 		System.out.println(request.getServletPath() + ":" + userPass);
-
+		if (flag == false)
+		{
+			response.sendRedirect("/xMeituan/html/userPage/userLogin.html");
+		}
 	}
 
 	private void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		PrintWriter out = response.getWriter();
-		JSONArray jsonList = new JSONArray();
-		JSONObject jsonObj = new JSONObject();
 		boolean flag = false;
 		// 获取传递过来的参数
 		String userPhone = request.getParameter("userPhone");
@@ -130,10 +131,8 @@ public class UserLogin extends HttpServlet
 					} else
 					{
 						// 注册过的用户
-						response.sendRedirect("/xMeituan/html/userPage/userLogin.html");
+						System.out.println("userLogin:reg:账号密码已被注册过");
 					}
-					jsonList.add(jsonObj);
-					out.println(jsonList);
 				} else
 				{
 					System.out.println("userLogin:reg:用户名为空");
@@ -146,11 +145,10 @@ public class UserLogin extends HttpServlet
 		{
 			System.out.println("userLogin:reg:用户名为空");
 		}
-		if(flag==false)
+		if (flag == false)
 		{
-			response.sendRedirect("/xMeituan/html/error/error.jsp");
+			response.sendRedirect("/xMeituan/html/userPage/userLogin.html");
 		}
-
 	}
 
 	private void phone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
