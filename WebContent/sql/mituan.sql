@@ -30,12 +30,31 @@ CREATE TABLE `address` (
   `addrReal` varchar(100) NOT NULL COMMENT '详细地址',
   `addrFlag` int(2) NOT NULL COMMENT '是否为常用地址',
   PRIMARY KEY (`addrId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `address` */
 
 insert  into `address`(`addrId`,`userId`,`addrName`,`addrPhone`,`addrProv`,`addrCity`,`addrReal`,`addrFlag`) values 
-(1,1,'zhoujunliang','14718158227','广东','高州','海珠区仲恺农业工程学院',0);
+(4,1,'量均州','14718158227','广东','广州','海珠区仲恺农业工程学院',0),
+(5,9,'量均州','14718158227','广东','广州','海珠区仲恺农业工程学院',0),
+(6,9,'量均州','13533801121','广东','高州','海珠区仲恺农业工程学院',0),
+(8,1,'zhoujunliang','13533801121','广东','高州','asdfasdfasdfasdfasdfasd',0);
+
+/*Table structure for table `admin` */
+
+DROP TABLE IF EXISTS `admin`;
+
+CREATE TABLE `admin` (
+  `adminId` int(20) NOT NULL AUTO_INCREMENT COMMENT '管理员ID',
+  `adminName` varchar(20) NOT NULL COMMENT '管理员姓名',
+  `adminPass` varchar(20) NOT NULL COMMENT '管理员密码',
+  PRIMARY KEY (`adminId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `admin` */
+
+insert  into `admin`(`adminId`,`adminName`,`adminPass`) values 
+(1,'adminroot','adminroot11');
 
 /*Table structure for table `business` */
 
@@ -53,14 +72,15 @@ CREATE TABLE `business` (
   `busiFlag` int(2) DEFAULT NULL COMMENT '是否开业',
   `busiBan` int(2) DEFAULT NULL COMMENT '商家是否被禁止',
   PRIMARY KEY (`busiId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `business` */
 
 insert  into `business`(`busiId`,`busiName`,`busiPhone`,`busiPass`,`busiAddr`,`busiShopName`,`busiLogo`,`busiNotice`,`busiFlag`,`busiBan`) values 
-(1,'武大郎','13533801121','wudalang11','镇关西','武大郎烧饼(镇关西店)',NULL,NULL,NULL,NULL),
-(2,'武当','1234567890','wudalang','广东省广州市','武大郎烧饼(广州店)',NULL,NULL,NULL,NULL),
-(3,'张三','13533802211','zhangsan11','广西省','鱼蛋粉',NULL,NULL,NULL,NULL);
+(1,'武大郎','13533801121','zhoujun1','仲恺农业工程学院','一般般',NULL,'烧饼修改器',1,0),
+(2,'武当','13512345678','wudalang','广东省广州市','武大郎烧饼(广州店)',NULL,NULL,1,1),
+(3,'张三','13533802211','zhangsan11','广西省','鱼蛋粉',NULL,NULL,1,1),
+(4,'周军良','14718158227','zhou1996','广东省广州市','米团',NULL,NULL,1,1);
 
 /*Table structure for table `dingdan` */
 
@@ -79,7 +99,7 @@ CREATE TABLE `dingdan` (
   `orderCancel` datetime DEFAULT NULL COMMENT '自动取消时间',
   `orderRemark` varchar(100) DEFAULT NULL COMMENT '订单备注',
   PRIMARY KEY (`orderId`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 /*Data for the table `dingdan` */
 
@@ -93,16 +113,36 @@ insert  into `dingdan`(`orderId`,`userId`,`busiId`,`addrId`,`orderMoney`,`orderS
 (7,1,1,1,2.35,'已完成','2018-06-20 15:19:21','2018-06-21 20:04:25','2018-06-21 20:05:01',NULL,NULL),
 (8,1,1,1,0,'已完成','2018-06-21 15:22:32','2018-06-21 20:04:27','2018-06-21 20:05:07',NULL,'不要加辣'),
 (9,1,1,1,0,'已接单','2018-06-21 15:24:39','2018-06-21 20:04:36',NULL,NULL,'麻辣烫'),
-(10,1,1,1,18,'已接单','2018-06-21 16:13:10','2018-06-21 20:04:38',NULL,NULL,'不要加辣'),
-(11,1,1,1,18,'已完成','2018-06-21 16:17:43','2018-06-21 20:04:42','2018-06-21 21:33:57',NULL,'麻辣烫'),
-(13,1,1,1,18,'未接单','2018-06-21 16:21:48',NULL,NULL,NULL,'麻辣烫甲乙'),
-(14,1,1,1,18,'未接单','2018-06-21 16:24:30',NULL,NULL,NULL,'麻辣烫丙丁'),
-(15,1,1,1,18,'未接单','2018-06-21 16:26:11',NULL,NULL,NULL,'是个身体'),
+(10,1,1,1,18,'已完成','2018-06-21 16:13:10','2018-06-21 20:04:38','2018-06-28 09:42:46',NULL,'不要加辣'),
+(11,1,1,1,18,'已评价','2018-06-21 16:17:43','2018-06-21 20:04:42','2018-06-21 21:33:57',NULL,'麻辣烫'),
+(13,1,1,1,18,'已接单','2018-06-21 16:21:48','2018-06-28 11:28:56',NULL,NULL,'麻辣烫甲乙'),
+(14,1,1,1,18,'已接单','2018-06-21 16:24:30','2018-06-28 11:28:54',NULL,NULL,'麻辣烫丙丁'),
+(15,1,1,1,18,'已接单','2018-06-21 16:26:11','2018-06-28 11:28:51',NULL,NULL,'是个身体'),
 (16,1,1,1,18,'已评价','2018-06-21 16:26:27','2018-06-21 20:06:22','2018-06-21 21:47:12',NULL,'玩儿业务而言'),
-(17,1,1,1,18,'未接单','2018-06-21 21:05:53',NULL,NULL,NULL,'是个身体'),
+(17,1,1,1,18,'已接单','2018-06-21 21:05:53','2018-06-28 11:28:49',NULL,NULL,'是个身体'),
 (18,1,1,1,18,'已评价','2018-06-21 21:18:10',NULL,'2018-06-21 21:33:23',NULL,'玩儿业务而言123'),
 (19,1,1,1,18,'已评价','2018-06-21 21:38:40','2018-06-21 21:42:44','2018-06-21 21:43:04',NULL,'不要加辣'),
-(20,1,1,1,120,'已接单','2018-06-21 23:36:31','2018-06-21 23:36:40',NULL,NULL,'我想吃好吃的');
+(20,1,1,1,120,'已评价','2018-06-21 23:36:31','2018-06-21 23:36:40','2018-06-28 09:39:11',NULL,'我想吃好吃的'),
+(21,1,1,1,120,'已接单','2018-06-22 01:33:08','2018-06-28 11:28:47',NULL,NULL,'不要加辣'),
+(22,1,1,1,19,'已接单','2018-06-22 01:33:22','2018-06-28 11:28:45',NULL,NULL,'是个身体'),
+(23,1,1,1,19,'已接单','2018-06-22 01:41:07','2018-06-28 11:28:42',NULL,NULL,'麻辣烫'),
+(24,1,1,1,38,'已接单','2018-06-22 02:12:28','2018-06-28 11:28:39',NULL,NULL,'麻辣烫'),
+(25,1,1,1,200,'已接单','2018-06-22 02:19:54','2018-06-28 11:28:38',NULL,NULL,'麻辣烫'),
+(26,1,1,1,19,'已接单','2018-06-22 09:27:50','2018-06-28 11:28:36',NULL,NULL,'麻辣烫'),
+(27,9,1,6,19,'已接单','2018-06-22 10:03:47','2018-06-28 11:28:34',NULL,NULL,'是个身体'),
+(28,9,4,5,200,'已评价','2018-06-22 10:09:08','2018-06-22 10:09:21','2018-06-22 10:09:27',NULL,'好贵啊'),
+(29,9,1,5,39,'已接单','2018-06-22 10:20:38','2018-06-28 11:28:33',NULL,NULL,''),
+(30,1,1,1,100,'已接单','2018-06-22 13:49:20','2018-06-28 11:28:31',NULL,NULL,'不要加辣'),
+(31,1,1,1,119,'已评价','2018-06-22 15:17:00','2018-06-22 15:18:38','2018-06-22 15:18:46',NULL,'不要加辣'),
+(34,1,1,1,19,'已接单','2018-06-27 22:51:43','2018-06-28 11:28:30',NULL,NULL,'是个身体'),
+(35,1,1,1,19,'已接单','2018-06-27 22:56:10','2018-06-28 11:28:28',NULL,NULL,'麻辣烫甲乙'),
+(36,1,1,1,19,'已接单','2018-06-27 22:57:43','2018-06-28 11:28:26',NULL,NULL,'不要加辣'),
+(37,1,1,1,200,'已接单','2018-06-27 22:58:38','2018-06-28 11:28:24',NULL,NULL,'不要加辣'),
+(38,1,1,1,320,'已接单','2018-06-27 22:59:13','2018-06-28 11:28:22',NULL,NULL,'不要加辣'),
+(39,1,1,1,20,'已接单','2018-06-27 23:08:40','2018-06-28 11:28:21',NULL,NULL,'不要加辣'),
+(40,1,1,1,380,'已接单','2018-06-27 23:11:04','2018-06-28 11:28:20',NULL,NULL,'不要加辣'),
+(41,1,1,1,200,'已接单','2018-06-27 23:17:07','2018-06-28 11:28:19',NULL,NULL,'不要加辣'),
+(42,1,1,1,358,'已接单','2018-06-28 09:30:02','2018-06-28 11:28:19',NULL,NULL,'不要加辣');
 
 /*Table structure for table `evaluation` */
 
@@ -114,7 +154,7 @@ CREATE TABLE `evaluation` (
   `evalContent` varchar(100) NOT NULL COMMENT '评价内容',
   `evalStar` int(2) NOT NULL COMMENT '评价星级',
   PRIMARY KEY (`evalId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 /*Data for the table `evaluation` */
 
@@ -123,7 +163,11 @@ insert  into `evaluation`(`evalId`,`orderId`,`evalContent`,`evalStar`) values
 (2,3,'haohaochi',5),
 (3,4,'very good',1),
 (4,1,'henbuhaochi',5),
-(10,16,'hahaha',4);
+(10,16,'hahaha',4),
+(11,28,'果然是狗肉',5),
+(12,31,'时间按到了房间爱上了的解放了',5),
+(13,20,'',5),
+(14,11,'1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111',0);
 
 /*Table structure for table `food` */
 
@@ -140,17 +184,19 @@ CREATE TABLE `food` (
   `foodType` varchar(20) DEFAULT NULL COMMENT '食品类型',
   `foodSale` int(2) DEFAULT NULL COMMENT '是否上架',
   PRIMARY KEY (`foodId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 /*Data for the table `food` */
 
 insert  into `food`(`foodId`,`busiId`,`foodName`,`foodDesc`,`foodPrice`,`foodStock`,`foodPic`,`foodType`,`foodSale`) values 
-(8,1,'红烧猪肉','红色的烧过的猪肉',18,99,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152913807536247931.png',NULL,NULL),
 (9,1,'鱼蛋粉','潮州鱼蛋粉',19,90,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152959410816623378.jpg',NULL,NULL),
 (10,1,'素食','健康饮食',20,90,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152959438847613591.jpg',NULL,NULL),
 (11,1,'烧烤','美味烧烤',100,12,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152959442146483518.jpg',NULL,NULL),
 (12,1,'羊肉','挂羊头卖狗肉',200,90,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152959473526074534.jpg',NULL,NULL),
-(13,1,'糕点','美味甜点',19,90,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\15295951193927071.png',NULL,NULL);
+(13,1,'糕点','美味甜点',19,90,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\15295951193927071.png',NULL,NULL),
+(14,4,'鱼蛋粉','好吃鱼蛋粉',19,90,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152963323987751018.jpg',NULL,NULL),
+(15,4,'素食主义','不长胖',20,90,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152963326987014948.jpg',NULL,NULL),
+(16,4,'羊肉','这是狗肉',200,99,'D:\\xMeituan\\WebContent\\resources\\BusiPic\\152963329563239092.jpg',NULL,NULL);
 
 /*Table structure for table `item` */
 
@@ -162,7 +208,7 @@ CREATE TABLE `item` (
   `foodId` int(20) NOT NULL COMMENT '食品ID',
   `foodNum` int(2) NOT NULL COMMENT '食品数量',
   PRIMARY KEY (`itemId`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 /*Data for the table `item` */
 
@@ -183,7 +229,37 @@ insert  into `item`(`itemId`,`orderId`,`foodId`,`foodNum`) values
 (14,18,8,1),
 (15,19,8,1),
 (16,20,10,1),
-(17,20,11,1);
+(17,20,11,1),
+(18,21,10,1),
+(19,21,11,1),
+(20,22,9,1),
+(21,23,9,1),
+(22,24,9,1),
+(23,24,13,1),
+(24,25,12,1),
+(25,26,13,1),
+(26,27,13,1),
+(27,28,16,1),
+(28,29,9,1),
+(29,29,10,1),
+(30,30,11,1),
+(31,31,9,1),
+(32,31,11,1),
+(35,34,9,2),
+(36,35,9,2),
+(37,36,9,2),
+(38,37,11,2),
+(39,38,10,1),
+(40,38,11,1),
+(41,38,12,1),
+(42,39,10,1),
+(43,40,9,20),
+(44,41,12,1),
+(45,42,9,1),
+(46,42,10,1),
+(47,42,11,1),
+(48,42,12,1),
+(49,42,13,1);
 
 /*Table structure for table `user` */
 
@@ -195,14 +271,18 @@ CREATE TABLE `user` (
   `userPass` varchar(20) NOT NULL COMMENT '用户密码',
   `userName` varchar(20) NOT NULL COMMENT '用户名',
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
 insert  into `user`(`userId`,`userPhone`,`userPass`,`userName`) values 
-(1,'14718158227','zhoujunliang1','周军良'),
+(1,'14718158227','zhoujun1','zhoujun1'),
 (5,'14718158220','zhoujunliang','zhou'),
-(6,'14718158228','zhoujunliang1','良军周1');
+(6,'14718158228','zhoujunliang1','良军周1'),
+(7,'14711111111','zhoiu1996','量均州'),
+(8,'14722222222','zhou1996','良君'),
+(9,'14718158229','zhou1996','量均州'),
+(13,'14718158333','zhoujun1','admin');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
