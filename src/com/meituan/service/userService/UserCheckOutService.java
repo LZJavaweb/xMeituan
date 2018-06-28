@@ -48,7 +48,7 @@ public class UserCheckOutService
 				item= new Item(foodId, foodNum);
 				itemList.add(item);
 				foodPrice = cart.getFoodPrice();
-				totalPrice +=foodPrice;
+				totalPrice +=foodPrice*foodNum;
 				foodId = 0;
 				foodNum = 0;
 				foodPrice = 0;
@@ -60,14 +60,18 @@ public class UserCheckOutService
 		{
 			throw new DBException("totalPrice<=0");
 		}
-		order = new Order(userId, busiId, addrId, totalPrice, "未接单", orderBegin, orderRemark);
-		int orderId = saveOrder(order);
-		for(Item it:itemList)
+		else
 		{
-			it.setOrderId(orderId);
+			order = new Order(userId, busiId, addrId, totalPrice, "未接单", orderBegin, orderRemark);
+			int orderId = saveOrder(order);
+			for(Item it:itemList)
+			{
+				it.setOrderId(orderId);
+			}
+			System.out.println("userCheckOutService:order:"+order);
+			System.out.println("userCheckOutService:itemList:"+itemList);
+			saveItem(itemList);
 		}
-		System.out.println("userCheckOutService:order:"+order);
-		System.out.println("userCheckOutService:itemList:"+itemList);
-		saveItem(itemList);
+		
 	}
 }
