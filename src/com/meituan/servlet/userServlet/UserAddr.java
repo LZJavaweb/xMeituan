@@ -52,15 +52,38 @@ public class UserAddr extends HttpServlet
 		String foodIdStr;
 		String foodNumStr;
 		String foodPriceStr;
+		int foodId=0;
+		int foodNum=0;
+		double foodPrice=0;
 		Cart cart = null;
 		for(int i=1;i<=row;i++)
 		{
 			foodIdStr = request.getParameter("foodId"+i);
 			foodNumStr = request.getParameter("num"+i);
 			foodPriceStr = request.getParameter("price"+i);
+			try
+			{
+				if(foodIdStr!=null)
+					foodId = Integer.parseInt(foodIdStr);
+				if(foodNumStr!=null)
+					foodNum = Integer.parseInt(foodNumStr);
+				if(foodPriceStr!=null)
+					foodPrice = Double.parseDouble(foodPriceStr);
+			} catch (NumberFormatException e)
+			{
+				System.out.println("userAddr:转换失败");
+				e.printStackTrace();
+			}
 			System.out.println("userAddr:foodId:"+foodIdStr+",foodNum:"+foodNumStr+",foodPrice:"+foodPriceStr);
-			cart = new Cart(Integer.parseInt(foodIdStr), Integer.parseInt(foodNumStr), Double.parseDouble(foodPriceStr));
-			cartList.add(cart);
+			if(foodNum>0&&foodPrice>0)
+			{
+				cart = new Cart(foodId, foodNum, foodPrice);
+				cartList.add(cart);
+			}
+			else
+			{
+				System.out.println("商品数量或价格有问题");
+			}
 		}
 		List<Addr> addrList = userAddrService.getAddr(userId);
 		request.setAttribute("addrList", addrList);
