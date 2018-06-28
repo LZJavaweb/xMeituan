@@ -18,11 +18,9 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
- * ud : UserDAO
- * doPost() : post请求
- * check() : 响应check.ul ,ul即userLogin
- * reg() : 响应reg.ul ,ul即userLogin
- * phone() : 响应phone.ul ,ul即userLogin
+ * ud : UserDAO doPost() : post请求 check() : 响应check.ul ,ul即userLogin reg() :
+ * 响应reg.ul ,ul即userLogin phone() : 响应phone.ul ,ul即userLogin
+ * 
  * @author zhou
  *
  */
@@ -31,6 +29,7 @@ public class UserLogin extends HttpServlet
 	private static final long serialVersionUID = 1L;
 
 	private UserDAO ud = new UserDAOImpl();
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		doPost(request, response);
@@ -64,25 +63,43 @@ public class UserLogin extends HttpServlet
 	{
 		String userPhone = request.getParameter("userPhone");
 		String userPass = request.getParameter("userPass");
-		System.out.println(request.getServletPath() + ":" + userPhone);
-		System.out.println(request.getServletPath() + ":" + userPass);
-		long count = ud.getCountForUser(userPhone, userPass);
-		if (count == 1)
+		if (!userPhone.equals("") && userPhone != null)
 		{
-			int userId = ud.getUserId(userPhone);
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", userId);
-			session.setAttribute("userPhone", userPhone);
-			response.sendRedirect("/xMeituan/userShow");
+			if (!userPass.equals("") && userPass != null)
+			{
+				long count = ud.getCountForUser(userPhone, userPass);
+				if (count == 1)
+				{
+					int userId = ud.getUserId(userPhone);
+					HttpSession session = request.getSession();
+					session.setAttribute("userId", userId);
+					session.setAttribute("userPhone", userPhone);
+					response.sendRedirect("/xMeituan/userShow");
+				} else
+				{
+					response.sendRedirect("html/userPage/userLogin.html");
+				}
+			} else
+			{
+				System.out.println("userLogin:check:用户密码为空");
+			}
+
 		} else
 		{
-			response.sendRedirect("html/userPage/userLogin.html");
+			System.out.println("userLogin:check:用户手机号码为空");
 		}
+
+		System.out.println(request.getServletPath() + ":" + userPhone);
+		System.out.println(request.getServletPath() + ":" + userPass);
+
 	}
 
 	private void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		PrintWriter out = response.getWriter();
+		JSONArray jsonList = new JSONArray();
+		JSONObject jsonObj = new JSONObject();
+		boolean flag = false;
 		// 获取传递过来的参数
 		String userPhone = request.getParameter("userPhone");
 		String userPass = request.getParameter("userPass");
@@ -90,32 +107,50 @@ public class UserLogin extends HttpServlet
 		System.out.println(request.getServletPath() + ":" + userPhone);
 		System.out.println(request.getServletPath() + ":" + userPass);
 		System.out.println(request.getServletPath() + ":" + userName);
-		// 查询数据库是否存在手机号
-		long count = ud.getCountForPhone(userPhone);
-		JSONArray jsonList = new JSONArray();
-		JSONObject jsonObj = new JSONObject();
-		if (count == 0)
+		if (!userPhone.equals("") && userPhone != null)
 		{
-			// 未注册过的用户
-			User user = new User(userPhone, userPass, userName);
-			ud.sava(user);
-			//jsonObj.put("checked", "true");
-			int userId = ud.getUserId(userPhone);
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", userId);
-			session.setAttribute("userPhone", userPhone);
-			String xUserName = ud.getUserName(userPhone);
-			//System.out.println("xUserName:"+xUserName);
-			//System.out.println("userName:"+userName);
-			response.sendRedirect("/xMeituan/userShow");
+			if (!userPass.equals("") && userPass != null)
+			{
+				if (!userName.equals("") && userName != null)
+				{
+					// 查询数据库是否存在手机号
+					long count = ud.getCountForPhone(userPhone);
+					if (count == 0)
+					{
+						// 未注册过的用户
+						User user = new User(userPhone, userPass, userName);
+						ud.sava(user);
+						// jsonObj].put("checked", "true");
+						int userId = ud.getUserId(userPhone);
+						HttpSession session = request.getSession();
+						session.setAttribute("userId", userId);
+						session.setAttribute("userPhone", userPhone);
+						flag = true;
+						response.sendRedirect("/xMeituan/userShow");
+					} else
+					{
+						// 注册过的用户
+						response.sendRedirect("/xMeituan/html/userPage/userLogin.html");
+					}
+					jsonList.add(jsonObj);
+					out.println(jsonList);
+				} else
+				{
+					System.out.println("userLogin:reg:用户名为空");
+				}
+			} else
+			{
+				System.out.println("userLogin:reg:用户名为空");
+			}
 		} else
 		{
-			// 注册过的用户
-			response.sendRedirect("/html/userPage/userLogin.html");
-			//jsonObj.put("checked", "false");
+			System.out.println("userLogin:reg:用户名为空");
 		}
-		jsonList.add(jsonObj);
-		out.println(jsonList);
+		if(flag==false)
+		{
+			response.sendRedirect("/xMeituan/html/error/error.jsp");
+		}
+
 	}
 
 	private void phone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

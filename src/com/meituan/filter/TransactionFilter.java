@@ -45,6 +45,7 @@ public class TransactionFilter implements Filter
 			try
 			{
 				connection.rollback();
+				System.out.println("回滚数据库");
 			} catch (SQLException e1)
 			{
 				e1.printStackTrace();
